@@ -1,0 +1,554 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://www.cdisc.org/ns/odm/odm_v1_3.3" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xml="http://www.w3.org/XML/1998/namespace"
+           xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+           jxb:version="2.1">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <xs:element name="ODM">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Study">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="GlobalVariables">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="StudyName"/>
+                                        <xs:element type="xs:string" name="StudyDescription"/>
+                                        <xs:element type="xs:string" name="ProtocolName"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="BasicDefinitions">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="MeasurementUnit" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Symbol">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText" maxOccurs="unbounded"
+                                                                            minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="MetaDataVersion">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Protocol">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="StudyEventRef" maxOccurs="unbounded"
+                                                                minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="StudyEventOID"
+                                                                                  use="optional"/>
+                                                                    <xs:attribute type="xs:string" name="Mandatory"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="StudyEventDef" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Description">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText" maxOccurs="unbounded"
+                                                                            minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="FormRef" maxOccurs="unbounded" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="FormOID"
+                                                                                  use="optional"/>
+                                                                    <xs:attribute type="xs:string" name="Mandatory"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Repeating" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Type" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="FormDef" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Description">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText" maxOccurs="unbounded"
+                                                                            minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="ItemGroupRef" maxOccurs="unbounded" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="ItemGroupOID"
+                                                                                  use="optional"/>
+                                                                    <xs:attribute type="xs:string" name="Mandatory"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Repeating" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ItemGroupDef" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Description">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText" maxOccurs="unbounded"
+                                                                            minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="ItemRef" maxOccurs="unbounded" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="ItemOID"
+                                                                                  use="optional"/>
+                                                                    <xs:attribute type="xs:string" name="Mandatory"
+                                                                                  use="optional"/>
+                                                                    <xs:attribute type="xs:string" name="MethodOID"
+                                                                                  use="optional"/>
+                                                                    <xs:attribute type="xs:string"
+                                                                                  name="CollectionExceptionConditionOID"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Repeating" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ItemDef" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Description" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText" maxOccurs="unbounded"
+                                                                            minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Question">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText" maxOccurs="unbounded"
+                                                                            minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="CodeListRef" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="CodeListOID"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="MeasurementUnitRef" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string"
+                                                                                  name="MeasurementUnitOID"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="RangeCheck" maxOccurs="unbounded" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:short" name="CheckValue"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="Comparator"
+                                                                          use="optional"/>
+                                                            <xs:attribute type="xs:string" name="SoftHard"
+                                                                          use="optional"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                                <xs:attribute type="xs:string" name="DataType" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="CodeList" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="CodeListItem" maxOccurs="unbounded" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="Decode">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="TranslatedText"
+                                                                                        maxOccurs="unbounded"
+                                                                                        minOccurs="0">
+                                                                                <xs:complexType>
+                                                                                    <xs:simpleContent>
+                                                                                        <xs:extension base="xs:string">
+                                                                                            <xs:attribute
+                                                                                                    ref="xml:lang"/>
+                                                                                        </xs:extension>
+                                                                                    </xs:simpleContent>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="CodedValue"
+                                                                          use="optional"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                                <xs:attribute type="xs:string" name="DataType" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ConditionDef" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Description">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="FormalExpression">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="Context"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="MethodDef" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Description">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="TranslatedText">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="xs:string">
+                                                                                <xs:attribute ref="xml:lang"/>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="FormalExpression">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="Context"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="OID" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Name" use="optional"/>
+                                                <xs:attribute type="xs:string" name="Type" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="OID"/>
+                                    <xs:attribute type="xs:string" name="Name"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="OID"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AdminData">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="User">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="FirstName"/>
+                                        <xs:element type="xs:string" name="LastName"/>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="OID"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="StudyOID"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ClinicalData">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SubjectData" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="AuditRecord">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="UserRef">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:string" name="UserOID"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="LocationRef">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute type="xs:byte" name="LocationOID"
+                                                                                  use="optional"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element type="xs:dateTime" name="DateTimeStamp"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="StudyEventData" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="FormData" maxOccurs="unbounded" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="AuditRecord">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="UserRef">
+                                                                                <xs:complexType>
+                                                                                    <xs:simpleContent>
+                                                                                        <xs:extension base="xs:string">
+                                                                                            <xs:attribute
+                                                                                                    type="xs:string"
+                                                                                                    name="UserOID"
+                                                                                                    use="optional"/>
+                                                                                        </xs:extension>
+                                                                                    </xs:simpleContent>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="LocationRef">
+                                                                                <xs:complexType>
+                                                                                    <xs:simpleContent>
+                                                                                        <xs:extension base="xs:string">
+                                                                                            <xs:attribute type="xs:byte"
+                                                                                                          name="LocationOID"
+                                                                                                          use="optional"/>
+                                                                                        </xs:extension>
+                                                                                    </xs:simpleContent>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element type="xs:dateTime"
+                                                                                        name="DateTimeStamp"/>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="Annotation">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="Flag">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="FlagValue">
+                                                                                            <xs:complexType>
+                                                                                                <xs:simpleContent>
+                                                                                                    <xs:extension
+                                                                                                            base="xs:byte">
+                                                                                                        <xs:attribute
+                                                                                                                type="xs:string"
+                                                                                                                name="CodeListOID"
+                                                                                                                use="optional"/>
+                                                                                                    </xs:extension>
+                                                                                                </xs:simpleContent>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                        <xs:attribute type="xs:byte" name="SeqNum"
+                                                                                      use="optional"/>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="ItemGroupData" maxOccurs="unbounded"
+                                                                            minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="ItemData"
+                                                                                        maxOccurs="unbounded"
+                                                                                        minOccurs="0">
+                                                                                <xs:complexType>
+                                                                                    <xs:simpleContent>
+                                                                                        <xs:extension base="xs:string">
+                                                                                            <xs:attribute
+                                                                                                    type="xs:string"
+                                                                                                    name="ItemOID"
+                                                                                                    use="optional"/>
+                                                                                            <xs:attribute
+                                                                                                    type="xs:string"
+                                                                                                    name="Value"
+                                                                                                    use="optional"
+                                                                                            >
+                                                                                                <!-- rename property generated by JAXB (avoiding "Value" name conflict) -->
+                                                                                                <xs:annotation>
+                                                                                                    <xs:appinfo>
+                                                                                                        <jxb:property
+                                                                                                                name="valueAttribute"/>
+                                                                                                    </xs:appinfo>
+                                                                                                </xs:annotation>
+                                                                                            </xs:attribute>
+                                                                                        </xs:extension>
+                                                                                    </xs:simpleContent>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                        <xs:attribute type="xs:string"
+                                                                                      name="ItemGroupOID"
+                                                                                      use="optional"/>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="FormOID"
+                                                                          use="optional"/>
+                                                            <xs:attribute type="xs:string" name="TransactionType"
+                                                                          use="optional"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="StudyEventOID" use="optional"/>
+                                                <xs:attribute type="xs:byte" name="StudyEventRepeatKey" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="SubjectKey" use="optional"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="StudyOID"/>
+                        <xs:attribute type="xs:string" name="MetaDataVersionOID"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="FileType"/>
+            <xs:attribute type="xs:string" name="FileOID"/>
+            <xs:attribute type="xs:dateTime" name="CreationDateTime"/>
+            <xs:attribute type="xs:string" name="ODMVersion"/>
+            <xs:attribute type="xs:string" name="SourceSystem"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
