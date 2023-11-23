@@ -2,6 +2,8 @@ package de.mib.bachelorarbeit.controller;
 
 import odm.ODM;
 import odm.ODMcomplexTypeDefinitionStudy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import java.util.List;
 @RestController
 public class TestController {
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
     @GetMapping("/hello")
     public String sayHello() {
@@ -20,6 +23,7 @@ public class TestController {
     @PostMapping(value = "/test", consumes = "application/xml", produces = "application/xml")
     @ResponseBody
     public ResponseEntity<ODM> processXML(@RequestBody ODM odm) {
+        LOGGER.info("/test Endpoint hit!");
         List<ODMcomplexTypeDefinitionStudy> study = odm.getStudy();
         System.out.printf("Size of study list: %d", study.size());
         if (!study.isEmpty()) {

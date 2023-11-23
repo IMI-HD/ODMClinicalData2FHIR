@@ -16,6 +16,9 @@
     <properties>
         <java.version>17</java.version>
     </properties>
+
+    <!-- Springboot START -->
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -28,7 +31,9 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- XML processing -->
+        <!-- Springboot END -->
+
+        <!-- XML processing START -->
 
         <!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
         <dependency>
@@ -48,6 +53,9 @@
             <version>1.4</version>
         </dependency>
 
+        <!-- XML processing END -->
+
+        <!-- FHIR processing START -->
 
         <!-- This dependency includes the core HAPI-FHIR classes -->
         <dependency>
@@ -55,6 +63,23 @@
             <artifactId>hapi-fhir-base</artifactId>
             <version>6.8.5</version>
         </dependency>
+
+        <!-- FHIR processing END -->
+
+        <!-- Logging START -->
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.22.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.22.0</version>
+        </dependency>
+
+        <!-- Logging END -->
 
 
     </dependencies>
