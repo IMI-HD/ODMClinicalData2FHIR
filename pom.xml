@@ -28,16 +28,24 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- XML processing -->
+
         <!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
             <version>4.0.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>4.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.iru.external.org.w3.schemas</groupId>
+            <artifactId>w3-xmldsig-schema</artifactId>
+            <version>1.4</version>
         </dependency>
 
 

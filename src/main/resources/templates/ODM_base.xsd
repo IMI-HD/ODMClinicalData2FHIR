@@ -1,5 +1,5 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-           targetNamespace="http://www.cdisc.org/ns/odm/v1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cdisc.org/ns/odm/odm.3" xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:xml="http://www.w3.org/XML/1998/namespace"
            xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
            jxb:version="2.1">
