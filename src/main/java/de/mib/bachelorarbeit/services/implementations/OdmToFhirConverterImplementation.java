@@ -174,12 +174,21 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                                                 if (itemDef.isPresent() && !_itemDef.isEmpty()) {
                                                                     // INFO: just testing <Alias> assuming it's always at
                                                                     // index 0
-                                                                    LOGGER.info(String.format(
-                                                                            "ItemValue: %s ; OID: %s ; Alias: %s",
-                                                                            itemData.getValue(),
-                                                                            itemData.getItemOID(),
-                                                                            itemDef.get().getAlias().get(0).getName()
-                                                                    ));
+                                                                    try {
+                                                                        LOGGER.info(String.format(
+                                                                                "ItemValue: %s ; OID: %s ; Alias: %s",
+                                                                                itemData.getValue(),
+                                                                                itemData.getItemOID(),
+                                                                                itemDef.get().getAlias().get(0).getName()
+                                                                        ));
+                                                                    } catch (IndexOutOfBoundsException e) {
+                                                                        LOGGER.warn("No <Alias> in <ItemDef>");
+                                                                        LOGGER.info(String.format(
+                                                                                "ItemValue: %s ; OID: %s",
+                                                                                itemData.getValue(),
+                                                                                itemData.getItemOID()
+                                                                        ));
+                                                                    }
                                                                 } else {
                                                                     LOGGER.warn(
                                                                             String.format("No <ItemDef> was found " +
