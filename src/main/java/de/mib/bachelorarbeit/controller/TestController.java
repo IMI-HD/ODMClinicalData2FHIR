@@ -52,4 +52,12 @@ public class TestController {
                 .body(serializedPatient);
     }
 
+    @PostMapping(value = "/print", consumes = "application/xml")
+    public ResponseEntity<String> printODMClinicalData(@RequestBody ODM odm) {
+        LOGGER.info("/print Endpoint hit!");
+        odmToFhirConverter.printClinicalData(odm);
+        return ResponseEntity.status(HttpStatus.OK).body("See Logs for info!");
+    }
+
+
 }

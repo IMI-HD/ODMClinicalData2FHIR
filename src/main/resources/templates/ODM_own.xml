@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" FileType="Snapshot" FileOID="New Project" CreationDateTime="2023-11-14T15:52:48.445Z" ODMVersion="1.3.2" SourceSystem="OpenEDC">
+    <Study OID="S.1">
+        <GlobalVariables>
+            <StudyName>New Project</StudyName>
+            <StudyDescription/>
+            <ProtocolName>New Project</ProtocolName>
+        </GlobalVariables>
+        <BasicDefinitions>
+            <MeasurementUnit OID="MU.1" Name="MU.1">
+                <Symbol>
+                    <TranslatedText xml:lang="en">umol/L</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.2" Name="MU.2">
+                <Symbol>
+                    <TranslatedText xml:lang="en">%</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.3" Name="MU.3">
+                <Symbol>
+                    <TranslatedText xml:lang="en">mmol/L</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+        </BasicDefinitions>
+        <MetaDataVersion OID="MDV.1" Name="MetaDataVersion">
+            <Protocol>
+                <StudyEventRef StudyEventOID="SE.1" Mandatory="No"/>
+                <StudyEventRef StudyEventOID="SE.2" Mandatory="No"/>
+            </Protocol>
+            <StudyEventDef OID="SE.1" Name="SE.1" Repeating="No" Type="Common">
+                <Description>
+                    <TranslatedText xml:lang="en">Basis Event</TranslatedText>
+                </Description>
+                <FormRef FormOID="F.1" Mandatory="No"/>
+                <FormRef FormOID="F.3" Mandatory="No"/>
+            </StudyEventDef>
+            <StudyEventDef OID="SE.2" Name="SE.2" Repeating="No" Type="Common">
+                <Description>
+                    <TranslatedText xml:lang="en">Erstes Event</TranslatedText>
+                </Description>
+                <FormRef FormOID="F.2" Mandatory="No"/>
+            </StudyEventDef>
+            <FormDef OID="F.1" Name="F.1" Repeating="No">
+                <Description>
+                    <TranslatedText xml:lang="en">T0</TranslatedText>
+                </Description>
+                <ItemGroupRef ItemGroupOID="IG.1" Mandatory="No"/>
+            </FormDef>
+            <FormDef OID="F.2" Name="F.2" Repeating="No">
+                <Description>
+                    <TranslatedText xml:lang="en">T1</TranslatedText>
+                </Description>
+                <ItemGroupRef ItemGroupOID="IG.2" Mandatory="No"/>
+            </FormDef>
+            <FormDef OID="F.3" Name="F.3" Repeating="No">
+                <Description>
+                    <TranslatedText xml:lang="en">T3</TranslatedText>
+                </Description>
+                <ItemGroupRef ItemGroupOID="IG.3" Mandatory="No"/>
+            </FormDef>
+            <ItemGroupDef OID="IG.1" Name="IG.1" Repeating="No">
+                <Description>
+                    <TranslatedText xml:lang="en"> Basis Fragen</TranslatedText>
+                </Description>
+                <ItemRef ItemOID="I.1" Mandatory="No"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.2" Name="IG.2" Repeating="No">
+                <Description>
+                    <TranslatedText xml:lang="en">Erste Gruppe</TranslatedText>
+                </Description>
+                <ItemRef ItemOID="I.2" Mandatory="No"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.3" Name="IG.3" Repeating="No">
+                <Description>
+                    <TranslatedText xml:lang="en">Zweite Gruppe</TranslatedText>
+                </Description>
+                <ItemRef ItemOID="I.3" Mandatory="No"/>
+            </ItemGroupDef>
+            <ItemDef OID="I.1" Name="I.1" DataType="float">
+                <Question>
+                    <TranslatedText xml:lang="en">Kreatinin Spiegel im Blut</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.1"/>
+                <Alias Context="LOINC" Name="59826-8"/>
+            </ItemDef>
+            <ItemDef OID="I.2" Name="I.2" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="en">Blutsauerstoff </TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.2"/>
+                <Alias Context="LOINC" Name="20564-1"/>
+            </ItemDef>
+            <ItemDef OID="I.3" Name="I.3" DataType="float">
+                <Question>
+                    <TranslatedText xml:lang="en">Hemoglobin Spiegel im Blut</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.3"/>
+                <Alias Context="LOINC" Name="59260-0"/>
+            </ItemDef>
+            <CodeList OID="OpenEDC.Annotations" Name="OpenEDC.Annotations" DataType="text">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">PATIENT_ID</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="OpenEDC.DataStatus" Name="OpenEDC.DataStatus" DataType="text">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">EMPTY</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="en">INCOMPLETE</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="en">COMPLETE</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="4">
+                    <Decode>
+                        <TranslatedText xml:lang="en">VALIDATED</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="5">
+                    <Decode>
+                        <TranslatedText xml:lang="en">CONFLICT</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+        </MetaDataVersion>
+    </Study>
+    <AdminData StudyOID="S.1">
+        <User OID="U.1">
+            <FirstName>New</FirstName>
+            <LastName>User</LastName>
+        </User>
+    </AdminData>
+    <ClinicalData StudyOID="S.1" MetaDataVersionOID="MDV.1">
+        <SubjectData SubjectKey="Random User 1">
+            <AuditRecord>
+                <UserRef UserOID="U.1"/>
+                <LocationRef LocationOID="-"/>
+                <DateTimeStamp>2023-11-14T15:50:34.817Z</DateTimeStamp>
+            </AuditRecord>
+            <StudyEventData StudyEventOID="SE.1">
+                <FormData FormOID="F.1" TransactionType="Insert">
+                    <AuditRecord>
+                        <UserRef UserOID="U.1"/>
+                        <LocationRef LocationOID="-"/>
+                        <DateTimeStamp>2023-11-14T15:50:34.829Z</DateTimeStamp>
+                    </AuditRecord>
+                    <Annotation SeqNum="1">
+                        <Flag>
+                            <FlagValue CodeListOID="OpenEDC.DataStatus">3</FlagValue>
+                        </Flag>
+                    </Annotation>
+                    <ItemGroupData ItemGroupOID="IG.1">
+                        <ItemData ItemOID="I.1" Value="91.74"/>
+                    </ItemGroupData>
+                </FormData>
+                <FormData FormOID="F.3" TransactionType="Insert">
+                    <AuditRecord>
+                        <UserRef UserOID="U.1"/>
+                        <LocationRef LocationOID="-"/>
+                        <DateTimeStamp>2023-11-14T15:50:34.829Z</DateTimeStamp>
+                    </AuditRecord>
+                    <Annotation SeqNum="1">
+                        <Flag>
+                            <FlagValue CodeListOID="OpenEDC.DataStatus">3</FlagValue>
+                        </Flag>
+                    </Annotation>
+                    <ItemGroupData ItemGroupOID="IG.3">
+                        <ItemData ItemOID="I.3" Value="11.44"/>
+                    </ItemGroupData>
+                </FormData>
+            </StudyEventData>
+            <StudyEventData StudyEventOID="SE.2">
+                <FormData FormOID="F.2" TransactionType="Insert">
+                    <AuditRecord>
+                        <UserRef UserOID="U.1"/>
+                        <LocationRef LocationOID="-"/>
+                        <DateTimeStamp>2023-11-14T15:50:34.833Z</DateTimeStamp>
+                    </AuditRecord>
+                    <Annotation SeqNum="1">
+                        <Flag>
+                            <FlagValue CodeListOID="OpenEDC.DataStatus">3</FlagValue>
+                        </Flag>
+                    </Annotation>
+                    <ItemGroupData ItemGroupOID="IG.2">
+                        <ItemData ItemOID="I.2" Value="78"/>
+                    </ItemGroupData>
+                </FormData>
+            </StudyEventData>
+        </SubjectData>
+    </ClinicalData>
+</ODM>
