@@ -2,15 +2,21 @@ package de.mib.bachelorarbeit.services.implementations;
 
 
 import ca.uhn.fhir.context.FhirContext;
+import de.mib.bachelorarbeit.exceptions.ClinicalDataToQuestionnaireResponseException;
+import de.mib.bachelorarbeit.exceptions.subExceptions.*;
 import de.mib.bachelorarbeit.services.definitions.OdmToFhirConverter;
 import odm.*;
+import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Patient;
-import org.slf4j.Logger;
+import org.hl7.fhir.r4.model.QuestionnaireResponse;
+import org.hl7.fhir.r4.model.Reference;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +40,260 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
 
         return fhirContext.newJsonParser().setPrettyPrint(true).encodeToString(patient);
     }
+
+    @Override
+    public String clinicalDataToQuestionnaireResponse(@NotNull ODM odm)
+            throws ClinicalDataToQuestionnaireResponseException {
+        LOGGER.info("Received ODM in the converter!");
+        // FHIR Bundle that will be returned
+        Bundle returnBundle = createBundle();
+        // List of all QRS contained in the final Bundle
+        List<QuestionnaireResponse> _qrs = new ArrayList<>();
+        // List of <ClinicalData> Elements from ODM
+        List<ODMcomplexTypeDefinitionClinicalData> _clinicalData;
+        // List of <Study> Elements from ODM
+        List<ODMcomplexTypeDefinitionStudy> _study;
+        // <ClinicalData> Element at index 0 (only this will be converted!)
+        ODMcomplexTypeDefinitionClinicalData clinicalData;
+        // <SubjectData> Element at index 0 (only this will be converted!)
+        ODMcomplexTypeDefinitionSubjectData subjectData;
+        // <Study> Element at index 0 (only this will be converted!)
+        ODMcomplexTypeDefinitionStudy study;
+        // <MetaDataVersion> Element at index 0 of the <Study> (only this will be converted!)
+        ODMcomplexTypeDefinitionMetaDataVersion metaDataVersion;
+
+        // validate basic structure of the ODM file
+
+        // check if a <ClinicalData> Element is present!
+        if (odm.getClinicalData().isEmpty()) {
+            LOGGER.error("<ClinicalData> was empty!");
+            throw new ClinicalDataNotFoundException("<ClinicalData> was empty!");
+        } else {
+            // set <ClinicalData> from ODM
+            LOGGER.info("Set <ClinicalData> list!");
+            _clinicalData = odm.getClinicalData();
+            try {
+                clinicalData = _clinicalData.get(0);
+                LOGGER.info("<ClinicalData> field set!");
+            } catch (IndexOutOfBoundsException e) {
+                LOGGER.error("No <ClinicalData> found at index 0!");
+                throw new ClinicalDataNotFoundException("No <ClinicalData> found at index 0!");
+            }
+        }
+
+        // check if a <SubjectData> Element is present in the selected <ClinicalData>
+        if (clinicalData.getSubjectData().isEmpty()) {
+            LOGGER.error("<SubjectData> was empty!");
+            throw new SubjectDataNotFoundException("<SubjectData> was empty!");
+        } else {
+            // set <SubjectData> at index 0 from selected <ClinicalData>
+            try {
+                subjectData = clinicalData.getSubjectData().get(0);
+                LOGGER.info("<SubjetData> field set!");
+            } catch (IndexOutOfBoundsException e) {
+                LOGGER.error("No <SubjectData> found at index 0!");
+                throw new SubjectDataNotFoundException("No <SubjectData> found at index 0!");
+            }
+        }
+
+        // check if a <Study> Element is present!
+        if (odm.getStudy().isEmpty()) {
+            LOGGER.error("<Study> was empty!");
+            throw new StudyNotFoundException("<Study> was empty!");
+        } else {
+            // set <Study> from ODM
+            LOGGER.info("Set <Study> list!");
+            _study = odm.getStudy();
+            try {
+                study = _study.get(0);
+                LOGGER.info("<Study> field set!");
+            } catch (IndexOutOfBoundsException e) {
+                LOGGER.error("No <Study> found at index 0!");
+                throw new StudyNotFoundException("No <Study> found at index 0!");
+            }
+        }
+
+        // check if a <MetaDataVersion> from the selected <Study> is present!
+        if (study.getMetaDataVersion().isEmpty()) {
+            LOGGER.error("<MetaDataVersion> was empty!");
+            throw new MetaDataVersionNotFoundException("<MetaDataVersion> was empty!");
+        } else {
+            // set <MetaDataVersion> at index 0 from selected <Study> from ODM
+            try {
+                metaDataVersion = study.getMetaDataVersion().get(0);
+                LOGGER.info("<MetaDataVersion> field set!");
+            } catch (IndexOutOfBoundsException e) {
+                LOGGER.error("No <MetaDataVersion> found at index 0!");
+                throw new MetaDataVersionNotFoundException("No <MetaDataVersion> found at index 0!");
+            }
+        }
+
+        LOGGER.info("All data fields set! Looping through ODM");
+
+        // check if <Study> and <ClinicalData> OIDs match
+        if (!clinicalData.getStudyOID().equals(study.getOID())) {
+            String errorString = String.format("<ClinicalData> StudyOID: %s does not match provided <Study> OID: %s",
+                    clinicalData.getStudyOID(), study.getOID());
+            LOGGER.error(errorString);
+            throw new ObjectIdDontMatchException(errorString);
+        }
+
+        // check if <ClinicalData> MetaDataVersionOID match provided <MetaDataVersion> OID
+        if (!metaDataVersion.getOID().equals(clinicalData.getMetaDataVersionOID())) {
+            String errorString = String.format("<ClinicalData> MetaDataVersionOID: %s does not " +
+                                               "match provided <MetaDataVersion> OID: %s",
+                    clinicalData.getMetaDataVersionOID(), metaDataVersion.getOID());
+            LOGGER.error(errorString);
+            throw new ObjectIdDontMatchException(errorString);
+        }
+
+        // Loop through all <StudyEventData> => QuestionnaireResponse
+        if (subjectData.getStudyEventData().isEmpty()) {
+            String error = "No <StudyEventData> Element found in <SubjectData>";
+            LOGGER.error(error);
+            throw new StudyEventDataNotFoundException(error);
+        }
+
+        // List of all <StudyEventData> Elements in one <SubjectData>
+        // Each Element will be converted to a Single QuestionnaireResponse
+        List<ODMcomplexTypeDefinitionStudyEventData> _studyEventData = subjectData.getStudyEventData();
+        // HashMap with key (OID) and value (linkId)
+        HashMap<String, String> formDefLinkIdMap = new HashMap<>();
+        for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
+            LOGGER.info(
+                    String.format("Converting <StudyEventData> with OID: %s",
+                            studyEventData.getStudyEventOID())
+            );
+            // QuestionnaireResponse
+            QuestionnaireResponse qrs = createQuestionnaireResponseBase();
+            // Create root Element (linkId: 1, no "name")
+            QuestionnaireResponse.QuestionnaireResponseItemComponent root = qrs.addItem();
+            root.setLinkId("1");
+            //List of <StudyEventDef> from <MetaDataVersion>
+            List<ODMcomplexTypeDefinitionStudyEventDef> _studyEvents
+                    = metaDataVersion.getStudyEventDef();
+            LOGGER.info(
+                    String.format("Searching for corresponding <StudyEventDef> in <MetaDataVersion>" +
+                                  " for <StudyEventData> with OID: %s",
+                            studyEventData.getStudyEventOID()));
+            // Search for corresponding <StudyEventDef> in the <MetaDataVersion>
+            Optional<ODMcomplexTypeDefinitionStudyEventDef> studyEventDef = _studyEvents.stream()
+                    .filter(obj -> studyEventData.getStudyEventOID().equals(obj.getOID()))
+                    .findFirst();
+            if (studyEventDef.isPresent()) {
+                LOGGER.info(
+                        String.format("<StudyEventDef> with OID: %s found!",
+                                studyEventDef.get().getOID()));
+            } else {
+                String error = String.format("No corresponding <StudyEventDef> with OID: %s found!",
+                        studyEventData.getStudyEventOID());
+                LOGGER.error(error);
+                throw new NoCorrespondingStudyEventDefFoundException(error);
+            }
+
+            // List of <FormData> => linkId under the root (1.x)
+            List<ODMcomplexTypeDefinitionFormData> _formData = studyEventData.getFormData();
+            if (_formData.isEmpty()) {
+                String error = String.format("No <FormData> found in <StudyEventData> with OID: %s",
+                        studyEventData.getStudyEventOID());
+                LOGGER.error(error);
+                throw new FormDataNotFoundException(error);
+            } else {
+                LOGGER.info("<FormData> found in <StudyEventData>");
+            }
+
+            // <FormDef> list from <MetaDataVersion> this list
+            // will be searched for each <FormData>
+            List<ODMcomplexTypeDefinitionFormDef> _formDef = metaDataVersion.getFormDef();
+
+            // Loop through all <FormData> Elements
+            for (int i = 0; i < _formData.size(); i++) {
+
+                // Current <FormData> Element
+                ODMcomplexTypeDefinitionFormData formData = _formData.get(i);
+
+                // Search for corresponding <FormDef> in the <MetaDataVersion>
+                LOGGER.info(
+                        String.format("Searching for corresponding " +
+                                      "<FormDef> with OID: %s in <MetaDataVersion>",
+                                formData.getFormOID()));
+                Optional<ODMcomplexTypeDefinitionFormDef> formDef = _formDef.stream()
+                        .filter(obj -> formData.getFormOID().equals(obj.getOID()))
+                        .findFirst();
+
+                if (formDef.isPresent()) {
+                    LOGGER.info(
+                            String.format("<FormDef> with OID: %s found!",
+                                    formDef.get().getOID()));
+                } else {
+                    String error = String.format("No corresponding <FormDef> found for <FormData> with OID: %s",
+                            formData.getFormOID());
+                    LOGGER.error(error);
+                    throw new NoCorrespondingFormDefFoundException(error);
+                }
+
+                // Create QRS Item one level under the root
+                QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x = root.addItem();
+                LOGGER.info(
+                        String.format("Converting <FormData> with OID: %s",
+                                formData.getFormOID()));
+
+
+                // Set text of the item
+                // WARNING MAY PRODUCE INDEX OUT OF BOUNDS EXCEPTION
+                //ToDo: insert language check via parameter
+                ODMcomplexTypeDefinitionDescription description = formDef.get().getDescription();
+                if (description.getTranslatedText().isEmpty()) {
+                    String error = String.format(
+                            "No <TranslatedText> in <Description> found for <FormDef> with OID: %s!",
+                            formDef.get().getOID()
+                    );
+                    LOGGER.error(error);
+                    throw new FormDescriptionNotFoundException(error);
+                } else {
+                    LOGGER.info("Set text of linkId 1.x Element!");
+                    item_1_x.setText(formDef.get().getDescription().getTranslatedText().get(0).getValue());
+                }
+
+                // Check if form is in HashMap if not => add
+                if (formDefLinkIdMap.containsKey(formData.getFormOID())) {
+                    LOGGER.info(String.format(
+                            "LinkId for <FormData> with OID: %s found",
+                            formData.getFormOID()
+                    ));
+                    // Set linkId from HashMap
+                    item_1_x.setLinkId(String.format("1.%s", formDefLinkIdMap.get(formData.getFormOID())));
+                } else {
+                    LOGGER.info(String.format(
+                            "Generate linkId for <FormData> with OID: %s",
+                            formData.getFormOID()
+                    ));
+                    // Set append Value in HashMap
+                    int linkId = (i + 1);
+                    formDefLinkIdMap.put(formData.getFormOID(), String.valueOf(linkId));
+                    // Get append Value in HashMap
+                    item_1_x.setLinkId(String.format("1.%s", formDefLinkIdMap.get(formData.getFormOID())));
+                }
+
+
+            }
+
+        }
+
+        return "";
+    }
+
+    private Bundle createBundle() {
+        return new Bundle();
+    }
+
+    private QuestionnaireResponse createQuestionnaireResponseBase() {
+        QuestionnaireResponse qrs = new QuestionnaireResponse();
+        qrs.setQuestionnaire("http://link_to_questionnaire");
+        qrs.setStatus(QuestionnaireResponse.QuestionnaireResponseStatus.COMPLETED);
+        return qrs;
+    }
+
 
     @Override
     public void printClinicalData(ODM odm) {
