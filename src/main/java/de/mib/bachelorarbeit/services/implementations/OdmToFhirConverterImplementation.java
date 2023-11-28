@@ -6,10 +6,7 @@ import de.mib.bachelorarbeit.exceptions.ClinicalDataToQuestionnaireResponseExcep
 import de.mib.bachelorarbeit.exceptions.subExceptions.*;
 import de.mib.bachelorarbeit.services.definitions.OdmToFhirConverter;
 import odm.*;
-import org.hl7.fhir.r4.model.Bundle;
-import org.hl7.fhir.r4.model.Patient;
-import org.hl7.fhir.r4.model.QuestionnaireResponse;
-import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.*;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +43,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
             throws ClinicalDataToQuestionnaireResponseException {
         LOGGER.info("Received ODM in the converter!");
         // FHIR Bundle that will be returned
-        Bundle returnBundle = createBundle();
+        Bundle bundle = createBundle();
         // List of all QRS contained in the final Bundle
         List<QuestionnaireResponse> _qrs = new ArrayList<>();
         // List of <ClinicalData> Elements from ODM
@@ -157,8 +154,13 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         // List of all <StudyEventData> Elements in one <SubjectData>
         // Each Element will be converted to a Single QuestionnaireResponse
         List<ODMcomplexTypeDefinitionStudyEventData> _studyEventData = subjectData.getStudyEventData();
-        // HashMap with key (OID) and value (linkId)
+        // HashMap with key (OID) and Value (linkId) for <FormDef>
         HashMap<String, String> formDefLinkIdMap = new HashMap<>();
+        // HashMap with key (OID) and Value (linkId) for <ItemGroupDef>
+        HashMap<String, String> itemGroupDefLinkIdMap = new HashMap<>();
+        // HashMap with key (OID) and Value (linkId) for <ItemDef>
+        HashMap<String, String> itemDefLinkIdMap = new HashMap<>();
+        // ToDo: fix Form linkId Counting
         for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
             LOGGER.info(
                     String.format("Converting <StudyEventData> with OID: %s",
@@ -242,8 +244,8 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 // Set text of the item
                 // WARNING MAY PRODUCE INDEX OUT OF BOUNDS EXCEPTION
                 //ToDo: insert language check via parameter
-                ODMcomplexTypeDefinitionDescription description = formDef.get().getDescription();
-                if (description.getTranslatedText().isEmpty()) {
+                ODMcomplexTypeDefinitionDescription formDescription = formDef.get().getDescription();
+                if (formDescription.getTranslatedText().isEmpty()) {
                     String error = String.format(
                             "No <TranslatedText> in <Description> found for <FormDef> with OID: %s!",
                             formDef.get().getOID()
@@ -256,6 +258,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 }
 
                 // Check if form is in HashMap if not => add
+                // ToDo: remove duplicated code if it works
                 if (formDefLinkIdMap.containsKey(formData.getFormOID())) {
                     LOGGER.info(String.format(
                             "LinkId for <FormData> with OID: %s found",
@@ -275,16 +278,240 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     item_1_x.setLinkId(String.format("1.%s", formDefLinkIdMap.get(formData.getFormOID())));
                 }
 
+                // List of <ItemGroupData> in <FormData>
+                List<ODMcomplexTypeDefinitionItemGroupData> _itemGroupData =
+                        formData.getItemGroupData();
+                if (_itemGroupData.isEmpty()) {
+                    String error = String.format("No <ItemGroupData> found in <FormData> with OID: %s",
+                            formData.getFormOID());
+                    LOGGER.error(error);
+                    throw new ItemGroupDataNotFoundException(error);
+                } else {
+                    LOGGER.info("<ItemGroupData> found in <FormData>");
+                }
 
+                // <ItemGroupDef> list from <MetaDataVersion> list
+                // will be searched for each <ItemGroupData>
+                List<ODMcomplexTypeDefinitionItemGroupDef> _itemGroupDef = metaDataVersion.getItemGroupDef();
+
+                // Loop through all <ItemGroupData>
+                for (int k = 0; k < _itemGroupData.size(); k++) {
+                    // Current <ItemGroupData> Element
+                    ODMcomplexTypeDefinitionItemGroupData itemGroupData = _itemGroupData.get(k);
+
+                    // Search for corresponding <ItemGroupDef> in <MetaDataVersion>
+                    LOGGER.info(
+                            String.format("Searching for corresponding <ItemGroupDef>" +
+                                          " with OID: %s in <MetaDataVersion",
+                                    itemGroupData.getItemGroupOID()));
+                    Optional<ODMcomplexTypeDefinitionItemGroupDef> itemGroupDef = _itemGroupDef.stream()
+                            .filter(
+                                    obj -> itemGroupData.getItemGroupOID()
+                                            .equals(obj.getOID()))
+                            .findFirst();
+
+                    if (itemGroupDef.isPresent()) {
+                        LOGGER.info(
+                                String.format("<ItemGroupDef> with OID: %s found!",
+                                        itemGroupDef.get().getOID()));
+                    } else {
+                        String error = String.format("No corresponding <ItemGroupDef> found for " +
+                                                     "<ItemGroupData> with OID: %s",
+                                itemGroupData.getItemGroupOID());
+                        LOGGER.error(error);
+                        throw new NoCorrespondingItemGroupDefFoundException(error);
+                    }
+
+                    // Create QRS Item one level under the Forms (1.x.x)
+                    QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x = item_1_x.addItem();
+                    LOGGER.info(
+                            String.format("Converting <ItemGroupData> with OID: %s",
+                                    itemGroupData.getItemGroupOID()));
+
+                    // Set text of the item
+                    // WARNING MAY PRODUCE INDEX OUT OF BOUNDS EXCEPTION
+                    //ToDo: insert language check via parameter
+                    ODMcomplexTypeDefinitionDescription itemGroupDescription = itemGroupDef.get().getDescription();
+                    if (itemGroupDescription.getTranslatedText().isEmpty()) {
+                        String error = String.format(
+                                "No <TranslatedText> in <Description> found for <ItemGroupDef> with OID: %s!",
+                                itemGroupDef.get().getOID()
+                        );
+                        LOGGER.error(error);
+                        throw new ItemGroupDefDescriptionNotFoundException(error);
+                    } else {
+                        LOGGER.info("Set text of linkId 1.x.x Element!");
+                        item_1_x_x.setText(itemGroupDescription.getTranslatedText().get(0).getValue());
+                    }
+
+                    // Check if <ItemGroup> is in HashMap if not => add
+                    // ToDo: remove duplicated code if it works
+                    if (itemGroupDefLinkIdMap.containsKey(itemGroupData.getItemGroupOID())) {
+                        LOGGER.info(String.format(
+                                "LinkId for <ItemGroupData> with OID: %s found",
+                                itemGroupData.getItemGroupOID()
+                        ));
+                        // Set linkId from HashMap
+                        item_1_x_x.setLinkId(String.format("1.%s.%s",
+                                formDefLinkIdMap.get(formData.getFormOID()),
+                                itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID())));
+                    } else {
+                        LOGGER.info(String.format(
+                                "Generate linkId for <ItemGroupData> with OID: %s",
+                                itemGroupData.getItemGroupOID()
+                        ));
+                        // Set append Value in HashMap
+                        int linkId = (k + 1);
+                        itemGroupDefLinkIdMap.put(itemGroupData.getItemGroupOID(), String.valueOf(linkId));
+                        // Get append Value in HashMap
+                        item_1_x_x.setLinkId(String.format("1.%s.%s",
+                                formDefLinkIdMap.get(formData.getFormOID()),
+                                itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID())));
+                    }
+
+                    // List of <ItemData> in <ItemGroupData>
+                    List<ODMcomplexTypeDefinitionItemData> _itemData =
+                            itemGroupData.getItemDataGroup();
+                    if (_itemData.isEmpty()) {
+                        String error = String.format("No <ItemData> found in <ItemGroupData> with OID: %s",
+                                itemGroupData.getItemGroupOID());
+                        LOGGER.error(error);
+                        throw new ItemDataNotFoundException(error);
+                    } else {
+                        LOGGER.info("<ItemData> found in <ItemGroupData>");
+                    }
+
+                    // <ItemDef> list from <MetaDataVersion> list
+                    // will be searched for each <ItemData>
+                    List<ODMcomplexTypeDefinitionItemDef> _itemDef = metaDataVersion.getItemDef();
+
+                    // Loop through all <ItemData>
+                    for (int t = 0; t < _itemData.size(); t++) {
+
+                        // Current <ItemData> Element
+                        ODMcomplexTypeDefinitionItemData itemData = _itemData.get(t);
+
+                        // Search for corresponding <ItemDef> in <MetaDataVersion>
+                        LOGGER.info(
+                                String.format("Searching for corresponding <ItemDef>" +
+                                              " with OID: %s in <MetaDataVersion>",
+                                        itemData.getItemOID()));
+                        Optional<ODMcomplexTypeDefinitionItemDef> itemDef = _itemDef.stream()
+                                .filter(
+                                        obj -> itemData.getItemOID()
+                                                .equals(obj.getOID()))
+                                .findFirst();
+
+                        // Check if <ItemDef> was found
+                        if (itemDef.isPresent()) {
+                            LOGGER.info(
+                                    String.format("<ItemDef> with OID: %s found!",
+                                            itemDef.get().getOID()));
+                        } else {
+                            String error = String.format("No corresponding <ItemDef> found for " +
+                                                         "<ItemData> with OID: %s",
+                                    itemData.getItemOID());
+                            LOGGER.error(error);
+                            throw new NoCorrespondingItemDefFoundException(error);
+                        }
+
+                        // Create QRS Item one level under the ItemGroup (1.x.x.x)
+                        QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x = item_1_x_x.addItem();
+                        LOGGER.info(
+                                String.format("Converting <ItemData> with OID: %s",
+                                        itemData.getItemOID()));
+
+                        // Set text of the item
+                        // WARNING MAY PRODUCE INDEX OUT OF BOUNDS EXCEPTION
+                        //ToDo: insert language check via parameter
+                        ODMcomplexTypeDefinitionQuestion itemQuestion = itemDef.get().getQuestion();
+                        if (itemQuestion.getTranslatedText().isEmpty()) {
+                            String error = String.format(
+                                    "No <TranslatedText> in <Question> found for <ItemDef> with OID: %s!",
+                                    itemDef.get().getOID()
+                            );
+                            LOGGER.error(error);
+                            throw new ItemGroupDefDescriptionNotFoundException(error);
+                        } else {
+                            LOGGER.info("Set text of linkId 1.x.x.x Element!");
+                            item_1_x_x_x.setText(itemQuestion.getTranslatedText().get(0).getValue());
+                        }
+
+                        // Check if <Item> is in HashMap if not => add
+                        // ToDo: remove duplicated code if it works
+                        if (itemDefLinkIdMap.containsKey(itemData.getItemOID())) {
+                            LOGGER.info(String.format(
+                                    "LinkId for <ItemData> with OID: %s found",
+                                    itemData.getItemOID()
+                            ));
+                            // Set linkId from HashMap
+                            item_1_x_x_x.setLinkId(String.format("1.%s.%s.%s",
+                                    formDefLinkIdMap.get(formData.getFormOID()),
+                                    itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID()),
+                                    itemDefLinkIdMap.get(itemData.getItemOID())));
+                        } else {
+                            LOGGER.info(String.format(
+                                    "Generate linkId for <ItemData> with OID: %s",
+                                    itemData.getItemOID()
+                            ));
+                            // Set append Value in HashMap
+                            int linkId = (t + 1);
+                            itemDefLinkIdMap.put(itemData.getItemOID(), String.valueOf(linkId));
+                            // Get append Value in HashMap
+                            item_1_x_x_x.setLinkId(String.format("1.%s.%s.%s",
+                                    formDefLinkIdMap.get(formData.getFormOID()),
+                                    itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID()),
+                                    itemDefLinkIdMap.get(itemData.getItemOID())));
+                        }
+
+                        if (itemDef.get().getAlias().isEmpty()) {
+                            String error = String.format("No <Alias> found in <ItemDef> with OID: %s",
+                                    itemDef.get().getOID());
+                            LOGGER.error(error);
+                            throw new NoAliasElementFound(error);
+                        }
+
+                        // Insert answer[] into item
+                        // WARNING may produce IndexOutOfBoundsException
+                        // ToDo: generalize here and fix IndexOutOfBounds Alias
+                        item_1_x_x_x.addAnswer()
+                                .setValue(
+                                        new Coding(
+                                                "http://loinc.org",
+                                                itemDef.get().getAlias().get(0).getName(),
+                                                itemData.getValue()
+                                        )
+                                );
+
+                    }
+
+                }
             }
+
+            // Add finished QuestionnaireResponse to the _qrs List
+            LOGGER.info("Add QuestionnaireResponse to List!");
+            _qrs.add(qrs);
 
         }
 
-        return "";
+        // Add all QuestionnaireResponse Resources from the List the Bundle
+        if (_qrs.isEmpty()) {
+            String error = "No QuestionnaireResponse was found in the List!";
+            LOGGER.error(error);
+            throw new NoQuestionnaireResponseFoundException(error);
+        }
+
+        for (QuestionnaireResponse qrs : _qrs) {
+            bundle.addEntry().setResource(qrs);
+        }
+
+        return fhirContext.newJsonParser().setPrettyPrint(true).encodeToString(bundle);
     }
 
     private Bundle createBundle() {
-        return new Bundle();
+        Bundle bundle = new Bundle();
+        bundle.setType(Bundle.BundleType.COLLECTION);
+        return bundle;
     }
 
     private QuestionnaireResponse createQuestionnaireResponseBase() {

@@ -32,10 +32,10 @@ public class ConverterController {
     @ResponseBody
     public ResponseEntity<String> convertClinicalDataToQuestionnaireResponse(@RequestBody ODM odm) {
         try {
-            odmToFhirConverter.clinicalDataToQuestionnaireResponse(odm);
-            return ResponseEntity.status(HttpStatus.OK).body("Great success!");
+            String bundle = odmToFhirConverter.clinicalDataToQuestionnaireResponse(odm);
+            return ResponseEntity.status(HttpStatus.OK).body(bundle);
         } catch (ClinicalDataToQuestionnaireResponseException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("See logs for Info!");
         }
     }
 
