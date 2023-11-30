@@ -33,6 +33,7 @@
                     <TranslatedText xml:lang="en">Basis Event</TranslatedText>
                 </Description>
                 <FormRef FormOID="F.1" Mandatory="No"/>
+                <FormRef FormOID="F.1" Mandatory="No"/>
                 <FormRef FormOID="F.3" Mandatory="No"/>
             </StudyEventDef>
             <StudyEventDef OID="SE.2" Name="SE.2" Repeating="No" Type="Common">
@@ -41,7 +42,7 @@
                 </Description>
                 <FormRef FormOID="F.2" Mandatory="No"/>
             </StudyEventDef>
-            <FormDef OID="F.1" Name="F.1" Repeating="No">
+            <FormDef OID="F.1" Name="F.1" Repeating="Yes">
                 <Description>
                     <TranslatedText xml:lang="en">T0</TranslatedText>
                 </Description>
@@ -161,6 +162,21 @@
                     </Annotation>
                     <ItemGroupData ItemGroupOID="IG.1">
                         <ItemData ItemOID="I.1" Value="91.74"/>
+                    </ItemGroupData>
+                </FormData>
+                <FormData FormOID="F.1" TransactionType="Insert">
+                    <AuditRecord>
+                        <UserRef UserOID="U.1"/>
+                        <LocationRef LocationOID="-"/>
+                        <DateTimeStamp>2023-11-14T15:50:34.829Z</DateTimeStamp>
+                    </AuditRecord>
+                    <Annotation SeqNum="1">
+                        <Flag>
+                            <FlagValue CodeListOID="OpenEDC.DataStatus">3</FlagValue>
+                        </Flag>
+                    </Annotation>
+                    <ItemGroupData ItemGroupOID="IG.1">
+                        <ItemData ItemOID="I.1" Value="90.54"/>
                     </ItemGroupData>
                 </FormData>
                 <FormData FormOID="F.3" TransactionType="Insert">

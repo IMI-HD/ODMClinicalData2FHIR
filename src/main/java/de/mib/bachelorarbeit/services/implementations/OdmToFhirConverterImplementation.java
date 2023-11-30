@@ -156,12 +156,15 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         List<ODMcomplexTypeDefinitionStudyEventData> _studyEventData = subjectData.getStudyEventData();
         // HashMap with key (OID) and Value (linkId) for <FormDef>
         HashMap<String, String> formDefLinkIdMap = new HashMap<>();
-        // HashMap with key (OID) and Value (linkId) for <ItemGroupDef>
-        HashMap<String, String> itemGroupDefLinkIdMap = new HashMap<>();
-        // HashMap with key (OID) and Value (linkId) for <ItemDef>
-        HashMap<String, String> itemDefLinkIdMap = new HashMap<>();
-        // ToDo: fix Form linkId Counting
+        int formCounter = 1;
         for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
+
+            // Moved HashMaps to fix Issue #1
+            // HashMap with key (OID) and Value (linkId) for <ItemGroupDef>
+            HashMap<String, String> itemGroupDefLinkIdMap = new HashMap<>();
+            // HashMap with key (OID) and Value (linkId) for <ItemDef>
+            HashMap<String, String> itemDefLinkIdMap = new HashMap<>();
+
             LOGGER.info(
                     String.format("Converting <StudyEventData> with OID: %s",
                             studyEventData.getStudyEventOID())
@@ -272,10 +275,11 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             formData.getFormOID()
                     ));
                     // Set append Value in HashMap
-                    int linkId = (i + 1);
-                    formDefLinkIdMap.put(formData.getFormOID(), String.valueOf(linkId));
+                    formDefLinkIdMap.put(formData.getFormOID(), String.valueOf(formCounter));
                     // Get append Value in HashMap
                     item_1_x.setLinkId(String.format("1.%s", formDefLinkIdMap.get(formData.getFormOID())));
+                    // increase form counter
+                    formCounter++;
                 }
 
                 // List of <ItemGroupData> in <FormData>
