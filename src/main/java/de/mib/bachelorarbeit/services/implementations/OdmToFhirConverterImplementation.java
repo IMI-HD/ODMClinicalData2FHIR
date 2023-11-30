@@ -8,6 +8,7 @@ import de.mib.bachelorarbeit.services.definitions.OdmToFhirConverter;
 import odm.*;
 import org.hl7.fhir.r4.model.*;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Service;
@@ -475,17 +476,101 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             throw new NoAliasElementFound(error);
                         }
 
-                        // Insert answer[] into item
-                        // WARNING may produce IndexOutOfBoundsException
-                        // ToDo: generalize here and fix IndexOutOfBounds Alias
-                        item_1_x_x_x.addAnswer()
-                                .setValue(
-                                        new Coding(
-                                                "http://loinc.org",
-                                                itemDef.get().getAlias().get(0).getName(),
-                                                itemData.getValue()
-                                        )
+                        // Check if Item is coded
+                        if (itemDef.get().getCodeListRef() != null) {
+                            LOGGER.info(String.format(
+                                    "<CodeListRef> found for <ItemDef> with OID: %s!",
+                                    itemDef.get().getOID()
+                            ));
+                            ODMcomplexTypeDefinitionCodeListRef codeListRef = itemDef.get().getCodeListRef();
+                            // List of <CodeList> from <MetaDataVersion>
+                            List<ODMcomplexTypeDefinitionCodeList> _codeList = metaDataVersion.getCodeList();
+                            // Search the list for corresponding <CodeList> from given <CodeListRef>
+                            if (_codeList.isEmpty()) {
+                                String error = "<CodeList> was empty!";
+                                LOGGER.error(error);
+                                throw new CodeListWasEmptyException(error);
+                            }
+
+                            LOGGER.info(
+                                    String.format("Searching for <CodeList> with OID: %s",
+                                            itemDef.get().getCodeListRef().getCodeListOID()));
+                            // <CodeList> with matching OID of <CodeListRef> from <ItemDef>
+                            Optional<ODMcomplexTypeDefinitionCodeList> codeList = _codeList.stream()
+                                    .filter(obj ->
+                                            itemDef.get().getCodeListRef().getCodeListOID().equals(obj.getOID()))
+                                    .findFirst();
+
+                            if (codeList.isPresent()) {
+                                LOGGER.info(
+                                        String.format("Corresponding <CodeList> found with OID: %s",
+                                                codeList.get().getOID())
                                 );
+                                // List of <CodeListItems> inside the <CodeList>
+                                List<ODMcomplexTypeDefinitionCodeListItem> _codeListItem =
+                                        codeList.get().getCodeListItem();
+                                LOGGER.info(
+                                        String.format("Searching for <CodeListItem> with CodedValue=%s",
+                                                itemData.getValue())
+                                );
+                                if (_codeListItem.isEmpty()) {
+                                    String error = "<CodeList> was empty!";
+                                    LOGGER.error(error);
+                                    throw new NoCodeListItemsException(error);
+                                }
+                                // Search for matching CodedValue
+                                Optional<ODMcomplexTypeDefinitionCodeListItem> codeListItem =
+                                        _codeListItem.stream()
+                                                .filter(obj -> itemData.getValue().equals(obj.getCodedValue()))
+                                                .findFirst();
+
+                                if (codeListItem.isPresent()) {
+                                    // Set coded Value as answer
+                                    // WARNING may produce IndexOutOfBoundsException
+                                    // ToDo: parameterize language selection in order to prevent IndexOutOfBounds
+                                    item_1_x_x_x.addAnswer()
+                                            .setValue(
+                                                    new Coding(
+                                                            "http://loinc.org",
+                                                            itemDef.get().getAlias().get(0).getName(),
+                                                            codeListItem.get().getDecode()
+                                                                    .getTranslatedText().get(0).getValue()
+                                                    )
+                                            );
+                                } else {
+                                    String error = String.format("No matching <CodeListItem> with" +
+                                                                 " CodedValue=%s found!",
+                                            itemData.getValue()
+                                    );
+                                    LOGGER.error(error);
+                                    throw new NoMatchingCodeListItemException(error);
+                                }
+
+                            } else {
+                                String error = String.format("No corresponding <CodeList> found for <CodeListRef>" +
+                                                             "with OID: %s",
+                                        itemDef.get().getCodeListRef().getCodeListOID());
+                                LOGGER.error(error);
+                                throw new NoCorrespondingCodeListException(error);
+                            }
+
+                        } else {
+                            LOGGER.info(String.format(
+                                    "No coding for <ItemDef> with OID: %s found!",
+                                    itemDef.get().getOID()
+                            ));
+                            // Insert answer[] into item
+                            // WARNING may produce IndexOutOfBoundsException
+                            // ToDo: generalize here and fix IndexOutOfBounds Alias
+                            item_1_x_x_x.addAnswer()
+                                    .setValue(
+                                            new Coding(
+                                                    "http://loinc.org",
+                                                    itemDef.get().getAlias().get(0).getName(),
+                                                    itemData.getValue()
+                                            )
+                                    );
+                        }
 
                     }
 
