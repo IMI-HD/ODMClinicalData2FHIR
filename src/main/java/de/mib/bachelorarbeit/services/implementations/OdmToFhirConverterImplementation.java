@@ -160,7 +160,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         int formCounter = 1;
         for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
 
-            // Moved HashMaps to fix Issue #1
+            // Moved HashMaps inside loop to fix Issue #1
             // HashMap with key (OID) and Value (linkId) for <ItemGroupDef>
             HashMap<String, String> itemGroupDefLinkIdMap = new HashMap<>();
             // HashMap with key (OID) and Value (linkId) for <ItemDef>
@@ -482,7 +482,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                     "<CodeListRef> found for <ItemDef> with OID: %s!",
                                     itemDef.get().getOID()
                             ));
-                            ODMcomplexTypeDefinitionCodeListRef codeListRef = itemDef.get().getCodeListRef();
                             // List of <CodeList> from <MetaDataVersion>
                             List<ODMcomplexTypeDefinitionCodeList> _codeList = metaDataVersion.getCodeList();
                             // Search the list for corresponding <CodeList> from given <CodeListRef>
