@@ -154,16 +154,8 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         // List of all <StudyEventData> Elements in one <SubjectData>
         // Each Element will be converted to a Single QuestionnaireResponse
         List<ODMcomplexTypeDefinitionStudyEventData> _studyEventData = subjectData.getStudyEventData();
-        // HashMap with key (OID) and Value (linkId) for <FormDef>
-        HashMap<String, String> formDefLinkIdMap = new HashMap<>();
-        int formCounter = 1;
-        for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
 
-            // Moved HashMaps inside loop to fix Issue #1
-            // HashMap with key (OID) and Value (linkId) for <ItemGroupDef>
-            HashMap<String, String> itemGroupDefLinkIdMap = new HashMap<>();
-            // HashMap with key (OID) and Value (linkId) for <ItemDef>
-            HashMap<String, String> itemDefLinkIdMap = new HashMap<>();
+        for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
 
             LOGGER.info(
                     String.format("Converting <StudyEventData> with OID: %s",
@@ -171,9 +163,10 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
             );
             // QuestionnaireResponse
             QuestionnaireResponse qrs = createQuestionnaireResponseBase();
-            // Create root Element (linkId: 1, no "name")
+            // Create root Element
             QuestionnaireResponse.QuestionnaireResponseItemComponent root = qrs.addItem();
-            root.setLinkId("1");
+            // set the linkId of the root element (StudyOID)
+            root.setLinkId(studyEventData.getStudyEventOID());
             //List of <StudyEventDef> from <MetaDataVersion>
             List<ODMcomplexTypeDefinitionStudyEventDef> _studyEvents
                     = metaDataVersion.getStudyEventDef();
@@ -260,27 +253,8 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     item_1_x.setText(formDef.get().getDescription().getTranslatedText().get(0).getValue());
                 }
 
-                // Check if form is in HashMap if not => add
-                // ToDo: remove duplicated code if it works
-                if (formDefLinkIdMap.containsKey(formData.getFormOID())) {
-                    LOGGER.info(String.format(
-                            "LinkId for <FormData> with OID: %s found",
-                            formData.getFormOID()
-                    ));
-                    // Set linkId from HashMap
-                    item_1_x.setLinkId(String.format("1.%s", formDefLinkIdMap.get(formData.getFormOID())));
-                } else {
-                    LOGGER.info(String.format(
-                            "Generate linkId for <FormData> with OID: %s",
-                            formData.getFormOID()
-                    ));
-                    // Set append Value in HashMap
-                    formDefLinkIdMap.put(formData.getFormOID(), String.valueOf(formCounter));
-                    // Get append Value in HashMap
-                    item_1_x.setLinkId(String.format("1.%s", formDefLinkIdMap.get(formData.getFormOID())));
-                    // increase form counter
-                    formCounter++;
-                }
+                // Set linkId of item_1_x
+                item_1_x.setLinkId(formData.getFormOID());
 
                 // List of <ItemGroupData> in <FormData>
                 List<ODMcomplexTypeDefinitionItemGroupData> _itemGroupData =
@@ -348,30 +322,9 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                         item_1_x_x.setText(itemGroupDescription.getTranslatedText().get(0).getValue());
                     }
 
-                    // Check if <ItemGroup> is in HashMap if not => add
-                    // ToDo: remove duplicated code if it works
-                    if (itemGroupDefLinkIdMap.containsKey(itemGroupData.getItemGroupOID())) {
-                        LOGGER.info(String.format(
-                                "LinkId for <ItemGroupData> with OID: %s found",
-                                itemGroupData.getItemGroupOID()
-                        ));
-                        // Set linkId from HashMap
-                        item_1_x_x.setLinkId(String.format("1.%s.%s",
-                                formDefLinkIdMap.get(formData.getFormOID()),
-                                itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID())));
-                    } else {
-                        LOGGER.info(String.format(
-                                "Generate linkId for <ItemGroupData> with OID: %s",
-                                itemGroupData.getItemGroupOID()
-                        ));
-                        // Set append Value in HashMap
-                        int linkId = (k + 1);
-                        itemGroupDefLinkIdMap.put(itemGroupData.getItemGroupOID(), String.valueOf(linkId));
-                        // Get append Value in HashMap
-                        item_1_x_x.setLinkId(String.format("1.%s.%s",
-                                formDefLinkIdMap.get(formData.getFormOID()),
-                                itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID())));
-                    }
+                    // set linkId of item_1_x_x
+                    item_1_x_x.setLinkId(itemGroupData.getItemGroupOID());
+
 
                     // List of <ItemData> in <ItemGroupData>
                     List<ODMcomplexTypeDefinitionItemData> _itemData =
@@ -441,32 +394,9 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             item_1_x_x_x.setText(itemQuestion.getTranslatedText().get(0).getValue());
                         }
 
-                        // Check if <Item> is in HashMap if not => add
-                        // ToDo: remove duplicated code if it works
-                        if (itemDefLinkIdMap.containsKey(itemData.getItemOID())) {
-                            LOGGER.info(String.format(
-                                    "LinkId for <ItemData> with OID: %s found",
-                                    itemData.getItemOID()
-                            ));
-                            // Set linkId from HashMap
-                            item_1_x_x_x.setLinkId(String.format("1.%s.%s.%s",
-                                    formDefLinkIdMap.get(formData.getFormOID()),
-                                    itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID()),
-                                    itemDefLinkIdMap.get(itemData.getItemOID())));
-                        } else {
-                            LOGGER.info(String.format(
-                                    "Generate linkId for <ItemData> with OID: %s",
-                                    itemData.getItemOID()
-                            ));
-                            // Set append Value in HashMap
-                            int linkId = (t + 1);
-                            itemDefLinkIdMap.put(itemData.getItemOID(), String.valueOf(linkId));
-                            // Get append Value in HashMap
-                            item_1_x_x_x.setLinkId(String.format("1.%s.%s.%s",
-                                    formDefLinkIdMap.get(formData.getFormOID()),
-                                    itemGroupDefLinkIdMap.get(itemGroupData.getItemGroupOID()),
-                                    itemDefLinkIdMap.get(itemData.getItemOID())));
-                        }
+                        // set linkId of item_1_x_x_x
+                        item_1_x_x_x.setLinkId(itemData.getItemOID());
+
 
                         // Check if Item is coded
                         if (itemDef.get().getCodeListRef() != null) {
