@@ -8,7 +8,6 @@ import de.mib.bachelorarbeit.services.definitions.OdmToFhirConverter;
 import odm.*;
 import org.hl7.fhir.r4.model.*;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Service;
@@ -469,13 +468,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                     itemDefLinkIdMap.get(itemData.getItemOID())));
                         }
 
-                        if (itemDef.get().getAlias().isEmpty()) {
-                            String error = String.format("No <Alias> found in <ItemDef> with OID: %s",
-                                    itemDef.get().getOID());
-                            LOGGER.error(error);
-                            throw new NoAliasElementFound(error);
-                        }
-
                         // Check if Item is coded
                         if (itemDef.get().getCodeListRef() != null) {
                             LOGGER.info(String.format(
@@ -525,17 +517,100 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
 
                                 if (codeListItem.isPresent()) {
                                     // Set coded Value as answer
-                                    // WARNING may produce IndexOutOfBoundsException
-                                    // ToDo: parameterize language selection in order to prevent IndexOutOfBounds
-                                    item_1_x_x_x.addAnswer()
-                                            .setValue(
-                                                    new Coding(
-                                                            "http://loinc.org",
-                                                            itemDef.get().getAlias().get(0).getName(),
-                                                            codeListItem.get().getDecode()
-                                                                    .getTranslatedText().get(0).getValue()
+                                    // Assumption: if more than one <Alias> given select the one at index 0
+
+                                    // check if a <MeasurementUnit> for the item is given
+                                    if (itemDef.get().getMeasurementUnitRef().isEmpty()) {
+                                        LOGGER.info(
+                                                String.format("No <MeasurementUnitRef> found in" +
+                                                              " <ItemDef> with OID: %s",
+                                                        itemDef.get().getOID())
+                                        );
+                                        // continue with no <MeasurementUnit>
+                                        // ToDo: parameterize language selection
+                                        //  in order to prevent IndexOutOfBounds + insert type check for <Item>
+                                        String itemDataType = itemDef.get().getDataType().value();
+                                        String data = codeListItem.get().getDecode()
+                                                .getTranslatedText().get(0).getValue();
+                                        setFhirDataWithoutUnit(itemDef, item_1_x_x_x, itemDataType, data);
+
+
+                                    } else {
+                                        LOGGER.info(
+                                                String.format("<MeasurementUnitRef> found in" +
+                                                              " <ItemDef> with OID: %s",
+                                                        itemDef.get().getOID())
+                                        );
+                                        // continue with <MeasurementUnit>
+                                        // Auto select Ref at index 0
+                                        ODMcomplexTypeDefinitionMeasurementUnitRef measurementUnitRef =
+                                                itemDef.get().getMeasurementUnitRef().get(0);
+
+                                        // Search for corresponding <MeasurementUnit> in the <MetaDataVersion>
+                                        List<ODMcomplexTypeDefinitionMeasurementUnit> _measurementUnit =
+                                                study.getBasicDefinitions().getMeasurementUnit();
+
+
+                                        Optional<ODMcomplexTypeDefinitionMeasurementUnit> measurementUnit =
+                                                findMeasurementUnit(measurementUnitRef, _measurementUnit);
+
+                                        if (measurementUnit.isPresent()) {
+                                            LOGGER.info(
+                                                    String.format(
+                                                            "<MeasurementUnit> found for" +
+                                                            " <MeasurementUnitRef> with OID: %s",
+                                                            measurementUnitRef.getMeasurementUnitOID()
                                                     )
                                             );
+
+                                            // ToDo: parameterize language selection
+                                            //  in order to prevent IndexOutOfBounds + insert type check for <Item>
+                                            //valueQuantity
+                                            // Todo: insert Coding if Alias for UCUM is given
+                                            Quantity quantity = new Quantity();
+                                            try {
+                                                quantity.setValue(Float.parseFloat(
+                                                        codeListItem.get().getDecode()
+                                                                .getTranslatedText().get(0).getValue()
+                                                ));
+                                                quantity.setUnit(
+                                                        measurementUnit.get().getSymbol()
+                                                                .getTranslatedText().get(0).getValue()
+                                                );
+                                            } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+                                                LOGGER.error(indexOutOfBoundsException.getMessage());
+                                                throw new TranslatedTextNotFoundException("No translated " +
+                                                                                          "text at index 0!");
+                                            } catch (NumberFormatException numberFormatException) {
+                                                String error = String.format(
+                                                        "The given data: '%s' with MeasurementUnitRef was not numerical!",
+                                                        codeListItem.get().getDecode()
+                                                                .getTranslatedText().get(0).getValue()
+                                                );
+                                                LOGGER.error(error);
+                                                throw new ItemDataWithUnitWasNotNumericalException(error);
+                                            }
+
+                                            // Add Alias (valueCoding)
+                                            addAliasToItem(itemDef, item_1_x_x_x);
+
+                                            // Add valueQuantity created above
+                                            item_1_x_x_x.addAnswer()
+                                                    .setValue(quantity);
+
+                                        } else {
+                                            String error = String.format(
+                                                    "No corresponding <MeasurementUnit> found for" +
+                                                    " <MeasurementUnitRef> with OID: %s",
+                                                    measurementUnitRef.getMeasurementUnitOID()
+                                            );
+                                            LOGGER.error(error);
+                                            throw new NoCorrespondingMeasurementUnitException(error);
+                                        }
+
+                                    }
+
+
                                 } else {
                                     String error = String.format("No matching <CodeListItem> with" +
                                                                  " CodedValue=%s found!",
@@ -561,14 +636,81 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             // Insert answer[] into item
                             // WARNING may produce IndexOutOfBoundsException
                             // ToDo: generalize here and fix IndexOutOfBounds Alias
-                            item_1_x_x_x.addAnswer()
-                                    .setValue(
-                                            new Coding(
-                                                    "http://loinc.org",
-                                                    itemDef.get().getAlias().get(0).getName(),
-                                                    itemData.getValue()
+                            // check if a <MeasurementUnit> for the item is given
+                            if (itemDef.get().getMeasurementUnitRef().isEmpty()) {
+                                LOGGER.info(
+                                        String.format("No <MeasurementUnitRef> found in" +
+                                                      " <ItemDef> with OID: %s",
+                                                itemDef.get().getOID())
+                                );
+                                // continue with no <MeasurementUnit>
+                                // ToDo: parameterize language selection
+                                //  in order to prevent IndexOutOfBounds + insert type check for <Item>
+                                String itemDataType = itemDef.get().getDataType().value();
+                                String data = itemData.getValue();
+                                setFhirDataWithoutUnit(itemDef, item_1_x_x_x, itemDataType, data);
+
+
+                            } else {
+                                LOGGER.info(
+                                        String.format("<MeasurementUnitRef> found in" +
+                                                      " <ItemDef> with OID: %s",
+                                                itemDef.get().getOID())
+                                );
+
+                                // continue with <MeasurementUnit>
+                                // Auto select Ref at index 0
+                                ODMcomplexTypeDefinitionMeasurementUnitRef measurementUnitRef =
+                                        itemDef.get().getMeasurementUnitRef().get(0);
+
+                                // Search for corresponding <MeasurementUnit> in the <MetaDataVersion>
+                                List<ODMcomplexTypeDefinitionMeasurementUnit> _measurementUnit =
+                                        study.getBasicDefinitions().getMeasurementUnit();
+
+                                findMeasurementUnit(measurementUnitRef, _measurementUnit);
+
+                                Optional<ODMcomplexTypeDefinitionMeasurementUnit> measurementUnit =
+                                        findMeasurementUnit(measurementUnitRef, _measurementUnit);
+
+                                if (measurementUnit.isPresent()) {
+                                    LOGGER.info(
+                                            String.format(
+                                                    "<MeasurementUnit> found for" +
+                                                    " <MeasurementUnitRef> with OID: %s",
+                                                    measurementUnitRef.getMeasurementUnitOID()
                                             )
                                     );
+
+                                    // ToDo: parameterize language selection
+                                    //  in order to prevent IndexOutOfBounds + insert type check for <Item>
+                                    //valueQuantity
+                                    // Todo: insert Coding if Alias for UCUM is given
+                                    Quantity quantity = new Quantity();
+                                    quantity.setValue(Float.parseFloat(
+                                            itemData.getValue()
+                                    ));
+                                    quantity.setUnit(
+                                            measurementUnit.get().getSymbol()
+                                                    .getTranslatedText().get(0).getValue()
+                                    );
+
+                                    addAliasToItem(itemDef, item_1_x_x_x);
+
+                                    item_1_x_x_x.addAnswer()
+                                            .setValue(quantity);
+
+                                } else {
+                                    String error = String.format(
+                                            "No corresponding <MeasurementUnit> found for" +
+                                            " <MeasurementUnitRef> with OID: %s",
+                                            measurementUnitRef.getMeasurementUnitOID()
+                                    );
+                                    LOGGER.error(error);
+                                    throw new NoCorrespondingMeasurementUnitException(error);
+                                }
+
+                            }
+
                         }
 
                     }
@@ -594,6 +736,94 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         }
 
         return fhirContext.newJsonParser().setPrettyPrint(true).encodeToString(bundle);
+    }
+
+    private Optional<ODMcomplexTypeDefinitionMeasurementUnit> findMeasurementUnit(
+            ODMcomplexTypeDefinitionMeasurementUnitRef measurementUnitRef,
+            List<ODMcomplexTypeDefinitionMeasurementUnit> _measurementUnit
+
+    ) {
+        return
+                _measurementUnit.stream()
+                        .filter(obj ->
+                                measurementUnitRef
+                                        .getMeasurementUnitOID()
+                                        .equals(obj.getOID()))
+                        .findFirst();
+    }
+
+    private void setFhirDataWithoutUnit(
+            Optional<ODMcomplexTypeDefinitionItemDef> itemDef,
+            QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x,
+            String itemDataType,
+            String data
+    ) throws UnknownDataTypeException {
+        try {
+            switch (itemDataType) {
+                case "integer" -> {
+                    int value = Integer.parseInt(data);
+                    IntegerType integerType = new IntegerType(value);
+                    item_1_x_x_x.addAnswer()
+                            .setValue(integerType);
+                }
+                case "float" -> {
+                    float value = Float.parseFloat(data);
+                    DecimalType decimalType = new DecimalType(value);
+                    item_1_x_x_x.addAnswer()
+                            .setValue(decimalType);
+                }
+                case "text" -> {
+                    StringType stringType = new StringType(data);
+                    item_1_x_x_x.addAnswer()
+                            .setValue(stringType);
+                }
+                default -> {
+                    LOGGER.warn(String.format(
+                            "Data type: '%s' is not known",
+                            itemDataType
+                    ));
+                    throw new UnknownDataTypeException("Unknown data type!");
+                }
+            }
+
+            addAliasToItem(itemDef, item_1_x_x_x);
+        } catch (Exception e) {
+            String error = String.format(
+                    "The given data type: '%s' is unknown! Or the data '%s' did not match the given data type!",
+                    itemDataType,
+                    data
+            );
+            LOGGER.error(error);
+            throw new UnknownDataTypeException(error);
+        }
+
+    }
+
+    // ToDo: verify that presence of <Alias> is verified
+    private void addAliasToItem(
+            Optional<ODMcomplexTypeDefinitionItemDef> itemDef,
+            QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x) {
+        if (itemDef.get().getAlias().isEmpty()) {
+            LOGGER.warn(
+                    String.format("No <Alias> found in <ItemDef> with OID: %s",
+                            itemDef.get().getOID())
+            );
+        } else {
+            LOGGER.info(
+                    String.format("<Alias> found in <ItemDef> with OID: %s",
+                            itemDef.get().getOID())
+            );
+            // valueCoding
+            Coding coding = new Coding();
+            coding.setSystem("http://loinc.org");
+            coding.setCode(
+                    itemDef.get().getAlias().get(0).getName()
+            );
+
+            // add to answer array
+            item_1_x_x_x.addAnswer()
+                    .setValue(coding);
+        }
     }
 
     private Bundle createBundle() {
