@@ -154,16 +154,8 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         // List of all <StudyEventData> Elements in one <SubjectData>
         // Each Element will be converted to a Single QuestionnaireResponse
         List<ODMcomplexTypeDefinitionStudyEventData> _studyEventData = subjectData.getStudyEventData();
-        // HashMap with key (OID) and Value (linkId) for <FormDef>
-        HashMap<String, String> formDefLinkIdMap = new HashMap<>();
-        int formCounter = 1;
-        for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
 
-            // Moved HashMaps inside loop to fix Issue #1
-            // HashMap with key (OID) and Value (linkId) for <ItemGroupDef>
-            HashMap<String, String> itemGroupDefLinkIdMap = new HashMap<>();
-            // HashMap with key (OID) and Value (linkId) for <ItemDef>
-            HashMap<String, String> itemDefLinkIdMap = new HashMap<>();
+        for (ODMcomplexTypeDefinitionStudyEventData studyEventData : _studyEventData) {
 
             LOGGER.info(
                     String.format("Converting <StudyEventData> with OID: %s",
