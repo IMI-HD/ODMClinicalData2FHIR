@@ -754,14 +754,25 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     String.format("<Alias> found in <ItemDef> with OID: %s",
                             itemDef.get().getOID())
             );
+            // check if the given coding system matches the expected one
+            // Todo: fix index out of bounds!
+            String itemSystem = itemDef.get().getAlias().get(0).getContext();
+            if (!codingSystem.equals(itemSystem)) {
+                String error = String.format(
+                        "Coding system in <ItemDef> : '%s' does not match expected system: '%s'",
+                        itemSystem,
+                        codingSystem
+                );
+                LOGGER.error(error);
+                throw new UnknownCodingSystemException(error);
+            }
             // valueCoding
-
             Coding coding = new Coding();
             switch (codingSystem) {
                 case "LOINC" -> {
                     coding.setSystem("http://loinc.org");
                 }
-                case "SNOMED" -> {
+                case "SNOMED CT" -> {
                     coding.setSystem("http://snomed.info/sct");
                 }
                 default -> {
