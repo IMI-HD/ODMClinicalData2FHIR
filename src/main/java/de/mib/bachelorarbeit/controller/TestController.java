@@ -6,6 +6,7 @@ import odm.ODMcomplexTypeDefinitionStudy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +20,15 @@ public class TestController {
 
     private final OdmToFhirConverter odmToFhirConverter;
 
+    private final Environment env;
+
     @Autowired
     public TestController(
-            OdmToFhirConverter odmToFhirConverter
+            OdmToFhirConverter odmToFhirConverter,
+            Environment env
     ) {
         this.odmToFhirConverter = odmToFhirConverter;
+        this.env = env;
     }
 
     @GetMapping("/hello")
@@ -57,6 +62,11 @@ public class TestController {
         LOGGER.info("/print Endpoint hit!");
         odmToFhirConverter.printClinicalData(odm);
         return ResponseEntity.status(HttpStatus.OK).body("See Logs for info!");
+    }
+
+    @GetMapping(value = "/env")
+    public String getEnvVariable() {
+        return env.getProperty("coding");
     }
 
 

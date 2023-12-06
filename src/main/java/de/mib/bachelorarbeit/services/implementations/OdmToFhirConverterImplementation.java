@@ -10,6 +10,8 @@ import org.hl7.fhir.r4.model.*;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +25,15 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(OdmToFhirConverterImplementation.class);
 
     private final FhirContext fhirContext = FhirContext.forR4();
+
+    private final String codingSystem;
+
+    @Autowired
+    public OdmToFhirConverterImplementation(
+            Environment env
+    ) {
+        this.codingSystem = env.getProperty("coding");
+    }
 
     @Override
     public String getTestRessource() {
@@ -732,7 +743,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
     // ToDo: verify that presence of <Alias> is verified
     private void addAliasToItem(
             Optional<ODMcomplexTypeDefinitionItemDef> itemDef,
-            QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x) {
+            QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x) throws UnknownCodingSystemException {
         if (itemDef.get().getAlias().isEmpty()) {
             LOGGER.warn(
                     String.format("No <Alias> found in <ItemDef> with OID: %s",
@@ -744,8 +755,24 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             itemDef.get().getOID())
             );
             // valueCoding
+
             Coding coding = new Coding();
-            coding.setSystem("http://loinc.org");
+            switch (codingSystem) {
+                case "LOINC" -> {
+                    coding.setSystem("http://loinc.org");
+                }
+                case "SNOMED" -> {
+                    coding.setSystem("http://snomed.info/sct");
+                }
+                default -> {
+                    String error = String.format(
+                            "Coding system: '%s' unknown",
+                            codingSystem
+                    );
+                    LOGGER.error(error);
+                    throw new UnknownCodingSystemException(error);
+                }
+            }
             coding.setCode(
                     itemDef.get().getAlias().get(0).getName()
             );
