@@ -15,7 +15,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +49,11 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
     }
 
     @Override
-    public String clinicalDataToQuestionnaireResponse(@NotNull ODM odm)
+    public String clinicalDataToQuestionnaireResponse(
+            @NotNull ODM odm,
+            String language,
+            String linkToQuestionnaire
+    )
             throws ClinicalDataToQuestionnaireResponseException {
         LOGGER.info("Received ODM in the converter!");
         // FHIR Bundle that will be returned
@@ -69,6 +72,15 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         ODMcomplexTypeDefinitionStudy study;
         // <MetaDataVersion> Element at index 0 of the <Study> (only this will be converted!)
         ODMcomplexTypeDefinitionMetaDataVersion metaDataVersion;
+
+        // set the expected language string according to header parameter
+        String expectedLanguage = "";
+        if (language.equals("german")) {
+            expectedLanguage = "de";
+        }
+        if (language.equals("english")) {
+            expectedLanguage = "en";
+        }
 
         // validate basic structure of the ODM file
 
@@ -249,8 +261,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
 
 
                 // Set text of the item
-                // WARNING MAY PRODUCE INDEX OUT OF BOUNDS EXCEPTION
-                //ToDo: insert language check via parameter
                 ODMcomplexTypeDefinitionDescription formDescription = formDef.get().getDescription();
                 if (formDescription.getTranslatedText().isEmpty()) {
                     String error = String.format(
@@ -261,7 +271,9 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     throw new FormDescriptionNotFoundException(error);
                 } else {
                     LOGGER.info("Set text of linkId 1.x Element!");
-                    item_1_x.setText(formDef.get().getDescription().getTranslatedText().get(0).getValue());
+                    item_1_x.setText(getStringFormTranslatedText(
+                            formDef.get().getDescription().getTranslatedText(),
+                            expectedLanguage));
                 }
 
                 // Set linkId of item_1_x
@@ -318,8 +330,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                     itemGroupData.getItemGroupOID()));
 
                     // Set text of the item
-                    // WARNING MAY PRODUCE INDEX OUT OF BOUNDS EXCEPTION
-                    //ToDo: insert language check via parameter
                     ODMcomplexTypeDefinitionDescription itemGroupDescription = itemGroupDef.get().getDescription();
                     if (itemGroupDescription.getTranslatedText().isEmpty()) {
                         String error = String.format(
@@ -330,7 +340,10 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                         throw new ItemGroupDefDescriptionNotFoundException(error);
                     } else {
                         LOGGER.info("Set text of linkId 1.x.x Element!");
-                        item_1_x_x.setText(itemGroupDescription.getTranslatedText().get(0).getValue());
+                        item_1_x_x.setText(getStringFormTranslatedText(
+                                itemGroupDescription.getTranslatedText(),
+                                expectedLanguage
+                        ));
                     }
 
                     // set linkId of item_1_x_x
@@ -390,8 +403,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                         itemData.getItemOID()));
 
                         // Set text of the item
-                        // WARNING MAY PRODUCE INDEX OUT OF BOUNDS EXCEPTION
-                        //ToDo: insert language check via parameter
                         ODMcomplexTypeDefinitionQuestion itemQuestion = itemDef.get().getQuestion();
                         if (itemQuestion.getTranslatedText().isEmpty()) {
                             String error = String.format(
@@ -402,7 +413,10 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             throw new ItemGroupDefDescriptionNotFoundException(error);
                         } else {
                             LOGGER.info("Set text of linkId 1.x.x.x Element!");
-                            item_1_x_x_x.setText(itemQuestion.getTranslatedText().get(0).getValue());
+                            item_1_x_x_x.setText(getStringFormTranslatedText(
+                                    itemQuestion.getTranslatedText(),
+                                    expectedLanguage
+                            ));
                         }
 
                         // set linkId of item_1_x_x_x
@@ -468,11 +482,11 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                                         itemDef.get().getOID())
                                         );
                                         // continue with no <MeasurementUnit>
-                                        // ToDo: parameterize language selection
-                                        //  in order to prevent IndexOutOfBounds + insert type check for <Item>
                                         String itemDataType = itemDef.get().getDataType().value();
-                                        String data = codeListItem.get().getDecode()
-                                                .getTranslatedText().get(0).getValue();
+                                        String data = getStringFormTranslatedText(
+                                                codeListItem.get().getDecode().getTranslatedText(),
+                                                expectedLanguage
+                                        );
                                         setFhirDataWithoutUnit(itemDef, item_1_x_x_x, itemDataType, data);
 
 
@@ -504,19 +518,21 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                                     )
                                             );
 
-                                            // ToDo: parameterize language selection
-                                            //  in order to prevent IndexOutOfBounds + insert type check for <Item>
                                             //valueQuantity
                                             // Todo: insert Coding if Alias for UCUM is given
                                             Quantity quantity = new Quantity();
                                             try {
                                                 quantity.setValue(Float.parseFloat(
-                                                        codeListItem.get().getDecode()
-                                                                .getTranslatedText().get(0).getValue()
+                                                        getStringFormTranslatedText(
+                                                                codeListItem.get().getDecode().getTranslatedText(),
+                                                                expectedLanguage
+                                                        )
                                                 ));
                                                 quantity.setUnit(
-                                                        measurementUnit.get().getSymbol()
-                                                                .getTranslatedText().get(0).getValue()
+                                                        getStringFormTranslatedText(
+                                                                measurementUnit.get().getSymbol().getTranslatedText(),
+                                                                expectedLanguage
+                                                        )
                                                 );
                                             } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
                                                 LOGGER.error(indexOutOfBoundsException.getMessage());
@@ -525,8 +541,10 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                             } catch (NumberFormatException numberFormatException) {
                                                 String error = String.format(
                                                         "The given data: '%s' with MeasurementUnitRef was not numerical!",
-                                                        codeListItem.get().getDecode()
-                                                                .getTranslatedText().get(0).getValue()
+                                                        getStringFormTranslatedText(
+                                                                codeListItem.get().getDecode().getTranslatedText(),
+                                                                expectedLanguage
+                                                        )
                                                 );
                                                 LOGGER.error(error);
                                                 throw new ItemDataWithUnitWasNotNumericalException(error);
@@ -584,9 +602,8 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                                       " <ItemDef> with OID: %s",
                                                 itemDef.get().getOID())
                                 );
+
                                 // continue with no <MeasurementUnit>
-                                // ToDo: parameterize language selection
-                                //  in order to prevent IndexOutOfBounds + insert type check for <Item>
                                 String itemDataType = itemDef.get().getDataType().value();
                                 String data = itemData.getValue();
                                 setFhirDataWithoutUnit(itemDef, item_1_x_x_x, itemDataType, data);
@@ -622,8 +639,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                             )
                                     );
 
-                                    // ToDo: parameterize language selection
-                                    //  in order to prevent IndexOutOfBounds + insert type check for <Item>
                                     //valueQuantity
                                     // Todo: insert Coding if Alias for UCUM is given
                                     Quantity quantity = new Quantity();
@@ -631,8 +646,10 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                             itemData.getValue()
                                     ));
                                     quantity.setUnit(
-                                            measurementUnit.get().getSymbol()
-                                                    .getTranslatedText().get(0).getValue()
+                                            getStringFormTranslatedText(
+                                                    measurementUnit.get().getSymbol().getTranslatedText(),
+                                                    expectedLanguage
+                                            )
                                     );
 
                                     addAliasToItem(itemDef, item_1_x_x_x);
@@ -805,6 +822,22 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         qrs.setQuestionnaire("http://link_to_questionnaire");
         qrs.setStatus(QuestionnaireResponse.QuestionnaireResponseStatus.COMPLETED);
         return qrs;
+    }
+
+    private String getStringFormTranslatedText(List<ODMcomplexTypeDefinitionTranslatedText> _elements,
+                                               String expectedLanguage)
+            throws NoElementWithExpectedLanguageException {
+        for (ODMcomplexTypeDefinitionTranslatedText element : _elements) {
+            if (element.getLang().equals(expectedLanguage)) {
+                return element.getValue();
+            }
+        }
+        String error = String.format(
+                "No element found with expected xml:language: '%s'",
+                expectedLanguage
+        );
+        LOGGER.error(error);
+        throw new NoElementWithExpectedLanguageException(error);
     }
 
 

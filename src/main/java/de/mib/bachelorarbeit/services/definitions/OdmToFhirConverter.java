@@ -9,5 +9,8 @@ public interface OdmToFhirConverter {
 
     void printClinicalData(ODM odm);
 
-    String clinicalDataToQuestionnaireResponse(ODM odm) throws ClinicalDataToQuestionnaireResponseException;
+    String clinicalDataToQuestionnaireResponse(ODM odm,
+                                               String language,
+                                               String linkToQuestionnaire)
+            throws ClinicalDataToQuestionnaireResponseException;
 }
