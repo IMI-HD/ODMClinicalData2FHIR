@@ -717,6 +717,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
             String data
     ) throws UnknownDataTypeException {
         try {
+            // ToDo: parse to actual type and catch exception for easier debugging
             switch (itemDataType) {
                 case "integer" -> {
                     int value = Integer.parseInt(data);
@@ -740,6 +741,27 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     item_1_x_x_x.addAnswer()
                             .setValue(dateType);
                 }
+                case "boolean" -> {
+                    //convert 0 and 1 coded bool to false / true
+                    String value = "";
+                    if (data.equals("0")) {
+                        value = "false";
+                    }
+                    if (data.equals("1")) {
+                        value = "true";
+                    }
+                    if (value.isEmpty() && !data.equals("true") && !data.equals("false")) {
+                        String error = String.format(
+                                "Coding: '%s' for bool data is not known!",
+                                data
+                        );
+                        LOGGER.error(error);
+                        throw new UnknownBoolCodingException(error);
+                    }
+                    BooleanType booleanType = new BooleanType(value);
+                    item_1_x_x_x.addAnswer()
+                            .setValue(booleanType);
+                }
                 default -> {
                     LOGGER.warn(String.format(
                             "Data type: '%s' is not known",
@@ -752,7 +774,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
             addAliasToItem(itemDef, item_1_x_x_x);
         } catch (Exception e) {
             String error = String.format(
-                    "The given data type: '%s' is unknown! Or the data '%s' did not match the given data type!",
+                    "The given data type: '%s' is unknown! Or the data '%s' did not match the expected data type!",
                     itemDataType,
                     data
             );
