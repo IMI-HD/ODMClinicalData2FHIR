@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class TestController {
@@ -67,6 +68,20 @@ public class TestController {
     @GetMapping(value = "/env")
     public String getEnvVariable() {
         return env.getProperty("coding");
+    }
+
+    @PostMapping(value = "/header")
+    public void printHeaders(
+            @RequestHeader Map<String, String> headers
+    ) {
+        LOGGER.info("Received headers:\n");
+        headers.forEach((key, value) -> LOGGER.info(
+                String.format(
+                        "key: '%s' and value: '%s'",
+                        key,
+                        value
+                )
+        ));
     }
 
 
