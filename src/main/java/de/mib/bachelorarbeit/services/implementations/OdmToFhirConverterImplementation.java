@@ -185,7 +185,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             studyEventData.getStudyEventOID())
             );
             // QuestionnaireResponse
-            QuestionnaireResponse qrs = createQuestionnaireResponseBase();
+            QuestionnaireResponse qrs = createQuestionnaireResponseBase(linkToQuestionnaire);
             // Create root Element
             QuestionnaireResponse.QuestionnaireResponseItemComponent root = qrs.addItem();
             // set the linkId of the root element (StudyOID)
@@ -817,9 +817,11 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         return bundle;
     }
 
-    private QuestionnaireResponse createQuestionnaireResponseBase() {
+    private QuestionnaireResponse createQuestionnaireResponseBase(
+            String linkToQuestionnaire
+    ) {
         QuestionnaireResponse qrs = new QuestionnaireResponse();
-        qrs.setQuestionnaire("http://link_to_questionnaire");
+        qrs.setQuestionnaire(linkToQuestionnaire);
         qrs.setStatus(QuestionnaireResponse.QuestionnaireResponseStatus.COMPLETED);
         return qrs;
     }

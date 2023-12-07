@@ -64,7 +64,7 @@ public class ConverterController {
         }
         // data fields for header values
         String language = headers.get("questionnaire-language");
-        String link = headers.get("questionnaire-language");
+        String link = headers.get("questionnaire-link");
         // check value of headers fields
         if (language.isEmpty() || language.isBlank()) {
             String error = "Value of key: 'questionnaire-language' was empty or blank";
