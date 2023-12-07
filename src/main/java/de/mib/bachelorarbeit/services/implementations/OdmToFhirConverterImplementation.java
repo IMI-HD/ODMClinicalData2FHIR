@@ -735,6 +735,11 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     item_1_x_x_x.addAnswer()
                             .setValue(stringType);
                 }
+                case "date" -> {
+                    DateType dateType = new DateType(data);
+                    item_1_x_x_x.addAnswer()
+                            .setValue(dateType);
+                }
                 default -> {
                     LOGGER.warn(String.format(
                             "Data type: '%s' is not known",
