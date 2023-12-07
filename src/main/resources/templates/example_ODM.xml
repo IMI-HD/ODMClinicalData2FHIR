@@ -356,7 +356,7 @@
                 </Question>
                 <MeasurementUnitRef MeasurementUnitOID="MU.5"/>
             </ItemDef>
-            <ItemDef OID="WHO.1" Name="WHO.1" DataType="integer">
+            <ItemDef OID="WHO.1" Name="WHO.1" DataType="text">
                 <Description>
                     <TranslatedText xml:lang="en">I have felt cheerful and in good spirits</TranslatedText>
                     <TranslatedText xml:lang="de">… war ich froh und guter Laune</TranslatedText>
@@ -367,7 +367,7 @@
                 </Question>
                 <CodeListRef CodeListOID="CL.3"/>
             </ItemDef>
-            <ItemDef OID="WHO.2" Name="WHO.2" DataType="integer">
+            <ItemDef OID="WHO.2" Name="WHO.2" DataType="text">
                 <Description>
                     <TranslatedText xml:lang="en">I have felt calm and relaxed</TranslatedText>
                     <TranslatedText xml:lang="de">… habe ich mich ruhig und entspannt gefühlt</TranslatedText>
@@ -378,7 +378,7 @@
                 </Question>
                 <CodeListRef CodeListOID="CL.3"/>
             </ItemDef>
-            <ItemDef OID="WHO.3" Name="WHO.3" DataType="integer">
+            <ItemDef OID="WHO.3" Name="WHO.3" DataType="text">
                 <Description>
                     <TranslatedText xml:lang="en">I have felt active and vigorous</TranslatedText>
                     <TranslatedText xml:lang="de">… habe ich mich energisch und aktiv gefühlt</TranslatedText>
@@ -389,7 +389,7 @@
                 </Question>
                 <CodeListRef CodeListOID="CL.3"/>
             </ItemDef>
-            <ItemDef OID="WHO.4" Name="WHO.4" DataType="integer">
+            <ItemDef OID="WHO.4" Name="WHO.4" DataType="text">
                 <Description>
                     <TranslatedText xml:lang="en">I woke up feeling fresh and rested</TranslatedText>
                     <TranslatedText xml:lang="de">… habe ich mich beim Aufwachen frisch und ausgeruht gefühlt</TranslatedText>
@@ -400,7 +400,7 @@
                 </Question>
                 <CodeListRef CodeListOID="CL.3"/>
             </ItemDef>
-            <ItemDef OID="WHO.5" Name="WHO.5" DataType="integer">
+            <ItemDef OID="WHO.5" Name="WHO.5" DataType="text">
                 <Description>
                     <TranslatedText xml:lang="en">My daily life has been filled with things that interest me</TranslatedText>
                     <TranslatedText xml:lang="de">… war mein Alltag voller Dinge, die mich interessieren</TranslatedText>
@@ -411,7 +411,7 @@
                 </Question>
                 <CodeListRef CodeListOID="CL.3"/>
             </ItemDef>
-            <ItemDef OID="I.2" Name="WHO-5 Score" DataType="integer">
+            <ItemDef OID="I.2" Name="WHO-5 Score" DataType="text">
                 <Question>
                     <TranslatedText xml:lang="de">Berechneter Index (0 – 100)</TranslatedText>
                     <TranslatedText xml:lang="en">Calculated Index (0 – 100)</TranslatedText>
