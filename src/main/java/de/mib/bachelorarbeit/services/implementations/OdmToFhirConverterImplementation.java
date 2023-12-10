@@ -212,6 +212,18 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 throw new NoCorrespondingStudyEventDefFoundException(error);
             }
 
+            // check if the <StudyEvent> is repeating if so
+            // => add extension with repeating key
+            if (studyEventDef.get().getRepeating() == YesOrNo.YES) {
+                String message = String.format(
+                        "<StudyEvent> with OID: '%s' found repeating! Adding key: '%s' to item",
+                        studyEventDef.get().getOID(),
+                        studyEventData.getStudyEventRepeatKey()
+                );
+                LOGGER.info(message);
+                addRepeatKeyToItem(studyEventData.getStudyEventRepeatKey(), root);
+            }
+
             // List of <FormData> => linkId under the root (1.x)
             List<ODMcomplexTypeDefinitionFormData> _formData = studyEventData.getFormData();
             if (_formData.isEmpty()) {
@@ -228,11 +240,9 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
             List<ODMcomplexTypeDefinitionFormDef> _formDef = metaDataVersion.getFormDef();
 
             // Loop through all <FormData> Elements
-            for (int i = 0; i < _formData.size(); i++) {
+            for (ODMcomplexTypeDefinitionFormData formData : _formData) {
 
                 // Current <FormData> Element
-                ODMcomplexTypeDefinitionFormData formData = _formData.get(i);
-
                 // Search for corresponding <FormDef> in the <MetaDataVersion>
                 LOGGER.info(
                         String.format("Searching for corresponding " +
@@ -258,6 +268,18 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 LOGGER.info(
                         String.format("Converting <FormData> with OID: %s",
                                 formData.getFormOID()));
+
+                // check if the <Form> is repeating if so
+                // => add extension with repeating key
+                if (formDef.get().getRepeating() == YesOrNo.YES) {
+                    String message = String.format(
+                            "<Form> with OID: '%s' found repeating! Adding key: '%s' to item",
+                            formDef.get().getOID(),
+                            formData.getFormRepeatKey()
+                    );
+                    LOGGER.info(message);
+                    addRepeatKeyToItem(formData.getFormRepeatKey(), item_1_x);
+                }
 
 
                 // Set text of the item
@@ -296,10 +318,8 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 List<ODMcomplexTypeDefinitionItemGroupDef> _itemGroupDef = metaDataVersion.getItemGroupDef();
 
                 // Loop through all <ItemGroupData>
-                for (int k = 0; k < _itemGroupData.size(); k++) {
+                for (ODMcomplexTypeDefinitionItemGroupData itemGroupData : _itemGroupData) {
                     // Current <ItemGroupData> Element
-                    ODMcomplexTypeDefinitionItemGroupData itemGroupData = _itemGroupData.get(k);
-
                     // Search for corresponding <ItemGroupDef> in <MetaDataVersion>
                     LOGGER.info(
                             String.format("Searching for corresponding <ItemGroupDef>" +
@@ -328,6 +348,18 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     LOGGER.info(
                             String.format("Converting <ItemGroupData> with OID: %s",
                                     itemGroupData.getItemGroupOID()));
+
+                    // check if the <ItemGroup> is repeating if so
+                    // => add extension with repeating key
+                    if (itemGroupDef.get().getRepeating() == YesOrNo.YES) {
+                        String message = String.format(
+                                "<ItemGroup> with OID: '%s' found repeating! Adding key: '%s' to item",
+                                itemGroupDef.get().getOID(),
+                                itemGroupData.getItemGroupRepeatKey()
+                        );
+                        LOGGER.info(message);
+                        addRepeatKeyToItem(itemGroupData.getItemGroupRepeatKey(), item_1_x_x);
+                    }
 
                     // Set text of the item
                     ODMcomplexTypeDefinitionDescription itemGroupDescription = itemGroupDef.get().getDescription();
@@ -367,11 +399,9 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     List<ODMcomplexTypeDefinitionItemDef> _itemDef = metaDataVersion.getItemDef();
 
                     // Loop through all <ItemData>
-                    for (int t = 0; t < _itemData.size(); t++) {
+                    for (ODMcomplexTypeDefinitionItemData itemData : _itemData) {
 
                         // Current <ItemData> Element
-                        ODMcomplexTypeDefinitionItemData itemData = _itemData.get(t);
-
                         // Search for corresponding <ItemDef> in <MetaDataVersion>
                         LOGGER.info(
                                 String.format("Searching for corresponding <ItemDef>" +
@@ -694,6 +724,30 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         }
 
         return fhirContext.newJsonParser().setPrettyPrint(true).encodeToString(bundle);
+    }
+
+    private void addRepeatKeyToItem(
+            String repeatKey,
+            QuestionnaireResponse.QuestionnaireResponseItemComponent item
+    ) throws NoIntegerTypeException {
+
+        try {
+            int key = Integer.parseInt(repeatKey);
+            Extension extension = new Extension();
+            // ToDo: replace at given time with actual published URL
+            extension.setUrl("http://example.org/fhir/StructureDefinition/extension-repeating-key");
+            extension.setValue(
+                    new IntegerType(key)
+            );
+            item.addExtension(extension);
+        } catch (NumberFormatException e) {
+            String error = String.format(
+                    "Given repeatKey: '%s' was not an integer type!",
+                    repeatKey
+            );
+            LOGGER.error(error);
+            throw new NoIntegerTypeException(error);
+        }
     }
 
     private Optional<ODMcomplexTypeDefinitionMeasurementUnit> findMeasurementUnit(
