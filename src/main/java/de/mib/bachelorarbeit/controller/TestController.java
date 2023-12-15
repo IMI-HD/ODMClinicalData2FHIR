@@ -58,10 +58,11 @@ public class TestController {
                 .body(serializedPatient);
     }
 
+    @Deprecated
     @PostMapping(value = "/print", consumes = "application/xml")
     public ResponseEntity<String> printODMClinicalData(@RequestBody ODM odm) {
         LOGGER.info("/print Endpoint hit!");
-        odmToFhirConverter.printClinicalData(odm);
+        LOGGER.warn("Method print is not implemented anymore!");
         return ResponseEntity.status(HttpStatus.OK).body("See Logs for info!");
     }
 
