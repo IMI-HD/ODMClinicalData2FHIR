@@ -1,0 +1,37 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://pk.developments/fhir/StructureDefinition/Extension-Test",
+  "name": "TestExtension",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context":  [
+    {
+      "type": "extension",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element":  [
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://pk.developments/fhir/StructureDefinition/Extension-Test"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type":  [
+          {
+            "code": "integer"
+          }
+        ]
+      }
+    ]
+  }
+}

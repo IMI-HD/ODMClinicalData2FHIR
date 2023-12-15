@@ -7,8 +7,6 @@ public interface OdmToFhirConverter {
 
     String getTestRessource();
 
-    void printClinicalData(ODM odm);
-
     String clinicalDataToQuestionnaireResponse(ODM odm,
                                                String language,
                                                String linkToQuestionnaire)

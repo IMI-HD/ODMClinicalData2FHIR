@@ -1,0 +1,37 @@
+{
+  "resourceType": "Patient",
+  "id": "example-patient",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Beispiel Patient</div>"
+  },
+  "active": true,
+  "extension": [
+    {
+      "url" : "https://pk.developments/fhir/StructureDefinition/Extension-Test",
+      "valueInteger" : 1
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "family": "Mustermann",
+      "given": [
+        "Max"
+      ]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1970-01-01",
+  "address": [
+    {
+      "use": "home",
+      "line": [
+        "Musterstraße 1"
+      ],
+      "city": "Musterstadt",
+      "postalCode": "12345",
+      "country": "DE"
+    }
+  ]
+}
