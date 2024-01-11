@@ -3,7 +3,15 @@ package de.mib.bachelorarbeit.controller;
 import de.mib.bachelorarbeit.exceptions.ClinicalDataToQuestionnaireResponseException;
 import de.mib.bachelorarbeit.responses.ConverterErrorResponse;
 import de.mib.bachelorarbeit.services.definitions.OdmToFhirConverter;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import odm.ODM;
+import org.hl7.fhir.r4.model.Bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
+@Tag(name = "Converter Controller")
 public class ConverterController {
 
 
@@ -29,6 +38,44 @@ public class ConverterController {
         this.odmToFhirConverter = odmToFhirConverter;
     }
 
+    @Operation(
+            description = "POST endpoint of the conversion service",
+            summary = "Takes an ODM file on the XML format and converts it to a FHIR Bundle.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successful conversion of ODM file to FHIR Bundle",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = Bundle.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Bad Request - Error in conversion process",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ConverterErrorResponse.class)
+                            )
+                    )
+            },
+            parameters = {
+                    @Parameter (
+                            in = ParameterIn.HEADER,
+                            name = "questionnaire-language",
+                            description = "Language Code the converter resolves in the given ODM",
+                            required = true,
+                            schema = @Schema(type = "string")
+                    ),
+                    @Parameter (
+                            in = ParameterIn.HEADER,
+                            name = "questionnaire-link",
+                            description = "URL to the Structure Definition of the given Questionnaire",
+                            required = true,
+                            schema = @Schema(type = "string")
+                    )
+            }
+    )
     @PostMapping(value = "/converter", consumes = "application/xml", produces = "application/json")
     @ResponseBody
     public ResponseEntity<Object> convertClinicalDataToQuestionnaireResponse(

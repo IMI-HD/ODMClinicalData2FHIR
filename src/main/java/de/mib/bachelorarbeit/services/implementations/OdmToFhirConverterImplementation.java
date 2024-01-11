@@ -74,13 +74,14 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         ODMcomplexTypeDefinitionMetaDataVersion metaDataVersion;
 
         // set the expected language string according to header parameter
-        String expectedLanguage = "";
+        String givenLanguage = "";
         if (language.equals("german")) {
-            expectedLanguage = "de";
+            givenLanguage = "de";
         }
         if (language.equals("english")) {
-            expectedLanguage = "en";
+            givenLanguage = "en";
         }
+
 
         // validate basic structure of the ODM file
 
@@ -295,7 +296,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     LOGGER.info("Set text of linkId 1.x Element!");
                     item_1_x.setText(getStringFormTranslatedText(
                             formDef.get().getDescription().getTranslatedText(),
-                            expectedLanguage));
+                            givenLanguage));
                 }
 
                 // Set linkId of item_1_x
@@ -374,7 +375,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                         LOGGER.info("Set text of linkId 1.x.x Element!");
                         item_1_x_x.setText(getStringFormTranslatedText(
                                 itemGroupDescription.getTranslatedText(),
-                                expectedLanguage
+                                givenLanguage
                         ));
                     }
 
@@ -445,7 +446,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                             LOGGER.info("Set text of linkId 1.x.x.x Element!");
                             item_1_x_x_x.setText(getStringFormTranslatedText(
                                     itemQuestion.getTranslatedText(),
-                                    expectedLanguage
+                                    givenLanguage
                             ));
                         }
 
@@ -515,7 +516,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                         String itemDataType = itemDef.get().getDataType().value();
                                         String data = getStringFormTranslatedText(
                                                 codeListItem.get().getDecode().getTranslatedText(),
-                                                expectedLanguage
+                                                givenLanguage
                                         );
                                         setFhirDataWithoutUnit(itemDef, item_1_x_x_x, itemDataType, data);
 
@@ -555,13 +556,13 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                                 quantity.setValue(Float.parseFloat(
                                                         getStringFormTranslatedText(
                                                                 codeListItem.get().getDecode().getTranslatedText(),
-                                                                expectedLanguage
+                                                                givenLanguage
                                                         )
                                                 ));
                                                 quantity.setUnit(
                                                         getStringFormTranslatedText(
                                                                 measurementUnit.get().getSymbol().getTranslatedText(),
-                                                                expectedLanguage
+                                                                givenLanguage
                                                         )
                                                 );
                                             } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
@@ -573,7 +574,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                                         "The given data: '%s' with MeasurementUnitRef was not numerical!",
                                                         getStringFormTranslatedText(
                                                                 codeListItem.get().getDecode().getTranslatedText(),
-                                                                expectedLanguage
+                                                                givenLanguage
                                                         )
                                                 );
                                                 LOGGER.error(error);
@@ -678,7 +679,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                     quantity.setUnit(
                                             getStringFormTranslatedText(
                                                     measurementUnit.get().getSymbol().getTranslatedText(),
-                                                    expectedLanguage
+                                                    givenLanguage
                                             )
                                     );
 
