@@ -1,6 +1,7 @@
 package de.mib.bachelorarbeit.controller;
 
 import de.mib.bachelorarbeit.services.definitions.OdmToFhirConverter;
+import io.swagger.v3.oas.annotations.Hidden;
 import odm.ODM;
 import odm.ODMcomplexTypeDefinitionStudy;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@Hidden
 public class TestController {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(TestController.class);
