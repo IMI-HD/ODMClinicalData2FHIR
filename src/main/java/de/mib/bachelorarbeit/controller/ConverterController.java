@@ -6,6 +6,7 @@ import de.mib.bachelorarbeit.services.definitions.OdmToFhirConverter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.links.Link;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -40,7 +41,7 @@ public class ConverterController {
 
     @Operation(
             description = "POST endpoint of the conversion service",
-            summary = "Takes an ODM file on the XML format and converts it to a FHIR Bundle.",
+            summary = "Takes an ODM file (XML format) and converts it to a FHIR Bundle (JSON).",
             responses = {
                     @ApiResponse(
                             responseCode = "200",
@@ -57,17 +58,25 @@ public class ConverterController {
                                     mediaType = "application/json",
                                     schema = @Schema(implementation = ConverterErrorResponse.class)
                             )
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Internal server error",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ConverterErrorResponse.class)
+                            )
                     )
             },
             parameters = {
-                    @Parameter (
+                    @Parameter(
                             in = ParameterIn.HEADER,
                             name = "questionnaire-language",
                             description = "Language Code the converter resolves in the given ODM",
                             required = true,
                             schema = @Schema(type = "string")
                     ),
-                    @Parameter (
+                    @Parameter(
                             in = ParameterIn.HEADER,
                             name = "questionnaire-link",
                             description = "URL to the Structure Definition of the given Questionnaire",

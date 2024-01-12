@@ -87,5 +87,12 @@ public class TestController {
         ));
     }
 
+    @GetMapping(value = "/testString", produces = "application/json")
+    public String test() {
+        return """
+                { "message": "Hello world!" }
+                """;
+    }
+
 
 }
