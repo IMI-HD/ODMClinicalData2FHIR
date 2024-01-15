@@ -51,9 +51,10 @@ public class TestController {
         return ResponseEntity.status(HttpStatus.OK).body(odm);
     }
 
+    @Deprecated
     @GetMapping(value = "/patient", produces = "application/json")
     public ResponseEntity<String> getTestPatient() {
-        String serializedPatient = odmToFhirConverter.getTestRessource();
+        String serializedPatient = "{empty}";
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .header("Content-Type", "application/fhir+json")

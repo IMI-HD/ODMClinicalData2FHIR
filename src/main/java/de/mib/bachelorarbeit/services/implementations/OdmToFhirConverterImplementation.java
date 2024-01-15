@@ -35,20 +35,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
     }
 
     @Override
-    public String getTestRessource() {
-        Patient patient = new Patient();
-        patient.addIdentifier()
-                .setSystem("http://example.com/fhir/patient-identifiers")
-                .setValue("12345");
-        patient.addName()
-                .setFamily("Mustermann")
-                .addGiven("Max");
-        LOGGER.info("Test patient created!");
-
-        return fhirContext.newJsonParser().setPrettyPrint(true).encodeToString(patient);
-    }
-
-    @Override
     public String clinicalDataToQuestionnaireResponse(
             @NotNull ODM odm,
             String language,
@@ -425,6 +411,15 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                     itemData.getItemOID());
                             LOGGER.error(error);
                             throw new NoCorrespondingItemDefFoundException(error);
+                        }
+
+                        // Check if Value attribute is set
+                        if (itemData.getValue().isEmpty() || itemData.getValue().isBlank()) {
+                            String error = String.format("The Value attribute of <ItemData> with OID '%s' " +
+                                                         "was blank or empty!",
+                                    itemData.getItemOID());
+                            LOGGER.error(error);
+                            throw new ValueAttributeOfItemDataEmptyOrBlankException(error);
                         }
 
                         // Create QRS Item one level under the ItemGroup (1.x.x.x)

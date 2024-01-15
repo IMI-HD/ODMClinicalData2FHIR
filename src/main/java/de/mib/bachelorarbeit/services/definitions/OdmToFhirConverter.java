@@ -5,8 +5,6 @@ import odm.ODM;
 
 public interface OdmToFhirConverter {
 
-    String getTestRessource();
-
     String clinicalDataToQuestionnaireResponse(ODM odm,
                                                String language,
                                                String linkToQuestionnaire)
