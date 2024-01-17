@@ -200,15 +200,23 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
             }
 
             // check if the <StudyEvent> is repeating if so
-            // => add extension with repeating key
+            // => add extension with repeating key IF KEY NOT NULL
             if (studyEventDef.get().getRepeating() == YesOrNo.YES) {
-                String message = String.format(
-                        "<StudyEvent> with OID: '%s' found repeating! Adding key: '%s' to item",
-                        studyEventDef.get().getOID(),
-                        studyEventData.getStudyEventRepeatKey()
-                );
-                LOGGER.info(message);
-                addRepeatKeyToItem(studyEventData.getStudyEventRepeatKey(), root);
+                if (studyEventData.getStudyEventRepeatKey() == null) {
+                    String warning = String.format("<StudyEvent> with OID: '%s' marked repeating but " +
+                                                   "didnt contain any repeat key!",
+                            studyEventDef.get().getOID()
+                    );
+                    LOGGER.warn(warning);
+                } else {
+                    String message = String.format(
+                            "<StudyEvent> with OID: '%s' found repeating! Adding key: '%s' to item",
+                            studyEventDef.get().getOID(),
+                            studyEventData.getStudyEventRepeatKey()
+                    );
+                    LOGGER.info(message);
+                    addRepeatKeyToItem(studyEventData.getStudyEventRepeatKey(), root);
+                }
             }
 
             // List of <FormData> => linkId under the root (1.x)
@@ -259,31 +267,48 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 // check if the <Form> is repeating if so
                 // => add extension with repeating key
                 if (formDef.get().getRepeating() == YesOrNo.YES) {
-                    String message = String.format(
-                            "<Form> with OID: '%s' found repeating! Adding key: '%s' to item",
-                            formDef.get().getOID(),
-                            formData.getFormRepeatKey()
-                    );
-                    LOGGER.info(message);
-                    addRepeatKeyToItem(formData.getFormRepeatKey(), item_1_x);
+                    if (formData.getFormRepeatKey() == null) {
+                        String warning = String.format("<FormDef> with OID: '%s' marked repeating but " +
+                                                       "didnt contain any repeat key!",
+                                formDef.get().getOID()
+                        );
+                        LOGGER.warn(warning);
+                    } else {
+                        String message = String.format(
+                                "<Form> with OID: '%s' found repeating! Adding key: '%s' to item",
+                                formDef.get().getOID(),
+                                formData.getFormRepeatKey()
+                        );
+                        LOGGER.info(message);
+                        addRepeatKeyToItem(formData.getFormRepeatKey(), item_1_x);
+                    }
                 }
 
 
                 // Set text of the item
                 ODMcomplexTypeDefinitionDescription formDescription = formDef.get().getDescription();
-                if (formDescription.getTranslatedText().isEmpty()) {
-                    String error = String.format(
-                            "No <TranslatedText> in <Description> found for <FormDef> with OID: %s!",
+                if (formDescription == null) {
+                    String warning = String.format(
+                            "Description of <FormDef> with OID: '%s' was null",
                             formDef.get().getOID()
                     );
-                    LOGGER.error(error);
-                    throw new FormDescriptionNotFoundException(error);
+                    LOGGER.warn(warning);
                 } else {
-                    LOGGER.info("Set text of linkId 1.x Element!");
-                    item_1_x.setText(getStringFormTranslatedText(
-                            formDef.get().getDescription().getTranslatedText(),
-                            givenLanguage));
+                    if (formDescription.getTranslatedText().isEmpty()) {
+                        String error = String.format(
+                                "No <TranslatedText> in <Description> found for <FormDef> with OID: %s!",
+                                formDef.get().getOID()
+                        );
+                        LOGGER.error(error);
+                        throw new FormDescriptionNotFoundException(error);
+                    } else {
+                        LOGGER.info("Set text of linkId 1.x Element!");
+                        item_1_x.setText(getStringFormTranslatedText(
+                                formDef.get().getDescription().getTranslatedText(),
+                                givenLanguage));
+                    }
                 }
+
 
                 // Set linkId of item_1_x
                 item_1_x.setLinkId(formData.getFormOID());
@@ -339,13 +364,21 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                     // check if the <ItemGroup> is repeating if so
                     // => add extension with repeating key
                     if (itemGroupDef.get().getRepeating() == YesOrNo.YES) {
-                        String message = String.format(
-                                "<ItemGroup> with OID: '%s' found repeating! Adding key: '%s' to item",
-                                itemGroupDef.get().getOID(),
-                                itemGroupData.getItemGroupRepeatKey()
-                        );
-                        LOGGER.info(message);
-                        addRepeatKeyToItem(itemGroupData.getItemGroupRepeatKey(), item_1_x_x);
+                        if (itemGroupData.getItemGroupRepeatKey() == null) {
+                            String warning = String.format("<ItemGroupDef> with OID: '%s' marked repeating but " +
+                                                           "didnt contain any repeat key!",
+                                    itemGroupDef.get().getOID()
+                            );
+                            LOGGER.warn(warning);
+                        } else {
+                            String message = String.format(
+                                    "<ItemGroup> with OID: '%s' found repeating! Adding key: '%s' to item",
+                                    itemGroupDef.get().getOID(),
+                                    itemGroupData.getItemGroupRepeatKey()
+                            );
+                            LOGGER.info(message);
+                            addRepeatKeyToItem(itemGroupData.getItemGroupRepeatKey(), item_1_x_x);
+                        }
                     }
 
                     // Set text of the item
@@ -508,12 +541,10 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                                                         itemDef.get().getOID())
                                         );
                                         // continue with no <MeasurementUnit>
-                                        String itemDataType = itemDef.get().getDataType().value();
-                                        String data = getStringFormTranslatedText(
-                                                codeListItem.get().getDecode().getTranslatedText(),
-                                                givenLanguage
-                                        );
-                                        setFhirDataWithoutUnit(itemDef, item_1_x_x_x, itemDataType, data);
+                                        String codeListDataType = codeList.get().getDataType().value();
+                                        // Dont resolve value => its just a lable USE RAW VALUE
+                                        String data = codeListItem.get().getCodedValue();
+                                        setFhirDataWithoutUnit(itemDef, item_1_x_x_x, codeListDataType, data);
 
 
                                     } else {
@@ -763,12 +794,12 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
     private void setFhirDataWithoutUnit(
             Optional<ODMcomplexTypeDefinitionItemDef> itemDef,
             QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x,
-            String itemDataType,
+            String expectedDataType,
             String data
     ) throws UnknownDataTypeException {
         try {
             // ToDo: parse to actual type and catch exception for easier debugging
-            switch (itemDataType) {
+            switch (expectedDataType) {
                 case "integer" -> {
                     int value = Integer.parseInt(data);
                     IntegerType integerType = new IntegerType(value);
@@ -815,7 +846,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 default -> {
                     LOGGER.warn(String.format(
                             "Data type: '%s' is not known",
-                            itemDataType
+                            expectedDataType
                     ));
                     throw new UnknownDataTypeException("Unknown data type!");
                 }
@@ -825,7 +856,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         } catch (Exception e) {
             String error = String.format(
                     "The given data type: '%s' is unknown! Or the data '%s' did not match the expected data type!",
-                    itemDataType,
+                    expectedDataType,
                     data
             );
             LOGGER.error(error);
