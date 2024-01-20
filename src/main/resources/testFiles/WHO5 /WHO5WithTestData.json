@@ -1,0 +1,378 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://link-to-questionnaire",
+        "status": "completed",
+        "item": [
+          {
+            "linkId": "SE.1",
+            "item": [
+              {
+                "linkId": "F.1",
+                "text": "Basisdaten",
+                "item": [
+                  {
+                    "linkId": "IG.1",
+                    "text": "Persönliche Fragen",
+                    "item": [
+                      {
+                        "linkId": "Age",
+                        "text": "Wie alt sind Sie?",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 59.0,
+                              "unit": "Jahre"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "Gender",
+                        "text": "Welches Geschlecht haben Sie?",
+                        "answer": [
+                          {
+                            "valueString": "Male"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "Weight",
+                        "text": "Wie viel wiegen Sie?",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 94.56999969482422,
+                              "unit": "kg"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "Height",
+                        "text": "Wie groß sind Sie?",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 2.3399999141693115,
+                              "unit": "m"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "BMI",
+                        "text": "BMI",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 2.630000114440918,
+                              "unit": "Berechnet"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.2",
+                    "text": "Demographische Fragen",
+                    "item": [
+                      {
+                        "linkId": "CountryOfBirth",
+                        "text": "Wo sind Sie geboren?",
+                        "answer": [
+                          {
+                            "valueString": "Other"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.6",
+                        "text": "Bitte geben Sie ihr Geburtsland ein",
+                        "answer": [
+                          {
+                            "valueString": "kurzer String"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.1",
+                        "text": "Was ist ihre höchste Schul- oder Universitätsausbildung?",
+                        "answer": [
+                          {
+                            "valueString": "2"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.16",
+                        "text": "Wann haben Sie die Schule absolviert?",
+                        "answer": [
+                          {
+                            "valueDate": "2024-01-17"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "linkId": "F.2",
+                "text": "Vorerkrankungen",
+                "item": [
+                  {
+                    "linkId": "IG.3",
+                    "text": "Kardiovaskulär",
+                    "item": [
+                      {
+                        "linkId": "CardiovascularDiseases",
+                        "text": "Hatten Sie in der Vergangenheit Erkrankungen des _Herzkreislaufsystems_?",
+                        "answer": [
+                          {
+                            "valueBoolean": true
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.8",
+                        "text": "... ja, ich hatte einen Herzinfarkt oder habe Stents am Herzen.",
+                        "answer": [
+                          {
+                            "valueBoolean": false
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.9",
+                        "text": "... ja, ich hatte einen Schlaganfall.",
+                        "answer": [
+                          {
+                            "valueBoolean": false
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.4",
+                    "text": "Bösartiger Tumor",
+                    "item": [
+                      {
+                        "linkId": "TumorDiseases",
+                        "text": "Wurde in der Vergangenheit ein _bösartiger Tumor oder Krebs_ bei Ihnen diagnostiziert?",
+                        "answer": [
+                          {
+                            "valueBoolean": true
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.10",
+                        "text": "... ja, ich hatte Brustkrebs.",
+                        "answer": [
+                          {
+                            "valueBoolean": true
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.11",
+                        "text": "... ja, ich hatte Hautkrebs.",
+                        "answer": [
+                          {
+                            "valueBoolean": false
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://link-to-questionnaire",
+        "status": "completed",
+        "item": [
+          {
+            "linkId": "SE.2",
+            "item": [
+              {
+                "linkId": "F.3",
+                "text": "Folgedaten",
+                "item": [
+                  {
+                    "linkId": "IG.5",
+                    "text": "Grund des Besuchs",
+                    "item": [
+                      {
+                        "linkId": "SideEffect",
+                        "text": "Eine Nebenwirkung ist aufgetreten",
+                        "answer": [
+                          {
+                            "valueBoolean": true
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.12",
+                        "text": "Welche Nebenwirkung ist aufgetreten?",
+                        "answer": [
+                          {
+                            "valueString": "ein weiterer Beispielstring"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "SymptomsChanged",
+                        "text": "Das Symptom hat sich verändert",
+                        "answer": [
+                          {
+                            "valueBoolean": true
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.5",
+                        "text": "Wie hat sich das Symptom verändert?",
+                        "answer": [
+                          {
+                            "valueString": "Liste: Medikament 1, Medikament 2, Medikament 3"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "linkId": "F.4",
+                "text": "Wohlbefinden",
+                "item": [
+                  {
+                    "linkId": "WHO.Q",
+                    "text": "In den letzten zwei Wochen ...",
+                    "item": [
+                      {
+                        "linkId": "WHO.1",
+                        "text": "… war ich froh und guter Laune",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.2",
+                        "text": "… habe ich mich ruhig und entspannt gefühlt",
+                        "answer": [
+                          {
+                            "valueInteger": 4
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.3",
+                        "text": "… habe ich mich energisch und aktiv gefühlt",
+                        "answer": [
+                          {
+                            "valueInteger": 3
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.4",
+                        "text": "… habe ich mich beim Aufwachen frisch und ausgeruht gefühlt",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.5",
+                        "text": "… war mein Alltag voller Dinge, die mich interessieren",
+                        "answer": [
+                          {
+                            "valueInteger": 5
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.7",
+                    "text": "WHO-5 Wohlbefinden-Index",
+                    "item": [
+                      {
+                        "linkId": "I.2",
+                        "text": "Berechneter Index (0 – 100)",
+                        "answer": [
+                          {
+                            "valueInteger": 3
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://link-to-questionnaire",
+        "status": "completed",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://example.org/fhir/StructureDefinition/extension-repeating-key",
+                "valueInteger": 1
+              }
+            ],
+            "linkId": "SE.3",
+            "item": [
+              {
+                "linkId": "F.5",
+                "text": "Formular noch zu benennen ...",
+                "item": [
+                  {
+                    "linkId": "IG.8",
+                    "text": "Gruppe noch zu benennen ...",
+                    "item": [
+                      {
+                        "linkId": "I.17",
+                        "text": "Dies ist ein Beispielelement",
+                        "answer": [
+                          {
+                            "valueString": "kurzer String"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

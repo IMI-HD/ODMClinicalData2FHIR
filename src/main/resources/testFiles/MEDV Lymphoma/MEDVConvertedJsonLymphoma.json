@@ -1,0 +1,1452 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://example.org/fhir/Questionnaire/1",
+        "status": "completed",
+        "item": [
+          {
+            "linkId": "SE.1",
+            "item": [
+              {
+                "linkId": "F.1",
+                "item": [
+                  {
+                    "linkId": "IG.2",
+                    "text": "Patienten Stammdaten",
+                    "item": [
+                      {
+                        "linkId": "I.4",
+                        "text": "Patienten Nachname",
+                        "answer": [
+                          {
+                            "valueString": "Mustermann"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.7",
+                        "text": "Patienten Vornamen",
+                        "answer": [
+                          {
+                            "valueString": "Max"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.10",
+                        "text": "Patienten Geschlecht",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.11",
+                        "text": "Patienten Geburtsdatum",
+                        "answer": [
+                          {
+                            "valueDate": "1974-01-11"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.54",
+                        "text": "Patienten-Körpergröße",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 180.0,
+                              "unit": "cm"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.55",
+                        "text": "Patienten-Körpergewicht",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 75.0,
+                              "unit": "kg"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.56",
+                        "text": "Patienten-Körperoberfläche",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 10.0,
+                              "unit": "m^2"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.70",
+                        "text": "Patienten-Alter (in Jahren)",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 69.0,
+                              "unit": "Jahre"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.4",
+                    "text": "Diagnose",
+                    "item": [
+                      {
+                        "linkId": "I.28",
+                        "text": "Grobklassifikation des diagnostizierten Lymphoms:",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.29",
+                        "text": "Primärtumor Tumordiagnose Text",
+                        "answer": [
+                          {
+                            "valueString": "Das ist ein Text"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.33",
+                        "text": "Tumor Erstdiagnosedatum",
+                        "answer": [
+                          {
+                            "valueDate": "2024-01-15"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "linkId": "F.1",
+                "item": [
+                  {
+                    "linkId": "IG.1",
+                    "text": "Charakteristika bei Erstdiagnose",
+                    "item": [
+                      {
+                        "linkId": "I.1",
+                        "text": "Stadium des Lymphom-Befalls (nach Ann Arbor)",
+                        "answer": [
+                          {
+                            "valueInteger": 3
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.2",
+                        "text": "Subtyp des Lymphom-Stadiums",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.3",
+                        "text": "B-Symptomatik: Fieber",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.57",
+                        "text": "B-Symptomatik: Nachtschweiß",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.58",
+                        "text": "B-Symptomatik: Gewichtsverlust",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.12",
+                        "text": "Kein nodaler Befall des Lymhoms vorhanden",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.59",
+                        "text": "Nodaler Befall des Lymphoms im Abdomen",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.60",
+                        "text": "Nodaler Befall des Lymphoms im Thorax",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.61",
+                        "text": "Nodaler Befall des Lymphoms zervikal",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.62",
+                        "text": "Nodaler Befall des Lymphoms axillär",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.63",
+                        "text": "Nodaler Befall des Lymphoms inguinal",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.64",
+                        "text": "Nodaler Befall des Lymphoms Milz",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.13",
+                        "text": "Knochenmarkinfiltration des Lymphoms",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.14",
+                        "text": "Liegt ein extralymphatischer Befall vor?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.15",
+                        "text": "Falls ein extralymphatischer Befall vorliegt, liegt ein Knochenbefall vor?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.65",
+                        "text": "Falls ein extralymphatischer Befall vorliegt, liegt ein ZNS-Befall vor?",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.66",
+                        "text": "Falls ein extralymphatischer Befall außerhalb des Knochens oder des ZNS vorliegt, bitte nennen Sie die Lokalisation.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist ein Text"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.16",
+                        "text": "Kommentar extralymphatischen Befall.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist ein Kommentar"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.17",
+                        "text": "Bulks (7 cm) vorhanden",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.18",
+                        "text": "Großer Mediastinaltumor",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.19",
+                        "text": "hohe BSG",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.20",
+                        "text": "Befall von ≥3 Lymphknotenarealen",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.21",
+                        "text": "Scorepunkte bei dem altersadjustierten internationalen prognostischen Index (aaIPI)",
+                        "answer": [
+                          {
+                            "valueInteger": 90
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.22",
+                        "text": "Scorepunkt bei dem internationalen Prognoseindex (IPI) für hoch maligne Non-Hodgkin-Lymphome",
+                        "answer": [
+                          {
+                            "valueInteger": 23
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.23",
+                        "text": "Scorepunkte bei dem Mantelzell-Lymphom internationalen prognostischen Index (MIPI)",
+                        "answer": [
+                          {
+                            "valueInteger": 45
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.24",
+                        "text": "Scorepunkte bei dem follikulären Lymphom internationalen prognostischen Index (FLIPI)",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.25",
+                        "text": "Es wurde kein Risikoscore für das Lymphom bestimmt.",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.26",
+                        "text": "Weiße Blutzellen (Leukozyten/nl)",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 2.0,
+                              "unit": "/nl"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.27",
+                        "text": "ECOG-Index",
+                        "answer": [
+                          {
+                            "valueInteger": 3
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.30",
+                        "text": "LDH-Konzentration (U/l)",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 2.0,
+                              "unit": "U/l"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.72",
+                        "text": "LDH-Konzentration erhöht",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.31",
+                        "text": "LDH obere Laborreferenz (U/l)",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 23.0,
+                              "unit": "U/l"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.32",
+                        "text": "Alter über 60 Jahre",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.71",
+                        "text": "Stadium III oder IV der Ann-Arbor-Klassifikation",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.73",
+                        "text": "Schlechter Allgemeinzustand (Karnofsky-Index ≤ 60 % bzw. ECOG-Score ≥ 2)",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.74",
+                        "text": "Hämoglobin unter 12g/dl",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.75",
+                        "text": "Mehr als vier befallene Lymphknotenregionen",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.76",
+                        "text": "Mehr als ein extranodaler Herd",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.34",
+                        "text": "Therapierelevantes Stadium des Lymphoms",
+                        "answer": [
+                          {
+                            "valueString": "Nein"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.35",
+                        "text": "Spezielle Charakteristika des Lymphoms",
+                        "answer": [
+                          {
+                            "valueString": "Nein"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.3",
+                    "text": "Nebendiagnosen der Patientin/ des Patienten",
+                    "item": [
+                      {
+                        "linkId": "I.36",
+                        "text": "Bitte nennen Sie die Nebendiagnosen der Patientin/ des Patienten.",
+                        "answer": [
+                          {
+                            "valueString": "-"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.20",
+                    "text": "Biobank",
+                    "item": [
+                      {
+                        "linkId": "I.124",
+                        "text": "Patienten-ID",
+                        "answer": [
+                          {
+                            "valueString": "2"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.125",
+                        "text": "Datum der Bioprobe",
+                        "answer": [
+                          {
+                            "valueDate": "2023-08-08"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.126",
+                        "text": "ID der Bioprobe",
+                        "answer": [
+                          {
+                            "valueString": "2"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.5",
+                    "text": "Aktuelle Diagnostik",
+                    "item": [
+                      {
+                        "linkId": "I.37",
+                        "text": "Bitte nennen Sie den histopathologischen Befund.",
+                        "answer": [
+                          {
+                            "valueString": "Befund"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.38",
+                        "text": "Wo wurde der histopathologische Befund erhoben?",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.39",
+                        "text": "Bitte beschreiben Sie den FISH-Befund.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.40",
+                        "text": "Wo wurde der FISH-Befund erhoben?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.41",
+                        "text": "Bitte beschreiben Sie den FACS-Befund.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.42",
+                        "text": "Wo wurde der FACS-Befund erhoben?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.43",
+                        "text": "Bitte beschreiben Sie den Befund der Knochenmarkpunktion.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.44",
+                        "text": "Bitte beschreiben Sie den Befund der Molekularbiologie.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.45",
+                        "text": "Bitte beschreiben Sie den Befund der Immunzytologie.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.46",
+                        "text": "Bitte beschreiben Sie die Symptome der Patientin/ des Patienten.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.127",
+                        "text": "Wo wurde das Symptomassessment durchgeführt?",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.128",
+                        "text": "Bitte beschreiben Sie die Befunde der Bildgebung.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist ein Befund"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.129",
+                        "text": "Wo wurde die bildgebende Diagnostik durchgeführt?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.130",
+                        "text": "Bildgebung Modalität",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.133",
+                        "text": "Wo wurde die klassische zytogenetische Diagnostik durchgeführt?",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.134",
+                        "text": "Bitte geben Sie die Befunde der Blutwerte an.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist ein Befund"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.135",
+                        "text": "Wo wurden die Blutwerte erhoben?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.136",
+                        "text": "Bitte geben Sie die Befunde anderer evtl. durchgeführter Diagnostik an.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.137",
+                        "text": "Wo wurde die andere Diagnostik durchgeführt?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.9",
+                    "text": "Aktueller Patientenstatus",
+                    "item": [
+                      {
+                        "linkId": "I.67",
+                        "text": "Status der Patientin/ des Patienten",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.68",
+                        "text": "Tumorerkrankungsstatus Primärtumor",
+                        "answer": [
+                          {
+                            "valueString": "N"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.138",
+                        "text": "Datum des letzten Kontakts",
+                        "answer": [
+                          {
+                            "valueDate": "2024-01-03"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.140",
+                        "text": "Karnofsky-Score",
+                        "answer": [
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          },
+                          {
+                            "valueQuantity": {
+                              "value": 50.0,
+                              "unit": "%"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.69",
+                        "text": "Allgemeiner Leistungszustand",
+                        "answer": [
+                          {
+                            "valueInteger": 4
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.14",
+                    "text": "Therapieverlauf",
+                    "item": [
+                      {
+                        "linkId": "I.53",
+                        "text": "Bitte geben Sie die Erkrankung an, für die die Therapie eingeleitet worden ist.",
+                        "answer": [
+                          {
+                            "valueString": "Lymphoma"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.47",
+                        "text": "Ist die Therapie...?",
+                        "answer": [
+                          {
+                            "valueInteger": 1
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.100",
+                        "text": "Intention der Therapie",
+                        "answer": [
+                          {
+                            "valueString": "P"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.104",
+                        "text": "Therapie-Beginn",
+                        "answer": [
+                          {
+                            "valueDate": "2024-01-07"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.101",
+                        "text": "Therapieart",
+                        "answer": [
+                          {
+                            "valueString": "Chemo"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.103",
+                        "text": "Therapieprotokoll",
+                        "answer": [
+                          {
+                            "valueString": "Protokoll"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.48",
+                        "text": "Anzahl der durchgeführten Therapiezyklen",
+                        "answer": [
+                          {
+                            "valueInteger": 43
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.107",
+                        "text": "Systemische Therapie Ende",
+                        "answer": [
+                          {
+                            "valueDate": "2024-04-12"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.49",
+                        "text": "Bitte beschreiben Sie das Therapieansprechen.",
+                        "answer": [
+                          {
+                            "valueString": "Das ist eine Beschreibung"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.50",
+                        "text": "War die Therapie Teil einer Studie?",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.52",
+                        "text": "Kommentar",
+                        "answer": [
+                          {
+                            "valueString": "Das ist ein Kommentar"
+                          },
+                          {
+                            "valueCoding": {
+                              "system": "http://loinc.org",
+                              "code": "L-123456"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

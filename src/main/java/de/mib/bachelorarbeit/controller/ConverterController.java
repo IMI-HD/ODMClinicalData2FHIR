@@ -47,7 +47,7 @@ public class ConverterController {
                             responseCode = "200",
                             description = "Successful conversion of ODM file to FHIR Bundle",
                             content = @Content(
-                                    mediaType = "application/json",
+                                    mediaType = "application/json;charset=UTF-8",
                                     schema = @Schema(implementation = Bundle.class)
                             )
                     ),
@@ -55,7 +55,7 @@ public class ConverterController {
                             responseCode = "400",
                             description = "Bad Request - Error in conversion process",
                             content = @Content(
-                                    mediaType = "application/json",
+                                    mediaType = "application/json;charset=UTF-8",
                                     schema = @Schema(implementation = ConverterErrorResponse.class)
                             )
                     ),
@@ -63,7 +63,7 @@ public class ConverterController {
                             responseCode = "500",
                             description = "Internal server error",
                             content = @Content(
-                                    mediaType = "application/json",
+                                    mediaType = "application/json;charset=UTF-8",
                                     schema = @Schema(implementation = ConverterErrorResponse.class)
                             )
                     )
@@ -85,7 +85,8 @@ public class ConverterController {
                     )
             }
     )
-    @PostMapping(value = "/converter", consumes = "application/xml", produces = "application/json")
+    @PostMapping(value = "/converter", consumes = "application/xml;charset=UTF-8",
+            produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> convertClinicalDataToQuestionnaireResponse(
             @RequestBody ODM odm,

@@ -1,0 +1,1945 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" FileType="Snapshot" FileOID="New Project" CreationDateTime="2024-01-15T14:49:07.225Z" ODMVersion="1.3.2" SourceSystem="OpenEDC">
+    <Study OID="S.1">
+        <GlobalVariables>
+            <StudyName>New Project</StudyName>
+            <StudyDescription/>
+            <ProtocolName>New Project</ProtocolName>
+        </GlobalVariables>
+        <BasicDefinitions>
+            <MeasurementUnit OID="MU.1" Name="U/l">
+                <Symbol>
+                    <TranslatedText xml:lang="de">U/l</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.2" Name="%">
+                <Symbol>
+                    <TranslatedText xml:lang="de">%</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.3" Name="cm">
+                <Symbol>
+                    <TranslatedText xml:lang="de">cm</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.4" Name="kg">
+                <Symbol>
+                    <TranslatedText xml:lang="de">kg</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.5" Name="m^2">
+                <Symbol>
+                    <TranslatedText xml:lang="de">m^2</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.6" Name="Jahre">
+                <Symbol>
+                    <TranslatedText xml:lang="de">Jahre</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+            <MeasurementUnit OID="MU.7" Name="/nl">
+                <Symbol>
+                    <TranslatedText xml:lang="de">/nl</TranslatedText>
+                </Symbol>
+            </MeasurementUnit>
+        </BasicDefinitions>
+        <MetaDataVersion OID="MDV.1" Name="MetaDataVersion">
+            <Protocol>
+                <StudyEventRef OrderNumber="1" Mandatory="Yes" StudyEventOID="SE.1"/>
+            </Protocol>
+            <StudyEventDef OID="SE.1" Name="Klinische Dokumentation Med. V - Follow Up - Lymphom" Repeating="No" Type="Unscheduled">
+                <FormRef OrderNumber="1" Mandatory="No" FormOID="F.1"/>
+            </StudyEventDef>
+            <FormDef OID="F.1" Name="Klinische Dokumentation Med. V Lymphom" Repeating="No">
+                <ItemGroupRef ItemGroupOID="IG.2" OrderNumber="1" Mandatory="No"/>
+                <ItemGroupRef ItemGroupOID="IG.4" OrderNumber="2" Mandatory="No"/>
+                <ItemGroupRef ItemGroupOID="IG.1" OrderNumber="3" Mandatory="No"/>
+                <ItemGroupRef ItemGroupOID="IG.3" OrderNumber="4" Mandatory="No"/>
+                <ItemGroupRef ItemGroupOID="IG.20" OrderNumber="5" Mandatory="No"/>
+                <ItemGroupRef ItemGroupOID="IG.5" OrderNumber="6" Mandatory="No"/>
+                <ItemGroupRef ItemGroupOID="IG.9" OrderNumber="7" Mandatory="No"/>
+                <ItemGroupRef ItemGroupOID="IG.14" OrderNumber="8" Mandatory="No"/>
+            </FormDef>
+            <ItemGroupDef OID="IG.2" Name="Patienten-Stammdaten" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="en">Patient Master Data</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Stammdaten</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.4"/>
+                <ItemRef OrderNumber="2" Mandatory="No" ItemOID="I.5"/>
+                <ItemRef OrderNumber="3" Mandatory="No" ItemOID="I.6"/>
+                <ItemRef OrderNumber="4" Mandatory="No" ItemOID="I.7"/>
+                <ItemRef OrderNumber="5" Mandatory="No" ItemOID="I.8"/>
+                <ItemRef OrderNumber="6" Mandatory="No" ItemOID="I.9"/>
+                <ItemRef OrderNumber="7" Mandatory="No" ItemOID="I.10"/>
+                <ItemRef OrderNumber="8" Mandatory="No" ItemOID="I.11"/>
+                <ItemRef OrderNumber="9" Mandatory="No" ItemOID="I.54"/>
+                <ItemRef OrderNumber="10" Mandatory="No" ItemOID="I.55"/>
+                <ItemRef OrderNumber="11" Mandatory="No" ItemOID="I.56"/>
+                <ItemRef OrderNumber="12" Mandatory="No" ItemOID="I.70"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.4" Name="Diagnose: Lymphom" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="en">Diagnosis</TranslatedText>
+                    <TranslatedText xml:lang="de">Diagnose</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.28"/>
+                <ItemRef OrderNumber="2" Mandatory="No" ItemOID="I.29"/>
+                <ItemRef OrderNumber="3" Mandatory="No" ItemOID="I.33"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.5" Name="Aktuelle Diagnostik" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="en">Curent diagnostics</TranslatedText>
+                    <TranslatedText xml:lang="de">Aktuelle Diagnostik</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.37"/>
+                <ItemRef OrderNumber="2" Mandatory="No" ItemOID="I.38"/>
+                <ItemRef OrderNumber="3" Mandatory="No" ItemOID="I.39"/>
+                <ItemRef OrderNumber="4" Mandatory="No" ItemOID="I.40"/>
+                <ItemRef OrderNumber="5" Mandatory="No" ItemOID="I.41"/>
+                <ItemRef OrderNumber="6" Mandatory="No" ItemOID="I.42"/>
+                <ItemRef OrderNumber="7" Mandatory="No" ItemOID="I.43"/>
+                <ItemRef OrderNumber="8" Mandatory="No" ItemOID="I.44"/>
+                <ItemRef OrderNumber="9" Mandatory="No" ItemOID="I.45"/>
+                <ItemRef OrderNumber="10" Mandatory="No" ItemOID="I.46"/>
+                <ItemRef OrderNumber="11" Mandatory="No" ItemOID="I.127"/>
+                <ItemRef OrderNumber="12" Mandatory="No" ItemOID="I.128"/>
+                <ItemRef OrderNumber="13" Mandatory="No" ItemOID="I.129"/>
+                <ItemRef OrderNumber="14" Mandatory="No" ItemOID="I.130"/>
+                <ItemRef OrderNumber="15" Mandatory="No" ItemOID="I.131"/>
+                <ItemRef OrderNumber="16" Mandatory="No" ItemOID="I.132"/>
+                <ItemRef OrderNumber="17" Mandatory="No" ItemOID="I.133"/>
+                <ItemRef OrderNumber="18" Mandatory="No" ItemOID="I.134"/>
+                <ItemRef OrderNumber="19" Mandatory="No" ItemOID="I.135"/>
+                <ItemRef OrderNumber="20" Mandatory="No" ItemOID="I.136"/>
+                <ItemRef OrderNumber="21" Mandatory="No" ItemOID="I.137"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.9" Name="Aktueller Patientenstatus" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="en">The patient´s current status</TranslatedText>
+                    <TranslatedText xml:lang="de">Aktueller Patientenstatus</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.67"/>
+                <ItemRef OrderNumber="2" Mandatory="No" ItemOID="I.68"/>
+                <ItemRef OrderNumber="3" Mandatory="No" ItemOID="I.138"/>
+                <ItemRef OrderNumber="4" Mandatory="No" ItemOID="I.140"/>
+                <ItemRef OrderNumber="5" Mandatory="No" ItemOID="I.69"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.14" Name="Therapieverlauf" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="en">Course of therapy</TranslatedText>
+                    <TranslatedText xml:lang="de">Therapieverlauf</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.53"/>
+                <ItemRef OrderNumber="2" Mandatory="No" ItemOID="I.47"/>
+                <ItemRef OrderNumber="3" Mandatory="No" ItemOID="I.100"/>
+                <ItemRef OrderNumber="4" Mandatory="No" ItemOID="I.104"/>
+                <ItemRef OrderNumber="5" Mandatory="No" ItemOID="I.101"/>
+                <ItemRef OrderNumber="6" Mandatory="No" ItemOID="I.103"/>
+                <ItemRef OrderNumber="7" Mandatory="No" ItemOID="I.48"/>
+                <ItemRef OrderNumber="8" Mandatory="No" ItemOID="I.107"/>
+                <ItemRef OrderNumber="9" Mandatory="No" ItemOID="I.49"/>
+                <ItemRef OrderNumber="10" Mandatory="No" ItemOID="I.50"/>
+                <ItemRef OrderNumber="11" Mandatory="No" ItemOID="I.51"/>
+                <ItemRef OrderNumber="12" Mandatory="No" ItemOID="I.52"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.1" Name="Charakteristika bei Erstdiagnose" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="de">Charakteristika bei Erstdiagnose</TranslatedText>
+                    <TranslatedText xml:lang="en">Characteristics at initial diagnosis</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.1"/>
+                <ItemRef OrderNumber="2" Mandatory="No" ItemOID="I.2"/>
+                <ItemRef OrderNumber="3" Mandatory="No" ItemOID="I.3"/>
+                <ItemRef OrderNumber="4" Mandatory="No" ItemOID="I.57"/>
+                <ItemRef OrderNumber="5" Mandatory="No" ItemOID="I.58"/>
+                <ItemRef OrderNumber="6" Mandatory="No" ItemOID="I.12"/>
+                <ItemRef OrderNumber="7" Mandatory="No" ItemOID="I.59"/>
+                <ItemRef OrderNumber="8" Mandatory="No" ItemOID="I.60"/>
+                <ItemRef OrderNumber="9" Mandatory="No" ItemOID="I.61"/>
+                <ItemRef OrderNumber="10" Mandatory="No" ItemOID="I.62"/>
+                <ItemRef OrderNumber="11" Mandatory="No" ItemOID="I.63"/>
+                <ItemRef OrderNumber="12" Mandatory="No" ItemOID="I.64"/>
+                <ItemRef OrderNumber="13" Mandatory="No" ItemOID="I.13"/>
+                <ItemRef OrderNumber="14" Mandatory="No" ItemOID="I.14"/>
+                <ItemRef OrderNumber="15" Mandatory="No" ItemOID="I.15"/>
+                <ItemRef OrderNumber="16" Mandatory="No" ItemOID="I.65"/>
+                <ItemRef OrderNumber="17" Mandatory="No" ItemOID="I.66"/>
+                <ItemRef OrderNumber="18" Mandatory="No" ItemOID="I.16"/>
+                <ItemRef OrderNumber="19" Mandatory="No" ItemOID="I.17"/>
+                <ItemRef OrderNumber="20" Mandatory="No" ItemOID="I.18"/>
+                <ItemRef OrderNumber="21" Mandatory="No" ItemOID="I.19"/>
+                <ItemRef OrderNumber="22" Mandatory="No" ItemOID="I.20"/>
+                <ItemRef OrderNumber="23" Mandatory="No" ItemOID="I.21"/>
+                <ItemRef OrderNumber="24" Mandatory="No" ItemOID="I.22"/>
+                <ItemRef OrderNumber="25" Mandatory="No" ItemOID="I.23"/>
+                <ItemRef OrderNumber="26" Mandatory="No" ItemOID="I.24"/>
+                <ItemRef OrderNumber="27" Mandatory="No" ItemOID="I.25"/>
+                <ItemRef OrderNumber="28" Mandatory="No" ItemOID="I.26"/>
+                <ItemRef OrderNumber="29" Mandatory="No" ItemOID="I.27"/>
+                <ItemRef OrderNumber="30" Mandatory="No" ItemOID="I.30"/>
+                <ItemRef OrderNumber="31" Mandatory="No" ItemOID="I.72"/>
+                <ItemRef OrderNumber="32" Mandatory="No" ItemOID="I.31"/>
+                <ItemRef OrderNumber="33" Mandatory="No" ItemOID="I.32"/>
+                <ItemRef OrderNumber="34" Mandatory="No" ItemOID="I.71"/>
+                <ItemRef OrderNumber="35" Mandatory="No" ItemOID="I.73"/>
+                <ItemRef OrderNumber="36" Mandatory="No" ItemOID="I.74"/>
+                <ItemRef OrderNumber="37" Mandatory="No" ItemOID="I.75"/>
+                <ItemRef OrderNumber="38" Mandatory="No" ItemOID="I.76"/>
+                <ItemRef OrderNumber="39" Mandatory="No" ItemOID="I.34"/>
+                <ItemRef OrderNumber="40" Mandatory="No" ItemOID="I.35"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.3" Name="Nebendiagnosen" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="de">Nebendiagnosen der Patientin/ des Patienten</TranslatedText>
+                    <TranslatedText xml:lang="en">Secondary diagnoses</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.36"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemGroupDef OID="IG.20" Name="Biobank" Repeating="No" Comment="">
+                <Description>
+                    <TranslatedText xml:lang="de">Biobank</TranslatedText>
+                    <TranslatedText xml:lang="en">Biobank</TranslatedText>
+                </Description>
+                <ItemRef OrderNumber="1" Mandatory="No" ItemOID="I.124"/>
+                <ItemRef OrderNumber="2" Mandatory="No" ItemOID="I.125"/>
+                <ItemRef OrderNumber="3" Mandatory="No" ItemOID="I.126"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemGroupDef>
+            <ItemDef OID="I.4" Name="Patientenname" DataType="text" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Current family name of the patient at the day of reporting</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient Name</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Nachname</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.5" Name="Patiententitel" DataType="text" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Any academic title of a patient, all abbreviated and separated by "space". Examples: I.E; B.S; MD;Prof.; etc</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient title</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Titel</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.6" Name="Patienten Namenszusatz" DataType="text" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Any suffix to a patient name. Examples: Baron of ; Lady; Baronesse; of; van; etc</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient name suffix</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Namenszusatz</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.7" Name="Patienten-Vorname" DataType="text" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Given names of a patient. More than one given name may be separated by "space"</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient given name</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Vornamen</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.8" Name="Patienten-Geburtsname" DataType="text" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Family name of patient at birth</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient birth name</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Geburtsname</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.9" Name="Patient - frühere Namen" DataType="text" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Any previous names of a patient, maybe separated by "space"</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient previous names</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten frühere Namen</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.10" Name="Patientengeschlecht" DataType="integer" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Differentiation of a person by sexual characteristics</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient gender</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Geschlecht</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.2"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.11" Name="Patienten-Geburtsdatum" DataType="date">
+                <Description>
+                    <TranslatedText xml:lang="en">Day month and year of a patient´s birth according to gregorian calendar</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Patient birth date</TranslatedText>
+                    <TranslatedText xml:lang="de">Patienten Geburtsdatum</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.28" Name="Lymphom Grobklassifikation" DataType="integer" Length="7">
+                <Question>
+                    <TranslatedText xml:lang="en">General classification of the diagnosed lymphoma</TranslatedText>
+                    <TranslatedText xml:lang="de">Grobklassifikation des diagnostizierten Lymphoms:</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.3"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.29" Name="Diagnose Lymphom" DataType="text" Length="231">
+                <Question>
+                    <TranslatedText xml:lang="en">Diagnosis of primary tumor (text)</TranslatedText>
+                    <TranslatedText xml:lang="de">Primärtumor Tumordiagnose Text</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.33" Name="Erstdiagnose des Lymphoms" DataType="date">
+                <Description>
+                    <TranslatedText xml:lang="en">Date specified in day, month and year on which the reportable diagnosis was first clinically or microscopically diagnosed by a physician. DD.MM.YYYY. Date unknown: Insert 00 unknown day and month: Insert 00:00</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Date of diagnosis</TranslatedText>
+                    <TranslatedText xml:lang="de">Tumor Erstdiagnosedatum</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.37" Name="Histopathologischer Befund" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="en">Please note down the histopathologic findings.</TranslatedText>
+                    <TranslatedText xml:lang="de">Bitte nennen Sie den histopathologischen Befund.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.38" Name="Histopathologischer Befund Erhebung" DataType="integer" Length="80">
+                <Question>
+                    <TranslatedText xml:lang="en">Where has the histopathologic examination been performed?</TranslatedText>
+                    <TranslatedText xml:lang="de">Wo wurde der histopathologische Befund erhoben?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.39" Name="FISH Befund" DataType="text" Length="80">
+                <Question>
+                    <TranslatedText xml:lang="en">Please note down the results of the FISH examination.</TranslatedText>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie den FISH-Befund.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.40" Name="FISH Befund Erhebung" DataType="integer" Length="80">
+                <Question>
+                    <TranslatedText xml:lang="en">Where has the FISH examination been performed?</TranslatedText>
+                    <TranslatedText xml:lang="de">Wo wurde der FISH-Befund erhoben?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.41" Name="Durchflusszytometrie Befund" DataType="text" Length="80">
+                <Question>
+                    <TranslatedText xml:lang="en">Please note down the results of FACS.</TranslatedText>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie den FACS-Befund.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.42" Name="Durchflusszytometrie Befunderhebung" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="en">Where has the FACS examination been performed?</TranslatedText>
+                    <TranslatedText xml:lang="de">Wo wurde der FACS-Befund erhoben?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.43" Name="Knochenmarkpunktion" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="en">Please note down the results of the bone marrow biopsy.</TranslatedText>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie den Befund der Knochenmarkpunktion.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.44" Name="Molekularbiologie" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="en">Please note down the results of the molecular-biological examination.</TranslatedText>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie den Befund der Molekularbiologie.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.45" Name="Immunzytologie" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="en">Please note down the immunocytologic results.</TranslatedText>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie den Befund der Immunzytologie.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.46" Name="Symptomassessment" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="en">Please describe the symptoms of the patient.</TranslatedText>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie die Symptome der Patientin/ des Patienten.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.67" Name="Patientenstatus" DataType="integer" Length="7">
+                <Question>
+                    <TranslatedText xml:lang="en">The patient´s status</TranslatedText>
+                    <TranslatedText xml:lang="de">Status der Patientin/ des Patienten</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.21"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.68" Name="Erkrankungsstatus" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="en">The primary tumor´s status</TranslatedText>
+                    <TranslatedText xml:lang="de">Tumorerkrankungsstatus Primärtumor</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.55"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.69" Name="ECOG Performance Status" DataType="integer" Length="80">
+                <Question>
+                    <TranslatedText xml:lang="en">Performance status</TranslatedText>
+                    <TranslatedText xml:lang="de">Allgemeiner Leistungszustand</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.22"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.100" Name="Grund der Therapieindikation" DataType="text" Length="7">
+                <Description>
+                    <TranslatedText xml:lang="en">Indicates what the systemic therapy is aiming at</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Intention of systemic therapy</TranslatedText>
+                    <TranslatedText xml:lang="de">Intention der Therapie</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.25"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.101" Name="Art der Therapie" DataType="text" Length="7">
+                <Question>
+                    <TranslatedText xml:lang="en">Type of therapy</TranslatedText>
+                    <TranslatedText xml:lang="de">Therapieart</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.103" Name="Therapieschema" DataType="text" Length="80">
+                <Description>
+                    <TranslatedText xml:lang="en">Indicates the protocol used for systemic treatment.</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Systemic therapy protocol. Please give the name of protocol in usual abbreviations.</TranslatedText>
+                    <TranslatedText xml:lang="de">Therapieprotokoll</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.104" Name="Startdatum der Therapie" DataType="date">
+                <Question>
+                    <TranslatedText xml:lang="en">Systemic therapy start date</TranslatedText>
+                    <TranslatedText xml:lang="de">Therapie-Beginn</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.107" Name="Enddatum der Therapie" DataType="date">
+                <Description>
+                    <TranslatedText xml:lang="en">Indicates the date systemic therapy was stopped. dd.mm.yyyy</TranslatedText>
+                </Description>
+                <Question>
+                    <TranslatedText xml:lang="en">Systemic therapy end date</TranslatedText>
+                    <TranslatedText xml:lang="de">Systemische Therapie Ende</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.1" Name="Stadium des Befalls" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Stadium des Lymphom-Befalls (nach Ann Arbor)</TranslatedText>
+                    <TranslatedText xml:lang="en">Stage of lymphoma infiltration according to Ann Arbor staging system</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.1"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.2" Name="Subtyp des Stadiums" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Subtyp des Lymphom-Stadiums</TranslatedText>
+                    <TranslatedText xml:lang="en">Subtype of lymphoma stage</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.4"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.3" Name="B-Symptomatik Lymphom Fieber" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">B-Symptomatik: Fieber</TranslatedText>
+                    <TranslatedText xml:lang="en">B symptoms: Fever</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.5"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.12" Name="Kein nodaler Befall" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Kein nodaler Befall des Lymhoms vorhanden</TranslatedText>
+                    <TranslatedText xml:lang="en">No lymphomatous nodal involvement</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.9"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.13" Name="Knochenmarkinfiltration" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Knochenmarkinfiltration des Lymphoms</TranslatedText>
+                    <TranslatedText xml:lang="en">Lymphomatous infiltration of bone marrow</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.16"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.14" Name="Extralymphatischer Befall" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Liegt ein extralymphatischer Befall vor?</TranslatedText>
+                    <TranslatedText xml:lang="en">Is there extranodal involvement?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.17"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.15" Name="Extralymphatischer Befall Lokalisation - Knochen" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Falls ein extralymphatischer Befall vorliegt, liegt ein Knochenbefall vor?</TranslatedText>
+                    <TranslatedText xml:lang="en">If there is lymphomatous extranodal involvement, are the bones involved as well?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.18"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.16" Name="Extralymphatischer Befall" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Kommentar extralymphatischen Befall.</TranslatedText>
+                    <TranslatedText xml:lang="en">Comment about extranodal involvement</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.17" Name="Bulks des Lymphoms" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Bulks (7 cm) vorhanden</TranslatedText>
+                    <TranslatedText xml:lang="en">Tumor bulks (7 cm) present</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.20"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.18" Name="Großer Mediastinaltumor" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Großer Mediastinaltumor</TranslatedText>
+                    <TranslatedText xml:lang="en">Large mediastinal tumor</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.23"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.19" Name="Blutsenkungsgeschwindigkeit" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">hohe BSG</TranslatedText>
+                    <TranslatedText xml:lang="en">High erythrocyte sedimentation rate</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.24"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.20" Name="Befall von 3 Lymphknotenarealen" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Befall von ≥3 Lymphknotenarealen</TranslatedText>
+                    <TranslatedText xml:lang="en">Involvement of ≥3 lymph node regions</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.27"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.21" Name="Risikoscore aaIPI" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Scorepunkte bei dem altersadjustierten internationalen prognostischen Index (aaIPI)</TranslatedText>
+                    <TranslatedText xml:lang="en">Score points on age-adjusted international prognostisc index (aaIPI)</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.22" Name="Risikoscore IPI" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Scorepunkt bei dem internationalen Prognoseindex (IPI) für hoch maligne Non-Hodgkin-Lymphome</TranslatedText>
+                    <TranslatedText xml:lang="en">Score points on international prognostiv index (IPI) for high malignant non-Hodgkin lymphoma</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.23" Name="Risikoscore MIPI" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Scorepunkte bei dem Mantelzell-Lymphom internationalen prognostischen Index (MIPI)</TranslatedText>
+                    <TranslatedText xml:lang="en">Score points on Mantle cell lymphoma international prognostic index (MIPI)</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.24" Name="Risikoscore FLIPI" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Scorepunkte bei dem follikulären Lymphom internationalen prognostischen Index (FLIPI)</TranslatedText>
+                    <TranslatedText xml:lang="en">Score points on follicular lymphoma international prognostic index (FLIPI)</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.25" Name="Kein Risikoscore" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Es wurde kein Risikoscore für das Lymphom bestimmt.</TranslatedText>
+                    <TranslatedText xml:lang="en">No risk assessment has been evaluated.</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.28"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.26" Name="Risikofaktoren WBC" DataType="float" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Weiße Blutzellen (Leukozyten/nl)</TranslatedText>
+                    <TranslatedText xml:lang="en">White blood cells (leucocytes/nl)</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.7"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.27" Name="Allgemeinzustand" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">ECOG-Index</TranslatedText>
+                    <TranslatedText xml:lang="en">ECOG index</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.30" Name="LDH Konzentration" DataType="float" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">LDH-Konzentration (U/l)</TranslatedText>
+                    <TranslatedText xml:lang="en">LDH concentration (U/l)</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.1"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.72" Name="LDH Konzentration erhöht" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">LDH-Konzentration erhöht</TranslatedText>
+                    <TranslatedText xml:lang="en">LDH concentration elevated</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.29"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.31" Name="LDH Maximum" DataType="float" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">LDH obere Laborreferenz (U/l)</TranslatedText>
+                    <TranslatedText xml:lang="en">LDH upper laboratory reference (U/l)</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.1"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.32" Name="Alter" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Alter über 60 Jahre</TranslatedText>
+                    <TranslatedText xml:lang="en">Age above 60 years</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.30"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.34" Name="Therapierelevantes Stadium" DataType="text" Length="100">
+                <Question>
+                    <TranslatedText xml:lang="de">Therapierelevantes Stadium des Lymphoms</TranslatedText>
+                    <TranslatedText xml:lang="en">Stage of lymphoma relevant for therapy</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.35" Name="Spezielle Charakteristika Lymphom" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Spezielle Charakteristika des Lymphoms</TranslatedText>
+                    <TranslatedText xml:lang="en">Special characteristics of lymphoma</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.36" Name="Nebendiagnosen" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte nennen Sie die Nebendiagnosen der Patientin/ des Patienten.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the patient´s secondary diagnoses.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.124" Name="Patienten-ID" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Patienten-ID</TranslatedText>
+                    <TranslatedText xml:lang="en">Patient ID</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.125" Name="Datum" DataType="date">
+                <Question>
+                    <TranslatedText xml:lang="de">Datum der Bioprobe</TranslatedText>
+                    <TranslatedText xml:lang="en">Specimen collection date</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.126" Name="Proben-ID" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">ID der Bioprobe</TranslatedText>
+                    <TranslatedText xml:lang="en">Specimen ID</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.127" Name="Symptomassessment Erhebung" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Wo wurde das Symptomassessment durchgeführt?</TranslatedText>
+                    <TranslatedText xml:lang="en">Where have the patient´s symptoms been assessed?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.128" Name="Bildgebung" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie die Befunde der Bildgebung.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the results of diagnostic imaging.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.129" Name="Bildgebung Erhebung" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Wo wurde die bildgebende Diagnostik durchgeführt?</TranslatedText>
+                    <TranslatedText xml:lang="en">Where has the diagnostic imaging been performed?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.130" Name="Bildgebung Modalität" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bildgebung Modalität</TranslatedText>
+                    <TranslatedText xml:lang="en">Modality of diagnostic imaging</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.54"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.131" Name="Bildgebung - alternative Modalität" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte geben Sie, falls nicht aufgelistet, die Bildgebungsmodalität an.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the modality of diagnostic imaging if not listed above.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.132" Name="Klassische Zytogenetik" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte geben Sie den Befund der klassischen Zytogenetik an.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the results of classic cytogenetics.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.133" Name="Klassische Zytogenetik - Erhebung" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Wo wurde die klassische zytogenetische Diagnostik durchgeführt?</TranslatedText>
+                    <TranslatedText xml:lang="en">Where has the classical cytogenetical examination been performed?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.134" Name="Blutwerte" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte geben Sie die Befunde der Blutwerte an.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the results of blood tests.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.135" Name="Blutwerte - Erhebung" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Wo wurden die Blutwerte erhoben?</TranslatedText>
+                    <TranslatedText xml:lang="en">Where have the blood tests been performed?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.136" Name="Andere Diagnostik" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte geben Sie die Befunde anderer evtl. durchgeführter Diagnostik an.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the results of other diagnostic procedures performed.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.137" Name="Andere Diagnostik - Erhebung" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Wo wurde die andere Diagnostik durchgeführt?</TranslatedText>
+                    <TranslatedText xml:lang="en">Where has the other diagnostic procedure been performed?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.53"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.138" Name="Letzter Kontakt" DataType="date">
+                <Question>
+                    <TranslatedText xml:lang="de">Datum des letzten Kontakts</TranslatedText>
+                    <TranslatedText xml:lang="en">Date of last contact</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.140" Name="Karnofsky-Index" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Karnofsky-Score</TranslatedText>
+                    <TranslatedText xml:lang="en">Karnofsky score</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.2"/>
+                <CodeListRef CodeListOID="CL.56"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.47" Name="Therapie" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Ist die Therapie...?</TranslatedText>
+                    <TranslatedText xml:lang="en">Is the therapy ...?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.8"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.48" Name="Anzahl der durchgeführten Zyklen" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Anzahl der durchgeführten Therapiezyklen</TranslatedText>
+                    <TranslatedText xml:lang="en">Number of therapeutic cycles performed</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.49" Name="Therapieansprechen" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte beschreiben Sie das Therapieansprechen.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please describe the response to treatment.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.50" Name="Studie - Therapie" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">War die Therapie Teil einer Studie?</TranslatedText>
+                    <TranslatedText xml:lang="en">Was the therapy part of a study?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.36"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.51" Name="Studienbezeichnung" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte geben Sie den Namen der Studie an.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the name of the study.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.52" Name="Kommentar" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Kommentar</TranslatedText>
+                    <TranslatedText xml:lang="en">Comments</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.53" Name="Erkrankung - Therapie" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Bitte geben Sie die Erkrankung an, für die die Therapie eingeleitet worden ist.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the disease which has indicated the therapy.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.54" Name="Körpergröße" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Patienten-Körpergröße</TranslatedText>
+                    <TranslatedText xml:lang="en">Patient body height</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.3"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.55" Name="Körpergewicht" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Patienten-Körpergewicht</TranslatedText>
+                    <TranslatedText xml:lang="en">Patient body weight</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.4"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.56" Name="Körperoberfläche" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Patienten-Körperoberfläche</TranslatedText>
+                    <TranslatedText xml:lang="en">Patient body surface area</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.5"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.57" Name="B-Symptomatik Lymphom Nachtschweiß" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">B-Symptomatik: Nachtschweiß</TranslatedText>
+                    <TranslatedText xml:lang="en">B symptoms: Night sweats</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.6"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.58" Name="B-Symptomatik Lymphom Gewichtsverlust" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">B-Symptomatik: Gewichtsverlust</TranslatedText>
+                    <TranslatedText xml:lang="en">B symptoms: Weight loss</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.7"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.59" Name="Nodaler Befall abdominell" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Nodaler Befall des Lymphoms im Abdomen</TranslatedText>
+                    <TranslatedText xml:lang="en">Lymphomatous nodal involvement of abdomen</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.10"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.60" Name="Nodaler Befall thorakal" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Nodaler Befall des Lymphoms im Thorax</TranslatedText>
+                    <TranslatedText xml:lang="en">Lymphomatous nodal involvement of thorax</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.11"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.61" Name="Nodaler Befall zervikal" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Nodaler Befall des Lymphoms zervikal</TranslatedText>
+                    <TranslatedText xml:lang="en">Cervical lymphomatous nodal involvement</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.12"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.62" Name="Nodaler Befall axillär" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Nodaler Befall des Lymphoms axillär</TranslatedText>
+                    <TranslatedText xml:lang="en">Lymphomatous nodal involvement of axilla</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.13"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.63" Name="Nodaler Befall inguinal" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Nodaler Befall des Lymphoms inguinal</TranslatedText>
+                    <TranslatedText xml:lang="en">Inguinal lymphomatous nodal involvement</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.14"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.64" Name="Nodaler Befall Milz" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Nodaler Befall des Lymphoms Milz</TranslatedText>
+                    <TranslatedText xml:lang="en">Lymphomatous nodal involvement of spleen</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.15"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.65" Name="Extralymphatischer Befall - Lokalisation - ZNS" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Falls ein extralymphatischer Befall vorliegt, liegt ein ZNS-Befall vor?</TranslatedText>
+                    <TranslatedText xml:lang="en">If there is lymphomatous extranodal involvement, is the CNS involved as well?</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.19"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.66" Name="Extralymphatischer Befall - Lokalisation" DataType="text" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Falls ein extralymphatischer Befall außerhalb des Knochens oder des ZNS vorliegt, bitte nennen Sie die Lokalisation.</TranslatedText>
+                    <TranslatedText xml:lang="en">Please note down the localizsation of lymphomatous extranodal involvement apart from CNS or bone involvement.</TranslatedText>
+                </Question>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.70" Name="Patient Alter" DataType="integer" Length="255">
+                <Question>
+                    <TranslatedText xml:lang="de">Patienten-Alter (in Jahren)</TranslatedText>
+                    <TranslatedText xml:lang="en">Patient age (in years)</TranslatedText>
+                </Question>
+                <MeasurementUnitRef MeasurementUnitOID="MU.6"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.71" Name="Ann-Arbor-Klassifikation" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Stadium III oder IV der Ann-Arbor-Klassifikation</TranslatedText>
+                    <TranslatedText xml:lang="en">Stage III or IV according to Ann-Arbor classification</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.31"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.73" Name="Allgemeinzustand" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Schlechter Allgemeinzustand (Karnofsky-Index ≤ 60 % bzw. ECOG-Score ≥ 2)</TranslatedText>
+                    <TranslatedText xml:lang="en">Poor general condition (Karnofsky index ≤ 60 % or ECOG score ≥ 2)</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.32"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.74" Name="Hämoglobin-Konzentration" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Hämoglobin unter 12g/dl</TranslatedText>
+                    <TranslatedText xml:lang="en">Hemoglobin level below 12g/dl</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.33"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.75" Name="Lymphknotenbefall" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Mehr als vier befallene Lymphknotenregionen</TranslatedText>
+                    <TranslatedText xml:lang="en">More than four lymph node regions involved</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.34"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <ItemDef OID="I.76" Name="Extranodaler Herd" DataType="integer">
+                <Question>
+                    <TranslatedText xml:lang="de">Mehr als ein extranodaler Herd</TranslatedText>
+                    <TranslatedText xml:lang="en">More than one extranodal focus</TranslatedText>
+                </Question>
+                <CodeListRef CodeListOID="CL.35"/>
+                <Alias Context="LOINC" Name="L-123456"/>
+            </ItemDef>
+            <CodeList OID="OpenEDC.Annotations" Name="OpenEDC.Annotations" DataType="text">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">PATIENT_ID</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="OpenEDC.DataStatus" Name="OpenEDC.DataStatus" DataType="text">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">EMPTY</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="en">INCOMPLETE</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="en">COMPLETE</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="4">
+                    <Decode>
+                        <TranslatedText xml:lang="en">VALIDATED</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="5">
+                    <Decode>
+                        <TranslatedText xml:lang="en">CONFLICT</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.2" Name="Patient gender" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">male</TranslatedText>
+                        <TranslatedText xml:lang="de">männlich</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0086582"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="en">female</TranslatedText>
+                        <TranslatedText xml:lang="de">weiblich </TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0086287"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="en">other/intersexual</TranslatedText>
+                        <TranslatedText xml:lang="de">Sonstiges/intersexuell</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0205394"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="4">
+                    <Decode>
+                        <TranslatedText xml:lang="en">unknown</TranslatedText>
+                        <TranslatedText xml:lang="de">unbekannt</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0439673"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.3" Name="Primary tumor ICD-Code" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Hodgkin lymphoma (C81)</TranslatedText>
+                        <TranslatedText xml:lang="de">Hodgkin Lymphome (C81)</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0019829"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="en">T-cell lymphoma</TranslatedText>
+                        <TranslatedText xml:lang="de">T-Zell-Lymphom</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0079772"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="en">B-cell lymphoma</TranslatedText>
+                        <TranslatedText xml:lang="de">B-Zell-Lymphom</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0079731"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.21" Name="Localization of distant metastases" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="de">lebend</TranslatedText>
+                        <TranslatedText xml:lang="en">Alive</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C2584946"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="de">verstorben</TranslatedText>
+                        <TranslatedText xml:lang="en">Dead</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0011065"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.22" Name="ECOG Performance Status" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Fully Active, Able To Carry On All Pre-disease Performance Without Restriction. (Karnofsky 90-100%)</TranslatedText>
+                        <TranslatedText xml:lang="de">Normale, uneingeschränkte Aktivität wie vor der Erkrankung (90 – 100 % nach Karnofsky)</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1828078"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Restricted In Physically Strenuous Activity But Ambulatory And Able To Carry Out Work Of A Light Or Sedentary Nature, E.g., Light Housework, Office Work. (Karnofsky 70-80%)</TranslatedText>
+                        <TranslatedText xml:lang="de">Einschränkung bei körperlicher Anstrengung, aber gehfähig; leichte körperliche Arbeit bzw. Arbeit im Sitzen (z. B. leichte Hausarbeit oder Büroarbeit) möglich (70 – 80 % nach Karnofsky)</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1827388"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Ambulatory And Capable Of All Selfcare But Unable To Carry Out Any Work Activities. Up And About More Than 50% Of Waking Hours. (Karnofsky 50-60%)</TranslatedText>
+                        <TranslatedText xml:lang="de">Gehfähig, Selbstversorgung möglich, aber nicht arbeitsfähig; kann mehr als 50 % der Wachzeit aufstehen (50 – 60 % nach Karnofsky)</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1828242"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Capable Of Only Limited Selfcare, Confined To Bed Or Chair More Than 50% Of Waking Hours. (Karnofsky 30-40%)</TranslatedText>
+                        <TranslatedText xml:lang="de">Nur begrenzte Selbstversorgung möglich; ist 50 % oder mehr der Wachzeit an Bett oder Stuhl gebunden (30 – 40 % nach Karnofsky)</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1827126"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="4">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Completely Disabled. Cannot Carry On Any Selfcare. Totally Confined To Bed Or Chair. (Karnofsky 10-20%)</TranslatedText>
+                        <TranslatedText xml:lang="de">Völlig pflegebedürftig, keinerlei Selbstversorgung möglich; völlig an Bett oder Stuhl gebunden (10 – 20 % nach Karnofsky)</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1827528"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="5">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Unknown</TranslatedText>
+                        <TranslatedText xml:lang="de">Unbekannt</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0439673"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.25" Name="Intention of radiotherapy" DataType="text">
+                <CodeListItem CodedValue="K">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Curative</TranslatedText>
+                        <TranslatedText xml:lang="de">kurativ</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1276305"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="P">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Palliative</TranslatedText>
+                        <TranslatedText xml:lang="de">palliativ</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1285530"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="S">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Other</TranslatedText>
+                        <TranslatedText xml:lang="de">Sonstiges</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0205394"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="X">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Unknown</TranslatedText>
+                        <TranslatedText xml:lang="de">Unbekannt</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0439673"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.26" Name="Radiotherapy in relation to surgery" DataType="text"/>
+            <CodeList OID="CL.1" Name="Stadium des Befalls" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="de">I</TranslatedText>
+                        <TranslatedText xml:lang="en">I</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="de">II</TranslatedText>
+                        <TranslatedText xml:lang="en">II</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="de">III</TranslatedText>
+                        <TranslatedText xml:lang="en">III</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="4">
+                    <Decode>
+                        <TranslatedText xml:lang="de">IV</TranslatedText>
+                        <TranslatedText xml:lang="en">IV</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="5">
+                    <Decode>
+                        <TranslatedText xml:lang="de">nicht bestimmbar</TranslatedText>
+                        <TranslatedText xml:lang="en">not determinable</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.4" Name="Subtyp des Stadiums" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="de">A</TranslatedText>
+                        <TranslatedText xml:lang="en">A</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="de">B</TranslatedText>
+                        <TranslatedText xml:lang="en">B</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="de">nicht bestimmbar</TranslatedText>
+                        <TranslatedText xml:lang="en">not determinable</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.53" Name="Histopathologischer Befund Erhebung" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="de">intern</TranslatedText>
+                        <TranslatedText xml:lang="en">internal</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0205102"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="de">extern</TranslatedText>
+                        <TranslatedText xml:lang="en">external</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C3844314"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.54" Name="Bildgebung Modalität" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="de">CT</TranslatedText>
+                        <TranslatedText xml:lang="en">CT</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0040405"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="de">MRT</TranslatedText>
+                        <TranslatedText xml:lang="en">MRT</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0024485"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Sonografie</TranslatedText>
+                        <TranslatedText xml:lang="en">Ultrasound</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1456803"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="4">
+                    <Decode>
+                        <TranslatedText xml:lang="de">PET</TranslatedText>
+                        <TranslatedText xml:lang="en">PET</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0032743"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="5">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Sonstiges</TranslatedText>
+                        <TranslatedText xml:lang="en">Other</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0205394"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.55" Name="Erkrankungsstatus" DataType="text">
+                <CodeListItem CodedValue="K">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Kein Tumor nachweisbar</TranslatedText>
+                        <TranslatedText xml:lang="en">No tumor detectable</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0006826"/>
+                    <Alias Context="UMLS CUI-2" Name="C3830527"/>
+                    <Alias Context="UMLS CUI-3" Name="C1298908"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="T">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Tumorreste (Residualtumor)</TranslatedText>
+                        <TranslatedText xml:lang="en">Remaining tumor (residual tumor)</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0543478"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="P">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Tumorreste Residualtumor Progress</TranslatedText>
+                        <TranslatedText xml:lang="en">Remaining tumor (residual tumor) progress</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0543478"/>
+                    <Alias Context="UMLS CUI-2" Name="C0242656"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="N">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Tumorreste Residualtumor - keine Veränderung</TranslatedText>
+                        <TranslatedText xml:lang="en">Remaining tumor (residual tumor) - no change</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0543478"/>
+                    <Alias Context="UMLS CUI-2" Name="C0442739"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="R">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Lokalrezidiv</TranslatedText>
+                        <TranslatedText xml:lang="en">Local relapse</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0277556"/>
+                    <Alias Context="UMLS CUI-2" Name="C1517927"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="F">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Fraglicher Befund</TranslatedText>
+                        <TranslatedText xml:lang="en">Questionable finding</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0459423"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="U">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Unbekannt</TranslatedText>
+                        <TranslatedText xml:lang="en">Unknown</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0439673"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="X">
+                    <Decode>
+                        <TranslatedText xml:lang="de">Fehlende Angabe</TranslatedText>
+                        <TranslatedText xml:lang="en">Missing information</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1533716"/>
+                    <Alias Context="UMLS CUI-2" Name="C1705492"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.56" Name="Karnofsky-Index" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="de">10</TranslatedText>
+                        <TranslatedText xml:lang="en">10</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="de">20</TranslatedText>
+                        <TranslatedText xml:lang="en">20</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="de">30</TranslatedText>
+                        <TranslatedText xml:lang="en">30</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="4">
+                    <Decode>
+                        <TranslatedText xml:lang="de">40</TranslatedText>
+                        <TranslatedText xml:lang="en">40</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="5">
+                    <Decode>
+                        <TranslatedText xml:lang="de">50</TranslatedText>
+                        <TranslatedText xml:lang="en">50</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="6">
+                    <Decode>
+                        <TranslatedText xml:lang="de">60</TranslatedText>
+                        <TranslatedText xml:lang="en">60</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="7">
+                    <Decode>
+                        <TranslatedText xml:lang="de">70</TranslatedText>
+                        <TranslatedText xml:lang="en">70</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="8">
+                    <Decode>
+                        <TranslatedText xml:lang="de">80</TranslatedText>
+                        <TranslatedText xml:lang="en">80</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="9">
+                    <Decode>
+                        <TranslatedText xml:lang="de">90</TranslatedText>
+                        <TranslatedText xml:lang="en">90</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="10">
+                    <Decode>
+                        <TranslatedText xml:lang="de">100</TranslatedText>
+                        <TranslatedText xml:lang="en">100</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.8" Name="Therapie" DataType="integer">
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="de">indiziert</TranslatedText>
+                        <TranslatedText xml:lang="en">Indicated</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C1444656"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="2">
+                    <Decode>
+                        <TranslatedText xml:lang="de">laufend</TranslatedText>
+                        <TranslatedText xml:lang="en">Currently continuing</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0549178"/>
+                    <Alias Context="UMLS CUI-2" Name="C0521116"/>
+                </CodeListItem>
+                <CodeListItem CodedValue="3">
+                    <Decode>
+                        <TranslatedText xml:lang="de">abgeschlossen</TranslatedText>
+                        <TranslatedText xml:lang="en">Completed</TranslatedText>
+                    </Decode>
+                    <Alias Context="UMLS CUI-1" Name="C0205197"/>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.5" Name="B-Symptomatik Lymphom Fieber" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.6" Name="B-Symptomatik Lymphom Nachtschweiß" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.7" Name="B-Symptomatik Lymphom Gewichtsverlust" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.9" Name="Kein nodaler Befall" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.10" Name="Nodaler Befall abdominell" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.11" Name="Nodaler Befall thorakal" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.12" Name="Nodaler Befall zervikal" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.13" Name="Nodaler Befall axillär" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.14" Name="Nodaler Befall inguinal" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.15" Name="Nodaler Befall Milz" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.16" Name="Knochenmarkinfiltration" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.17" Name="Extralymphatischer Befall" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.18" Name="Extralymphatischer Befall Lokalisation - Knochen" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.19" Name="Extralymphatischer Befall - Lokalisation - ZNS" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.20" Name="Bulks des Lymphoms" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.23" Name="Großer Mediastinaltumor" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.24" Name="Blutsenkungsgeschwindigkeit" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.27" Name="Befall von 3 Lymphknotenarealen" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.28" Name="Kein Risikoscore" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.29" Name="LDH Konzentration erhöht" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.30" Name="Alter" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.31" Name="Ann-Arbor-Klassifikation" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.32" Name="Allgemeinzustand" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.33" Name="Hämoglobin-Konzentration" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.34" Name="Lymphknotenbefall" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.35" Name="Extranodaler Herd" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            <CodeList OID="CL.36" Name="Studie - Therapie" DataType="integer">
+                <CodeListItem CodedValue="0">
+                    <Decode>
+                        <TranslatedText xml:lang="en">no </TranslatedText>
+                        <TranslatedText xml:lang="de">Nein </TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="1">
+                    <Decode>
+                        <TranslatedText xml:lang="en">yes</TranslatedText>
+                        <TranslatedText xml:lang="de">Ja</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+        </MetaDataVersion>
+    </Study>
+    <AdminData StudyOID="S.1">
+        <User OID="U.1">
+            <FirstName>New</FirstName>
+            <LastName>User</LastName>
+        </User>
+    </AdminData>
+    <ClinicalData StudyOID="S.1" MetaDataVersionOID="MDV.1">
+        <SubjectData SubjectKey="Test Patient 1">
+            <AuditRecord>
+                <UserRef UserOID="U.1"/>
+                <LocationRef LocationOID="-"/>
+                <DateTimeStamp>2024-01-15T14:41:20.626Z</DateTimeStamp>
+            </AuditRecord>
+            <StudyEventData StudyEventOID="SE.1">
+                <FormData FormOID="F.1" TransactionType="Insert">
+                    <AuditRecord>
+                        <UserRef UserOID="U.1"/>
+                        <LocationRef LocationOID="-"/>
+                        <DateTimeStamp>2024-01-15T14:43:15.382Z</DateTimeStamp>
+                    </AuditRecord>
+                    <Annotation SeqNum="1">
+                        <Flag>
+                            <FlagValue CodeListOID="OpenEDC.DataStatus">3</FlagValue>
+                        </Flag>
+                    </Annotation>
+                    <ItemGroupData ItemGroupOID="IG.2">
+                        <ItemData ItemOID="I.4" Value="Mustermann"/>
+                        <ItemData ItemOID="I.7" Value="Max"/>
+                        <ItemData ItemOID="I.10" Value="1"/>
+                        <ItemData ItemOID="I.11" Value="1974-01-11"/>
+                        <ItemData ItemOID="I.54" Value="180"/>
+                        <ItemData ItemOID="I.55" Value="75"/>
+                        <ItemData ItemOID="I.56" Value="10"/>
+                        <ItemData ItemOID="I.70" Value="69"/>
+                    </ItemGroupData>
+                    <ItemGroupData ItemGroupOID="IG.4">
+                        <ItemData ItemOID="I.28" Value="1"/>
+                        <ItemData ItemOID="I.29" Value="Das ist ein Text"/>
+                        <ItemData ItemOID="I.33" Value="2024-01-15"/>
+                    </ItemGroupData>
+                </FormData>
+                <FormData FormOID="F.1" TransactionType="Update">
+                    <AuditRecord>
+                        <UserRef UserOID="U.1"/>
+                        <LocationRef LocationOID="-"/>
+                        <DateTimeStamp>2024-01-15T14:48:54.544Z</DateTimeStamp>
+                    </AuditRecord>
+                    <Annotation SeqNum="1">
+                        <Flag>
+                            <FlagValue CodeListOID="OpenEDC.DataStatus">3</FlagValue>
+                        </Flag>
+                    </Annotation>
+                    <ItemGroupData ItemGroupOID="IG.1">
+                        <ItemData ItemOID="I.1" Value="3"/>
+                        <ItemData ItemOID="I.2" Value="2"/>
+                        <ItemData ItemOID="I.3" Value="1"/>
+                        <ItemData ItemOID="I.57" Value="1"/>
+                        <ItemData ItemOID="I.58" Value="1"/>
+                        <ItemData ItemOID="I.12" Value="1"/>
+                        <ItemData ItemOID="I.59" Value="0"/>
+                        <ItemData ItemOID="I.60" Value="0"/>
+                        <ItemData ItemOID="I.61" Value="0"/>
+                        <ItemData ItemOID="I.62" Value="0"/>
+                        <ItemData ItemOID="I.63" Value="1"/>
+                        <ItemData ItemOID="I.64" Value="0"/>
+                        <ItemData ItemOID="I.13" Value="0"/>
+                        <ItemData ItemOID="I.14" Value="1"/>
+                        <ItemData ItemOID="I.15" Value="1"/>
+                        <ItemData ItemOID="I.65" Value="0"/>
+                        <ItemData ItemOID="I.66" Value="Das ist ein Text"/>
+                        <ItemData ItemOID="I.16" Value="Das ist ein Kommentar"/>
+                        <ItemData ItemOID="I.17" Value="1"/>
+                        <ItemData ItemOID="I.18" Value="1"/>
+                        <ItemData ItemOID="I.19" Value="1"/>
+                        <ItemData ItemOID="I.20" Value="1"/>
+                        <ItemData ItemOID="I.21" Value="90"/>
+                        <ItemData ItemOID="I.22" Value="23"/>
+                        <ItemData ItemOID="I.23" Value="45"/>
+                        <ItemData ItemOID="I.24" Value="1"/>
+                        <ItemData ItemOID="I.25" Value="1"/>
+                        <ItemData ItemOID="I.26" Value="2"/>
+                        <ItemData ItemOID="I.27" Value="3"/>
+                        <ItemData ItemOID="I.30" Value="2"/>
+                        <ItemData ItemOID="I.72" Value="1"/>
+                        <ItemData ItemOID="I.31" Value="23"/>
+                        <ItemData ItemOID="I.32" Value="1"/>
+                        <ItemData ItemOID="I.71" Value="1"/>
+                        <ItemData ItemOID="I.73" Value="0"/>
+                        <ItemData ItemOID="I.74" Value="1"/>
+                        <ItemData ItemOID="I.75" Value="0"/>
+                        <ItemData ItemOID="I.76" Value="1"/>
+                        <ItemData ItemOID="I.34" Value="Nein"/>
+                        <ItemData ItemOID="I.35" Value="Nein"/>
+                    </ItemGroupData>
+                    <ItemGroupData ItemGroupOID="IG.3">
+                        <ItemData ItemOID="I.36" Value="-"/>
+                    </ItemGroupData>
+                    <ItemGroupData ItemGroupOID="IG.20">
+                        <ItemData ItemOID="I.124" Value="2"/>
+                        <ItemData ItemOID="I.125" Value="2023-08-08"/>
+                        <ItemData ItemOID="I.126" Value="2"/>
+                    </ItemGroupData>
+                    <ItemGroupData ItemGroupOID="IG.5">
+                        <ItemData ItemOID="I.37" Value="Befund"/>
+                        <ItemData ItemOID="I.38" Value="2"/>
+                        <ItemData ItemOID="I.39" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.40" Value="1"/>
+                        <ItemData ItemOID="I.41" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.42" Value="1"/>
+                        <ItemData ItemOID="I.43" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.44" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.45" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.46" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.127" Value="2"/>
+                        <ItemData ItemOID="I.128" Value="Das ist ein Befund"/>
+                        <ItemData ItemOID="I.129" Value="1"/>
+                        <ItemData ItemOID="I.130" Value="2"/>
+                        <ItemData ItemOID="I.133" Value="2"/>
+                        <ItemData ItemOID="I.134" Value="Das ist ein Befund"/>
+                        <ItemData ItemOID="I.135" Value="1"/>
+                        <ItemData ItemOID="I.136" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.137" Value="1"/>
+                    </ItemGroupData>
+                    <ItemGroupData ItemGroupOID="IG.9">
+                        <ItemData ItemOID="I.67" Value="1"/>
+                        <ItemData ItemOID="I.68" Value="N"/>
+                        <ItemData ItemOID="I.138" Value="2024-01-03"/>
+                        <ItemData ItemOID="I.140" Value="5"/>
+                        <ItemData ItemOID="I.69" Value="4"/>
+                    </ItemGroupData>
+                    <ItemGroupData ItemGroupOID="IG.14">
+                        <ItemData ItemOID="I.53" Value="Lymphoma"/>
+                        <ItemData ItemOID="I.47" Value="1"/>
+                        <ItemData ItemOID="I.100" Value="P"/>
+                        <ItemData ItemOID="I.104" Value="2024-01-07"/>
+                        <ItemData ItemOID="I.101" Value="Chemo"/>
+                        <ItemData ItemOID="I.103" Value="Protokoll"/>
+                        <ItemData ItemOID="I.48" Value="43"/>
+                        <ItemData ItemOID="I.107" Value="2024-04-12"/>
+                        <ItemData ItemOID="I.49" Value="Das ist eine Beschreibung"/>
+                        <ItemData ItemOID="I.50" Value="0"/>
+                        <ItemData ItemOID="I.52" Value="Das ist ein Kommentar"/>
+                    </ItemGroupData>
+                </FormData>
+            </StudyEventData>
+        </SubjectData>
+    </ClinicalData>
+</ODM>

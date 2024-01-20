@@ -1,0 +1,437 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://link-to-questionnaire",
+        "status": "completed",
+        "item": [
+          {
+            "linkId": "SE.1",
+            "item": [
+              {
+                "linkId": "F.1",
+                "text": "Basisdaten",
+                "item": [
+                  {
+                    "linkId": "IG.1",
+                    "text": "Persönliche Fragen",
+                    "item": [
+                      {
+                        "linkId": "Age",
+                        "text": "Wie alt sind Sie?",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 114.0,
+                              "unit": "Jahre"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "Gender",
+                        "text": "Welches Geschlecht haben Sie?",
+                        "answer": [
+                          {
+                            "valueString": "Male"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "Weight",
+                        "text": "Wie viel wiegen Sie?",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 105.80000305175781,
+                              "unit": "kg"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "Height",
+                        "text": "Wie groß sind Sie?",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 2.609999895095825,
+                              "unit": "m"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "BMI",
+                        "text": "BMI",
+                        "answer": [
+                          {
+                            "valueQuantity": {
+                              "value": 1.7699999809265137,
+                              "unit": "Berechnet"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.2",
+                    "text": "Demographische Fragen",
+                    "item": [
+                      {
+                        "linkId": "CountryOfBirth",
+                        "text": "Wo sind Sie geboren?",
+                        "answer": [
+                          {
+                            "valueString": "Italy"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.1",
+                        "text": "Was ist ihre höchste Schul- oder Universitätsausbildung?",
+                        "answer": [
+                          {
+                            "valueString": "4"
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.16",
+                        "text": "Wann haben Sie die Schule absolviert?",
+                        "answer": [
+                          {
+                            "valueDate": "2024-01-17"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "linkId": "F.2",
+                "text": "Vorerkrankungen",
+                "item": [
+                  {
+                    "linkId": "IG.3",
+                    "text": "Kardiovaskulär",
+                    "item": [
+                      {
+                        "linkId": "CardiovascularDiseases",
+                        "text": "Hatten Sie in der Vergangenheit Erkrankungen des _Herzkreislaufsystems_?",
+                        "answer": [
+                          {
+                            "valueBoolean": true
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.8",
+                        "text": "... ja, ich hatte einen Herzinfarkt oder habe Stents am Herzen.",
+                        "answer": [
+                          {
+                            "valueBoolean": false
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.9",
+                        "text": "... ja, ich hatte einen Schlaganfall.",
+                        "answer": [
+                          {
+                            "valueBoolean": false
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.4",
+                    "text": "Bösartiger Tumor",
+                    "item": [
+                      {
+                        "linkId": "TumorDiseases",
+                        "text": "Wurde in der Vergangenheit ein _bösartiger Tumor oder Krebs_ bei Ihnen diagnostiziert?",
+                        "answer": [
+                          {
+                            "valueBoolean": false
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://link-to-questionnaire",
+        "status": "completed",
+        "item": [
+          {
+            "linkId": "SE.2",
+            "item": [
+              {
+                "linkId": "F.3",
+                "text": "Folgedaten",
+                "item": [
+                  {
+                    "linkId": "IG.5",
+                    "text": "Grund des Besuchs",
+                    "item": [
+                      {
+                        "linkId": "SideEffect",
+                        "text": "Eine Nebenwirkung ist aufgetreten",
+                        "answer": [
+                          {
+                            "valueBoolean": false
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "SymptomsChanged",
+                        "text": "Das Symptom hat sich verändert",
+                        "answer": [
+                          {
+                            "valueBoolean": true
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "I.5",
+                        "text": "Wie hat sich das Symptom verändert?",
+                        "answer": [
+                          {
+                            "valueString": "Dies ist eine längere Antwort. Deshalb steht hier etwas mehr. Er beinhaltet außerdem Umlaute."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "linkId": "F.4",
+                "text": "Wohlbefinden",
+                "item": [
+                  {
+                    "linkId": "WHO.Q",
+                    "text": "In den letzten zwei Wochen ...",
+                    "item": [
+                      {
+                        "linkId": "WHO.1",
+                        "text": "… war ich froh und guter Laune",
+                        "answer": [
+                          {
+                            "valueInteger": 3
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.2",
+                        "text": "… habe ich mich ruhig und entspannt gefühlt",
+                        "answer": [
+                          {
+                            "valueInteger": 5
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.3",
+                        "text": "… habe ich mich energisch und aktiv gefühlt",
+                        "answer": [
+                          {
+                            "valueInteger": 5
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.4",
+                        "text": "… habe ich mich beim Aufwachen frisch und ausgeruht gefühlt",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          }
+                        ]
+                      },
+                      {
+                        "linkId": "WHO.5",
+                        "text": "… war mein Alltag voller Dinge, die mich interessieren",
+                        "answer": [
+                          {
+                            "valueInteger": 0
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "linkId": "IG.7",
+                    "text": "WHO-5 Wohlbefinden-Index",
+                    "item": [
+                      {
+                        "linkId": "I.2",
+                        "text": "Berechneter Index (0 – 100)",
+                        "answer": [
+                          {
+                            "valueInteger": 2
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://link-to-questionnaire",
+        "status": "completed",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://example.org/fhir/StructureDefinition/extension-repeating-key",
+                "valueInteger": 1
+              }
+            ],
+            "linkId": "SE.3",
+            "item": [
+              {
+                "linkId": "F.5",
+                "text": "Formular noch zu benennen ...",
+                "item": [
+                  {
+                    "linkId": "IG.8",
+                    "text": "Gruppe noch zu benennen ...",
+                    "item": [
+                      {
+                        "linkId": "I.17",
+                        "text": "Dies ist ein Beispielelement",
+                        "answer": [
+                          {
+                            "valueString": "Dies ist eine längere Antwort. Deshalb steht hier etwas mehr. Er beinhaltet außerdem Umlaute."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "linkId": "F.5",
+                "text": "Formular noch zu benennen ...",
+                "item": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://example.org/fhir/StructureDefinition/extension-repeating-key",
+                        "valueInteger": 1
+                      }
+                    ],
+                    "linkId": "IG.8",
+                    "text": "Gruppe noch zu benennen ...",
+                    "item": [
+                      {
+                        "linkId": "I.17",
+                        "text": "Dies ist ein Beispielelement",
+                        "answer": [
+                          {
+                            "valueString": "Dies ist eine längere Antwort. Deshalb steht hier etwas mehr. Er beinhaltet außerdem Umlaute."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "questionnaire": "http://link-to-questionnaire",
+        "status": "completed",
+        "item": [
+          {
+            "extension": [
+              {
+                "url": "http://example.org/fhir/StructureDefinition/extension-repeating-key",
+                "valueInteger": 2
+              }
+            ],
+            "linkId": "SE.3",
+            "item": [
+              {
+                "linkId": "F.5",
+                "text": "Formular noch zu benennen ...",
+                "item": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://example.org/fhir/StructureDefinition/extension-repeating-key",
+                        "valueInteger": 1
+                      }
+                    ],
+                    "linkId": "IG.8",
+                    "text": "Gruppe noch zu benennen ...",
+                    "item": [
+                      {
+                        "linkId": "I.17",
+                        "text": "Dies ist ein Beispielelement",
+                        "answer": [
+                          {
+                            "valueString": "Auch eine Antwort!"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://example.org/fhir/StructureDefinition/extension-repeating-key",
+                        "valueInteger": 2
+                      }
+                    ],
+                    "linkId": "IG.8",
+                    "text": "Gruppe noch zu benennen ...",
+                    "item": [
+                      {
+                        "linkId": "I.17",
+                        "text": "Dies ist ein Beispielelement",
+                        "answer": [
+                          {
+                            "valueString": "Und noch eine Antwort!"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
