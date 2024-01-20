@@ -219,6 +219,31 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
                 }
             }
 
+            // Set text of StudyEvent
+            ODMcomplexTypeDefinitionDescription studyEventDescription = studyEventDef.get().getDescription();
+            if (studyEventDescription == null) {
+                String warning = String.format(
+                        "Description of <StudyEventDef> with OID: '%s' was null",
+                        studyEventDef.get().getOID()
+                );
+                LOGGER.warn(warning);
+            } else {
+                if (studyEventDescription.getTranslatedText().isEmpty()) {
+                    String error = String.format(
+                            "No <TranslatedText> in <Description> found for <FormDef> with OID: %s!",
+                            studyEventDef.get().getOID()
+                    );
+                    LOGGER.error(error);
+                    throw new StudyEventDescriptionNotFound(error);
+                } else {
+                    LOGGER.info("Set text of linkId 1.x Element!");
+                    root.setText(getStringFormTranslatedText(
+                            studyEventDef.get().getDescription().getTranslatedText(),
+                            givenLanguage));
+                }
+            }
+
+
             // List of <FormData> => linkId under the root (1.x)
             List<ODMcomplexTypeDefinitionFormData> _formData = studyEventData.getFormData();
             if (_formData.isEmpty()) {

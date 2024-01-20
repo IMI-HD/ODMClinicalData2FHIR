@@ -10,6 +10,7 @@
         "item": [
           {
             "linkId": "SE.1",
+            "text": "Vorbefragung (T0)",
             "item": [
               {
                 "linkId": "F.1",
@@ -180,6 +181,7 @@
         "item": [
           {
             "linkId": "SE.2",
+            "text": "Folgebefragung (T1)",
             "item": [
               {
                 "linkId": "F.3",
@@ -311,6 +313,7 @@
               }
             ],
             "linkId": "SE.3",
+            "text": "Folgebefragung (T2)",
             "item": [
               {
                 "linkId": "F.5",
@@ -379,6 +382,7 @@
               }
             ],
             "linkId": "SE.3",
+            "text": "Folgebefragung (T2)",
             "item": [
               {
                 "linkId": "F.5",
