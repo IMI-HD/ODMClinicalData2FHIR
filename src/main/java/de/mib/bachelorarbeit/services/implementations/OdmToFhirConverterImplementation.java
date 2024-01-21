@@ -884,7 +884,13 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
     // ToDo: verify that presence of <Alias> is verified
     private void addAliasToItem(
             Optional<ODMcomplexTypeDefinitionItemDef> itemDef,
-            QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x) throws UnknownCodingSystemException {
+            QuestionnaireResponse.QuestionnaireResponseItemComponent item_1_x_x_x)
+            throws UnknownCodingSystemException, ItemDefNotFoundException {
+        if (itemDef.isEmpty()) {
+            String error = "Extraction of <Alias> failed, because given <ItemDef> list was empty!";
+            LOGGER.error(error);
+            throw new ItemDefNotFoundException(error);
+        }
         if (itemDef.get().getAlias().isEmpty()) {
             LOGGER.warn(
                     String.format("No <Alias> found in <ItemDef> with OID: %s",
