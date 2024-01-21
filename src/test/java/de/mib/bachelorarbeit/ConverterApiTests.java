@@ -75,7 +75,7 @@ public class ConverterApiTests {
         try {
             // Set required headers
             HttpHeaders headers = new HttpHeaders();
-            headers.add("questionnaire-language", "german");
+            headers.add("questionnaire-language", "de");
             headers.add("questionnaire-link", "http://example.org/fhir/Questionnaire/1");
 
             // Send XML to Api => expect 200 Code because XML is valid
@@ -121,7 +121,7 @@ public class ConverterApiTests {
             }
 
             HttpHeaders headers = new HttpHeaders();
-            headers.add("questionnaire-language", "german");
+            headers.add("questionnaire-language", "de");
             headers.add("questionnaire-link", "http://link-to-questionnaire");
 
             // Send XML to Api => expect 200 Code because XML is valid
@@ -165,7 +165,7 @@ public class ConverterApiTests {
             }
 
             HttpHeaders headers = new HttpHeaders();
-            headers.add("questionnaire-language", "german");
+            headers.add("questionnaire-language", "de");
             headers.add("questionnaire-link", "http://link-to-questionnaire");
 
             // Send XML to Api => expect 200 Code because XML is valid
@@ -209,11 +209,11 @@ public class ConverterApiTests {
             }
 
             HttpHeaders headersGerman = new HttpHeaders();
-            headersGerman.add("questionnaire-language", "german");
+            headersGerman.add("questionnaire-language", "de");
             headersGerman.add("questionnaire-link", "http://link-to-questionnaire");
 
             HttpHeaders headersEnglish = new HttpHeaders();
-            headersEnglish.add("questionnaire-language", "english");
+            headersEnglish.add("questionnaire-language", "en");
             headersEnglish.add("questionnaire-link", "http://link-to-questionnaire");
 
             ResultActions postRequestGerman = postToApi(
@@ -292,7 +292,7 @@ public class ConverterApiTests {
 
             // use valid headers
             HttpHeaders headers = new HttpHeaders();
-            headers.add("questionnaire-language", "german");
+            headers.add("questionnaire-language", "de");
             headers.add("questionnaire-link", "http://link-to-questionnaire");
 
             ResultActions postRequestNoClinicalData = postToApi(

@@ -177,11 +177,11 @@ public class ConverterController {
     }
 
     private boolean checkIfLanguageIsKnown(String language) {
-        if (language.equals("english")) {
+        if (language.equals("en")) {
             LOGGER.info("Detected language: 'english'");
             return true;
         }
-        if (language.equals("german")) {
+        if (language.equals("de")) {
             LOGGER.info("Detected language: 'german'");
             return true;
         }
