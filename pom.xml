@@ -8,11 +8,11 @@
         <version>3.1.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>de.mib</groupId>
-    <artifactId>Bachelorarbeit</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Bachelorarbeit</name>
-    <description>Bachelorarbeit</description>
+    <groupId>de.imi</groupId>
+    <artifactId>Odm2QuestionnaireResponse</artifactId>
+    <version>1.0</version>
+    <name>Odm2QuestionnaireResponse</name>
+    <description>Converts a CDISC ODM XML file to a bundle of FHIR QuestionnaireResponse resources</description>
     <properties>
         <java.version>17</java.version>
     </properties>
