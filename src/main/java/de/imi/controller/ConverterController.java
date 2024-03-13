@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import odm.ODM;
+import odm.ODMcomplexTypeDefinitionSubjectData;
 import org.hl7.fhir.r4.model.Bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,6 +88,7 @@ public class ConverterController {
     @PostMapping(value = "/converter", consumes = "application/xml;charset=UTF-8",
             produces = "application/json;charset=UTF-8")
     @ResponseBody
+    @Deprecated
     public ResponseEntity<Object> convertClinicalDataToQuestionnaireResponse(
             @RequestBody ODM odm,
             @RequestHeader Map<String, String> headers
@@ -173,6 +175,14 @@ public class ConverterController {
                             "/converter"
                     ));
         }
+    }
+
+    @PostMapping("/converter")
+    public ResponseEntity<byte[]> convertClinicalDataToQuestionnaireResponse(
+            @RequestParam("odm") ODM odm,
+            @RequestParam("subjectData") ODMcomplexTypeDefinitionSubjectData subjectData
+    ) {
+        return ResponseEntity.ok().body("Okay".getBytes());
     }
 
     private boolean checkIfLanguageIsKnown(String language) {
