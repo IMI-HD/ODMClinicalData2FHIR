@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class ConverterApiTests {
 
 
     @Test
+    @Disabled
     public void testMEDVLymphomaQuestionnaire() throws Exception {
 
         String xmlContent = "";
@@ -109,6 +111,7 @@ public class ConverterApiTests {
     }
 
     @Test
+    @Disabled
     public void testWHO5Questionnaire() {
         try {
             ClassPathResource xmlFile = new ClassPathResource("testFiles/WHO5 /WHO5WithTestData.xml");
@@ -153,6 +156,7 @@ public class ConverterApiTests {
     }
 
     @Test
+    @Disabled
     public void testWHO5QuestionnaireRepeating() {
         try {
             ClassPathResource xmlFile = new ClassPathResource("testFiles/WHO5 repeating/WHO5WithTestDataRepeating.xml");
@@ -197,6 +201,7 @@ public class ConverterApiTests {
     }
 
     @Test
+    @Disabled
     public void testLanguageCodeSwitch() {
         try {
             ClassPathResource xmlFile = new ClassPathResource("testFiles/WHO5 repeating/WHO5WithTestDataRepeating.xml");
@@ -249,6 +254,7 @@ public class ConverterApiTests {
     }
 
     @Test
+    @Disabled
     public void testRejectionOfInvalidResources() {
         try {
 

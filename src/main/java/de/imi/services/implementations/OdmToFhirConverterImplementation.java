@@ -4,7 +4,6 @@ package de.imi.services.implementations;
 import ca.uhn.fhir.context.FhirContext;
 import de.imi.exceptions.subExceptions.*;
 import de.imi.exceptions.ClinicalDataToQuestionnaireResponseException;
-import de.imi.exceptions.subExceptions.*;
 import de.imi.services.definitions.OdmToFhirConverter;
 import odm.*;
 import org.hl7.fhir.r4.model.*;
@@ -38,6 +37,7 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
     @Override
     public String clinicalDataToQuestionnaireResponse(
             @NotNull ODM odm,
+            ODMcomplexTypeDefinitionSubjectData subjectData,
             String languageCode,
             String linkToQuestionnaire
     )
@@ -51,10 +51,8 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         List<ODMcomplexTypeDefinitionClinicalData> _clinicalData;
         // List of <Study> Elements from ODM
         List<ODMcomplexTypeDefinitionStudy> _study;
-        // <ClinicalData> Element at index 0 (only this will be converted!)
-        ODMcomplexTypeDefinitionClinicalData clinicalData;
-        // <SubjectData> Element at index 0 (only this will be converted!)
-        ODMcomplexTypeDefinitionSubjectData subjectData;
+
+
         // <Study> Element at index 0 (only this will be converted!)
         ODMcomplexTypeDefinitionStudy study;
         // <MetaDataVersion> Element at index 0 of the <Study> (only this will be converted!)
@@ -63,37 +61,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
 
         // validate basic structure of the ODM file
 
-        // check if a <ClinicalData> Element is present!
-        if (odm.getClinicalData().isEmpty()) {
-            LOGGER.error("<ClinicalData> was empty!");
-            throw new ClinicalDataNotFoundException("<ClinicalData> was empty!");
-        } else {
-            // set <ClinicalData> from ODM
-            LOGGER.info("Set <ClinicalData> list!");
-            _clinicalData = odm.getClinicalData();
-            try {
-                clinicalData = _clinicalData.get(0);
-                LOGGER.info("<ClinicalData> field set!");
-            } catch (IndexOutOfBoundsException e) {
-                LOGGER.error("No <ClinicalData> found at index 0!");
-                throw new ClinicalDataNotFoundException("No <ClinicalData> found at index 0!");
-            }
-        }
-
-        // check if a <SubjectData> Element is present in the selected <ClinicalData>
-        if (clinicalData.getSubjectData().isEmpty()) {
-            LOGGER.error("<SubjectData> was empty!");
-            throw new SubjectDataNotFoundException("<SubjectData> was empty!");
-        } else {
-            // set <SubjectData> at index 0 from selected <ClinicalData>
-            try {
-                subjectData = clinicalData.getSubjectData().get(0);
-                LOGGER.info("<SubjetData> field set!");
-            } catch (IndexOutOfBoundsException e) {
-                LOGGER.error("No <SubjectData> found at index 0!");
-                throw new SubjectDataNotFoundException("No <SubjectData> found at index 0!");
-            }
-        }
 
         // check if a <Study> Element is present!
         if (odm.getStudy().isEmpty()) {
@@ -128,23 +95,6 @@ public class OdmToFhirConverterImplementation implements OdmToFhirConverter {
         }
 
         LOGGER.info("All data fields set! Looping through ODM");
-
-        // check if <Study> and <ClinicalData> OIDs match
-        if (!clinicalData.getStudyOID().equals(study.getOID())) {
-            String errorString = String.format("<ClinicalData> StudyOID: %s does not match provided <Study> OID: %s",
-                    clinicalData.getStudyOID(), study.getOID());
-            LOGGER.error(errorString);
-            throw new ObjectIdDontMatchException(errorString);
-        }
-
-        // check if <ClinicalData> MetaDataVersionOID match provided <MetaDataVersion> OID
-        if (!metaDataVersion.getOID().equals(clinicalData.getMetaDataVersionOID())) {
-            String errorString = String.format("<ClinicalData> MetaDataVersionOID: %s does not " +
-                                               "match provided <MetaDataVersion> OID: %s",
-                    clinicalData.getMetaDataVersionOID(), metaDataVersion.getOID());
-            LOGGER.error(errorString);
-            throw new ObjectIdDontMatchException(errorString);
-        }
 
         // Loop through all <StudyEventData> => QuestionnaireResponse
         if (subjectData.getStudyEventData().isEmpty()) {

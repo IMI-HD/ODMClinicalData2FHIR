@@ -10,8 +10,14 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import odm.ODM;
 import odm.ODMcomplexTypeDefinitionSubjectData;
+import org.apache.commons.lang3.SerializationUtils;
+import org.apache.logging.log4j.util.internal.SerializationUtil;
 import org.hl7.fhir.r4.model.Bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +25,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -32,11 +41,15 @@ public class ConverterController {
 
     private final OdmToFhirConverter odmToFhirConverter;
 
+    private Unmarshaller odmUnmarshaller;
+
     @Autowired
     public ConverterController(
             OdmToFhirConverter odmToFhirConverter
-    ) {
+    ) throws JAXBException {
         this.odmToFhirConverter = odmToFhirConverter;
+        JAXBContext jaxbContextOdm = JAXBContext.newInstance(ODM.class);
+        this.odmUnmarshaller = jaxbContextOdm.createUnmarshaller();
     }
 
     @Operation(
@@ -163,7 +176,7 @@ public class ConverterController {
         // call conversion method
         try {
             LOGGER.info("/converter endpoint hit!");
-            String bundle = odmToFhirConverter.clinicalDataToQuestionnaireResponse(odm, language, link);
+            String bundle = odmToFhirConverter.clinicalDataToQuestionnaireResponse(odm, null, language, link);
             return ResponseEntity.status(HttpStatus.OK).body(bundle);
         } catch (ClinicalDataToQuestionnaireResponseException e) {
             return ResponseEntity
@@ -179,10 +192,46 @@ public class ConverterController {
 
     @PostMapping("/converter")
     public ResponseEntity<byte[]> convertClinicalDataToQuestionnaireResponse(
-            @RequestParam("odm") ODM odm,
-            @RequestParam("subjectData") ODMcomplexTypeDefinitionSubjectData subjectData
+            @RequestParam("odm") MultipartFile odm,
+            @RequestParam("subjectData") MultipartFile subjectData,
+            @RequestHeader Map<String, String> headers
     ) {
-        return ResponseEntity.ok().body("Okay".getBytes());
+        LOGGER.info("/converter endpoint hit!");
+        //ToDo: implement validations
+        try (InputStream odmInputStream = odm.getInputStream();
+             InputStream subjectDataInputStream = subjectData.getInputStream()) {
+
+            ODM odmObject = (ODM) odmUnmarshaller.unmarshal(odmInputStream);
+            // Unmarshal das SubjectData und extrahiere das tatsächliche Objekt aus dem JAXBElement
+            Object result = odmUnmarshaller.unmarshal(subjectDataInputStream);
+            ODMcomplexTypeDefinitionSubjectData subjectDataObject;
+
+            if (result instanceof JAXBElement<?> element) {
+                subjectDataObject = (ODMcomplexTypeDefinitionSubjectData) element.getValue();
+            } else {
+                subjectDataObject = (ODMcomplexTypeDefinitionSubjectData) result; // Direkter Cast, falls kein JAXBElement
+            }
+
+            String language = headers.get("questionnaire-language");
+            String link = headers.get("questionnaire-link");
+
+            String bundle =
+                    odmToFhirConverter.clinicalDataToQuestionnaireResponse(
+                            odmObject,
+                            subjectDataObject,
+                            language,
+                            link);
+
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(bundle.getBytes());
+
+        } catch (IOException | JAXBException | ClinicalDataToQuestionnaireResponseException e) {
+            LOGGER.error(e.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage().getBytes());
+        }
     }
 
     private boolean checkIfLanguageIsKnown(String language) {
