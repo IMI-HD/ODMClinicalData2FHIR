@@ -1,8 +1,10 @@
 package de.imi.controller;
 
 import de.imi.exceptions.ClinicalDataToQuestionnaireResponseException;
+import de.imi.exceptions.UnmarshallingOdmException;
 import de.imi.responses.ConverterErrorResponse;
 import de.imi.services.definitions.OdmToFhirConverter;
+import de.imi.services.definitions.UnmarshallingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -16,9 +18,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -31,11 +36,15 @@ public class ConverterController {
 
     private final OdmToFhirConverter odmToFhirConverter;
 
+    private final UnmarshallingService unmarshallingService;
+
     @Autowired
     public ConverterController(
-            OdmToFhirConverter odmToFhirConverter
+            OdmToFhirConverter odmToFhirConverter,
+            UnmarshallingService unmarshallingService
     ) {
         this.odmToFhirConverter = odmToFhirConverter;
+        this.unmarshallingService = unmarshallingService;
     }
 
     @Operation(
@@ -84,11 +93,13 @@ public class ConverterController {
                     )
             }
     )
-    @PostMapping(value = "/converter", consumes = "application/xml;charset=UTF-8",
-            produces = "application/json;charset=UTF-8")
+    @PostMapping(
+            value = "/converter",
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public ResponseEntity<Object> convertClinicalDataToQuestionnaireResponse(
-            @RequestBody ODM odm,
+            @RequestParam("odm") MultipartFile odmFile,
             @RequestHeader Map<String, String> headers
     ) {
         LOGGER.info("/converter endpoint hit!");
@@ -158,12 +169,15 @@ public class ConverterController {
                             "/converter"
                     ));
         }
-        // call conversion method
         try {
-            LOGGER.info("/converter endpoint hit!");
-            String bundle = odmToFhirConverter.clinicalDataToQuestionnaireResponse(odm, language, link);
+            LOGGER.info("Unmarshalling received ODM file");
+            // unmarshall multipart file with service
+            ODM odmObject = unmarshallingService.unmarshallOdmFromMultipartFile(odmFile);
+            // send object to converter
+            LOGGER.info("Converting received ODM file");
+            String bundle = odmToFhirConverter.clinicalDataToQuestionnaireResponse(odmObject, language, link);
             return ResponseEntity.status(HttpStatus.OK).body(bundle);
-        } catch (ClinicalDataToQuestionnaireResponseException e) {
+        } catch (ClinicalDataToQuestionnaireResponseException | UnmarshallingOdmException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(new ConverterErrorResponse(
